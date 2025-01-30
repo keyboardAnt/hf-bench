@@ -20,6 +20,20 @@ class BaseRunner(ABC):
         self.config = config
     
     @abstractmethod
+    def get_submit_command(self) -> str:
+        """Generate the command string used to submit jobs.
+        
+        Returns:
+            str: Command string that can be executed to submit a job
+            
+        This method should generate a command string that, when executed,
+        would submit a job to the cluster/system. The command should include
+        all necessary environment setup, resource requests, and execution parameters
+        as specified in the runner's configuration.
+        """
+        pass
+    
+    @abstractmethod
     def submit(self, script_path: str, *args, **kwargs) -> str:
         """Submit a job for execution.
         

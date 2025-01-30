@@ -1,9 +1,10 @@
 import pytest
 from pathlib import Path
 from hf_bench.utils.config import load_config, _generate_experiment_id
-from hf_bench.schemas import ExperimentConfig, ModelConfig, GenerationConfig
+from hf_bench.schemas import ExperimentConfig, ModelConfig, GenerationConfig, ClusterConfig
 import yaml
 from datetime import datetime
+from hf_bench.runners import LSFRunner
 
 def test_experiment_id_generation():
     """Test that experiment IDs are generated correctly."""
@@ -93,3 +94,34 @@ def test_load_nonexistent_config():
     """Test that loading a nonexistent config raises an error."""
     with pytest.raises(FileNotFoundError):
         load_config("configs/nonexistent.yaml")
+
+def test_config_structure():
+    """Test the exact structure of the loaded config."""
+    config_path = Path("configs/default_config.yaml")
+    config = load_config(config_path)
+    
+    # Test cluster config structure
+    assert config.cluster_config is not None
+    assert config.cluster_config.type == "lsf"
+    assert config.cluster_config.lsf is not None
+    
+    # Test logging config structure
+    assert config.logging is not None
+    assert config.logging.level == "DEBUG"
+    assert str(config.logging.output_dir) == str(Path("~/hf_bench_logs"))  # Compare as strings
+    assert config.logging.filename_pattern == "${timestamp}_jobid_%J_benchmark.log"
+
+def test_runner_config_access():
+    """Test that LSFRunner can access all needed config sections."""
+    config_path = Path("configs/default_config.yaml")
+    config = load_config(config_path)
+    # Pass both cluster and logging configs
+    runner = LSFRunner(config.cluster_config, logging_config=config.logging)
+    
+    # Test access to logging config
+    cmd = runner.get_submit_command()
+    cmd_str = str(cmd)
+    
+    # Verify logging path is in the command
+    assert str(config.logging.output_dir) in cmd_str
+    assert "_jobid_%J_benchmark.log" in cmd_str

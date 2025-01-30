@@ -56,7 +56,7 @@ def test_bsub_command_generation(minimal_lsf_config):
     """Test that the LSF runner generates correct bsub commands."""
     runner = LSFRunner(minimal_lsf_config)
     script_path = Path("test_script.py")
-    cmd = runner._build_bsub_command(script_path)
+    cmd = runner.get_submit_command(script_path)
     
     cmd_str = " ".join(cmd)
     assert "bsub" in cmd_str
