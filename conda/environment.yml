@@ -1,4 +1,4 @@
-name: bench-env
+name: hf-bench-env
 channels:
   - pytorch
   - nvidia
@@ -20,4 +20,4 @@ dependencies:
   - sentencepiece=0.2.0
   - pip=25.0
   - pip:
-    - -e git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
+    - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
