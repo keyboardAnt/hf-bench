@@ -3,7 +3,7 @@ import yaml
 from pathlib import Path
 from datetime import datetime
 import re
-from ..schemas import ExperimentConfig
+from hf_bench.schemas import ExperimentConfig
 
 def _generate_experiment_id(config_dict: dict) -> str:
     """Generate a unique experiment ID based on config contents."""

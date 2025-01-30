@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Optional, Dict, Any
 from pathlib import Path
+from datetime import datetime
 
 @dataclass
 class GenerationConfig:
@@ -50,17 +51,18 @@ class LSFConfig:
     environment: LSFEnvironment
 
 @dataclass
-class ClusterConfig:
-    type: str
-    lsf: LSFConfig
-    slurm: Optional[Any] = None
-
-@dataclass
 class LoggingConfig:
     level: str
     format: str
     output_dir: Path
     filename_pattern: str
+
+@dataclass
+class ClusterConfig:
+    type: str
+    lsf: LSFConfig
+    slurm: Optional[Any] = None
+    logging: Optional[LoggingConfig] = None
 
 @dataclass
 class ExperimentConfig:
@@ -83,4 +85,30 @@ class ExperimentMetrics:
     output_tokens_per_sec_std: float
     per_example_speedup_over_ar_star_hmean: float
     per_example_speedup_over_ar_star_max: float
-    per_example_speedup_over_ar_star_std: float 
+    per_example_speedup_over_ar_star_std: float
+
+@dataclass
+class HardwareResponse:
+    """Hardware information collected from job execution."""
+    # Required fields (no defaults)
+    job_id: str
+    queue_name: str
+    submission_time: datetime
+    loaded_modules: List[str]
+    bsub_command: str
+    
+    # Optional fields (with defaults)
+    start_time: Optional[datetime] = None
+    node_name: Optional[str] = None
+    host_architecture: Optional[str] = None
+    os_info: Optional[str] = None
+    gpu_type: Optional[str] = None
+    gpu_count: Optional[int] = None
+    gpu_driver_version: Optional[str] = None
+    cuda_version: Optional[str] = None
+    network: Optional[str] = None
+    max_memory_gb: Optional[float] = None
+    max_gpu_memory_gb: Optional[float] = None
+    cpu_time: Optional[float] = None
+    wall_time: Optional[float] = None
+    avg_cpu_util: Optional[float] = None 
