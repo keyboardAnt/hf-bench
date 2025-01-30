@@ -17,13 +17,20 @@ def run(ctx, config: Path, verbose: int):
     """Run benchmark job"""
     config = validate_config(ctx, None, config)
     
+    click.echo(f"Loading configuration from: {config}")
+    
     # Get runner
     from hf_bench.runners import get_runner
     runner = get_runner(config.cluster_config)
+    click.echo(f"Using runner: {runner.__class__.__name__}")
     
     # Submit job
+    click.echo("Submitting benchmark job...")
     job_id = runner.submit('benchmark.py')
-    click.echo(f"Submitted job {job_id}")
+    click.echo(f"Successfully submitted job:")
+    click.echo(f"  - Job ID: {job_id}")
+    click.echo(f"  - Script: benchmark.py")
+    click.echo(f"  - Cluster config: {config.cluster_config}")
 
 @benchmark_cli.command()
 @CommonOptions.config_option
