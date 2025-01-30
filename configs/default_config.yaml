@@ -1,6 +1,5 @@
 # Default configuration aligned with protobuf service definitions
-experiment:
-  output_dir: results/raw/${experiment_id}
+output_dir: results/raw/${experiment_id}
 
 target_model:
   hf_path: "meta-llama/Llama-3.1-70B"

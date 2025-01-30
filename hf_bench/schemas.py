@@ -20,18 +20,32 @@ class DatasetConfig:
     num_examples: int
 
 @dataclass
+class TaskConfig:
+    dataset: DatasetConfig
+    max_new_tokens: int
+
+@dataclass
+class GPUConfig:
+    type: Optional[str]
+    count: int
+    memory_gb: int
+    is_exclusive: bool
+
+@dataclass
 class LSFConfig:
-    gpu:
-        type: Optional[str]
-        count: int
-        memory_gb: int
-        is_exclusive: bool
+    gpu: GPUConfig
     cpu_cores: int
     memory_gb: int
     queue_names: List[str]
     num_hosts: int
     num_processes: int
     modules: List[str]
+
+@dataclass
+class ClusterConfig:
+    type: str
+    lsf: LSFConfig
+    slurm: Optional[Any] = None
 
 @dataclass
 class LoggingConfig:
@@ -45,8 +59,8 @@ class ExperimentConfig:
     output_dir: Path
     target_model: ModelConfig
     drafter_models: List[ModelConfig]
-    task: DatasetConfig
-    cluster_config: LSFConfig
+    task: TaskConfig
+    cluster_config: ClusterConfig
     logging: LoggingConfig
     metrics: List[str]
 
