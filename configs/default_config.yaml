@@ -34,26 +34,28 @@ cluster_config:
   type: "lsf"  # or "slurm"
 
   lsf:
-    # GPU settings from -gpu flag
-    gpu:
-      type: null  # Unspecified by default
-      count: 1
-      memory_gb: 80
-      is_exclusive: true
+    hardware_request:
+      # GPU settings from -gpu flag
+      gpu:
+        type: null  # Unspecified by default
+        count: 1
+        memory_gb: 80
+        is_exclusive: true
 
-    # CPU & Memory settings
-    cpu_cores: 8        # From -R "affinity[core(8)]"
-    memory_gb: 200      # From both -R "rusage[mem=200GB]" and -M 200GB
-    
-    # Queue settings
-    queue_names: ["long-gpu", "short-gpu", "risk-gpu"]
-    num_hosts: 1        # From -R "span[hosts=1]"
-    num_processes: 1    # From -n 1
+      # CPU & Memory settings
+      cpu_cores: 8        # From -R "affinity[core(8)]"
+      memory_gb: 200      # From both -R "rusage[mem=200GB]" and -M 200GB
+      
+      # Queue settings
+      queue_names: ["long-gpu", "short-gpu", "risk-gpu"]
+      num_hosts: 1        # From -R "span[hosts=1]"
+      num_processes: 1    # From -n 1
 
-    # Environment modules
-    modules:
-      - "miniconda/24.11_environmentally"
-      - "CUDA/12.4.0"
+    environment:
+      # Environment modules
+      modules:
+        - "miniconda/24.11_environmentally"
+        - "CUDA/12.4.0"
 
   slurm:
     ...

@@ -63,13 +63,13 @@ def test_load_default_config():
     
     # Test cluster config
     assert config.cluster_config.type == "lsf"
-    assert config.cluster_config.lsf.gpu.count == 1
-    assert config.cluster_config.lsf.gpu.memory_gb == 80
-    assert config.cluster_config.lsf.gpu.is_exclusive is True
-    assert config.cluster_config.lsf.cpu_cores == 8
-    assert config.cluster_config.lsf.memory_gb == 200
-    assert "long-gpu" in config.cluster_config.lsf.queue_names
-    assert len(config.cluster_config.lsf.modules) == 2
+    assert config.cluster_config.lsf.hardware_request.gpu.count == 1
+    assert config.cluster_config.lsf.hardware_request.gpu.memory_gb == 80
+    assert config.cluster_config.lsf.hardware_request.gpu.is_exclusive is True
+    assert config.cluster_config.lsf.hardware_request.cpu_cores == 8
+    assert config.cluster_config.lsf.hardware_request.memory_gb == 200
+    assert "long-gpu" in config.cluster_config.lsf.hardware_request.queue_names
+    assert len(config.cluster_config.lsf.environment.modules) == 2
     
     # Test logging config
     assert isinstance(config.logging.output_dir, Path)

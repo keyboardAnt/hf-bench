@@ -32,14 +32,22 @@ class GPUConfig:
     is_exclusive: bool
 
 @dataclass
-class LSFConfig:
+class LSFHardwareRequest:
     gpu: GPUConfig
     cpu_cores: int
     memory_gb: int
     queue_names: List[str]
     num_hosts: int
     num_processes: int
+
+@dataclass
+class LSFEnvironment:
     modules: List[str]
+
+@dataclass
+class LSFConfig:
+    hardware_request: LSFHardwareRequest
+    environment: LSFEnvironment
 
 @dataclass
 class ClusterConfig:
