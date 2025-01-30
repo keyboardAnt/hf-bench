@@ -29,12 +29,8 @@ python -m hf_bench cluster get-command -c configs/default_config.yaml
 
 ### Benchmark Commands
 
-Run and monitor benchmarks:
+Run benchmarks:
 ```bash
-# Run benchmark with monitoring and result analysis
-python -m hf_bench benchmark run -c configs/default_config.yaml --monitor --analyze
-
-# Run benchmark without monitoring
 python -m hf_bench benchmark run -c configs/default_config.yaml
 
 # Check status of a running benchmark

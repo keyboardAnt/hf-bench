@@ -1,5 +1,7 @@
 import click
 from pathlib import Path
+
+from hf_bench.runners import get_runner
 from .base import CommonOptions, validate_config
 
 @click.group()
@@ -10,10 +12,8 @@ def benchmark_cli():
 @benchmark_cli.command()
 @CommonOptions.config_option
 @CommonOptions.verbose_option
-@click.option('--monitor', is_flag=True, help='Monitor job progress')
-@click.option('--analyze', is_flag=True, help='Analyze results after completion')
 @click.pass_context
-def run(ctx, config: Path, verbose: int, monitor: bool, analyze: bool):
+def run(ctx, config: Path, verbose: int):
     """Run benchmark job"""
     config = validate_config(ctx, None, config)
     
@@ -24,15 +24,6 @@ def run(ctx, config: Path, verbose: int, monitor: bool, analyze: bool):
     # Submit job
     job_id = runner.submit('benchmark.py')
     click.echo(f"Submitted job {job_id}")
-    
-    if monitor:
-        # Monitor progress
-        runner.monitor(job_id)
-    
-    if analyze:
-        # Analyze results
-        from hf_bench.analysis import analyze_results
-        analyze_results(config.output_dir)
 
 @benchmark_cli.command()
 @CommonOptions.config_option
