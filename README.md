@@ -46,5 +46,6 @@ All commands require a config file specified with `-c` or `--config`.
 ## Tests
 Run tests in parallel:
 ```bash
-pytest -n auto -v
+pytest -n 4 -v
 ```
+Use `-n auto` to automatically determine the number of cores to use.
