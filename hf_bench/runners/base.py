@@ -46,34 +46,4 @@ class BaseRunner(ABC):
             RuntimeError: If job submission fails
         """
         pass
-    
-    @abstractmethod
-    def get_status(self, job_id: str) -> str:
-        """Get the current status of a submitted job.
-        
-        Args:
-            job_id: The job identifier returned by submit()
-            
-        Returns:
-            str: Current job status (e.g., "PENDING", "RUNNING", "COMPLETED", "FAILED")
-            
-        Raises:
-            KeyError: If job_id is not found
-        """
-        pass
-    
-    @abstractmethod
-    def get_hardware_info(self, job_id: str) -> HardwareResponse:
-        """Get hardware information for a submitted job.
-        
-        Args:
-            job_id: The job identifier returned by submit()
-            
-        Returns:
-            HardwareResponse: Object containing hardware information
-            
-        Raises:
-            KeyError: If job_id is not found
-        """
-        pass
    
