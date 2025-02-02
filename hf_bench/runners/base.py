@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from hf_bench.schemas import HardwareResponse
 
 class BaseRunner(ABC):
     """Base class for all runners (local, LSF, SLURM, etc.).
@@ -29,21 +28,3 @@ class BaseRunner(ABC):
         as specified in the runner's configuration.
         """
         pass
-    
-    @abstractmethod
-    def submit(self, script_path: str, *args, **kwargs) -> str:
-        """Submit a job for execution.
-        
-        Args:
-            script_path: Path to the Python script to execute
-            *args: Additional arguments to pass to the script
-            **kwargs: Additional keyword arguments for job submission
-            
-        Returns:
-            str: A unique identifier for the submitted job
-            
-        Raises:
-            RuntimeError: If job submission fails
-        """
-        pass
-   

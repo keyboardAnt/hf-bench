@@ -14,31 +14,6 @@ class LSFRunner(BaseRunner):
         self.logging_config = logging_config
         self._hardware_info: dict[str, HardwareResponse] = {}
 
-    def submit(self, script_path: str, *args):
-        """Submit a job to LSF and collect initial hardware information."""
-        cmd = self.get_submit_command(script_path, *args)
-        bsub_command = " ".join(cmd)
-        
-        try:
-            result = subprocess.run(bsub_command, shell=True, check=True, capture_output=True, text=True)
-            
-            # Extract job ID from bsub output
-            job_id = result.stdout.split("<")[1].split(">")[0]
-            
-            # Initialize hardware response with submission info
-            self._hardware_info[job_id] = HardwareResponse(
-                job_id=job_id,
-                queue_name=self._get_queue_name(job_id),
-                submission_time=datetime.now(),
-                loaded_modules=self.lsf_config.environment.modules,
-                bsub_command=bsub_command
-            )
-            
-            return job_id
-            
-        except subprocess.CalledProcessError as e:
-            raise RuntimeError(f"Job submission failed: {e.stderr}")
-
     def get_submit_command(self, script_path: str | None = None, *args) -> list | str:
         """Build the bsub command with all necessary arguments."""
         hw = self.lsf_config.hardware_request
