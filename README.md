@@ -2,46 +2,64 @@
 
 ## Setup
 
+Create a new conda environment:
 ```bash
 conda env create -f conda/environment.yml
 ```
 
-Include an `.env` file in the root directory with the following variables:
+Activate the environment:
+```bash
+conda activate hf-bench-env
+```
+
+Please include an `.env` file in the root directory with the following variables. The models and datasets are downloaded to the `HF_HOME` directory, unless they are already stored there.
 ```
 HF_ACCESS_TOKEN=hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 HF_HOME=/path/to/hf_home
 ```
 
+To update the environment after changing the `environment.yml` file:
+```bash
+conda env update -f conda/environment.yml --prune
+```
+
 ## CLI Usage
 
-The package provides several command-line interfaces:
+### Benchmark
 
-### Cluster Commands
+> [!NOTE] To run the benchmark, you must login to Weights & Biases and often also Hugging Face.
 
-Generate cluster submission commands:
+Below are commands for running the benchmark on 
+1. Machine with GPUs
+
+    ```bash
+    python -m hf_bench.benchmark --num_of_examples=1
+    ```
+
+2. Cluster
+
+    ```bash
+    ./hf_bench/submit/lsf.sh --num_of_examples=1
+    ```
+
+After running the above sanity check with one example and the `default` experiment config, you can run the benchmark with 30 examples and a custom experiment config:
+
 ```bash
-# Generate and preview submission command
-python -m hf_bench cluster get-command -c configs/default_config.yaml --dry-run
-
-# Generate and execute submission command (with confirmation prompt)
-python -m hf_bench cluster get-command -c configs/default_config.yaml
+python -m hf_bench.benchmark --experiment_config deepseek-r1-qwen-32b
+```
+or
+```bash
+./hf_bench/submit/lsf.sh --experiment_config deepseek-r1-qwen-32b
 ```
 
-### Benchmark Commands
+To adjust the hardware request to the cluster, edit the submit script.
 
-Run benchmarks:
-```bash
-python -m hf_bench benchmark run -c configs/default_config.yaml
+#### Monitoring
 
-# Check status of a running benchmark
-python -m hf_bench benchmark status -c configs/default_config.yaml JOB_ID
-```
+After loading the models, you can monitor the progress of the benchmark here: https://wandb.ai/generating-faster/llm-benchmarks.
 
-All commands require a config file specified with `-c` or `--config`.
-
-## Tests
+<!-- ## Tests
 Run tests in parallel:
 ```bash
 pytest -n 4 -v
-```
-Use `-n auto` to automatically determine the number of cores to use.
+``` -->

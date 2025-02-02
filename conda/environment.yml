@@ -18,12 +18,9 @@ dependencies:
   - protobuf=5.28.3
   - blobfile=3.0.0
   - sentencepiece=0.2.0
-  - dacite=1.9.0
   - pytest=8.3.4
   - pytest-xdist=3.6.1
-  - pyyaml=6.0.2
-  - click=8.1.8
-  
+  - wandb=0.19.5
   - pip=25.0
   - pip:
     - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers

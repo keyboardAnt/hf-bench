@@ -1,31 +1,27 @@
-from datetime import datetime
-import os
-import subprocess
-
+# NOTE: These lines set up the `HF_HOME` cache directory. Ensure that they run before other imports.
 from dotenv import load_dotenv
-
-
-# Setting up the `HF_HOME` cache directory and `HF_ACCESS_TOKEN` token
 load_dotenv()
 
+import os
+import subprocess
+import sys
 import argparse
 import gc
 import time
-from dataclasses import dataclass
-from pprint import pprint
-from threading import Thread
-from typing import Dict, List, Optional
-
-import numpy as np
-import pandas as pd
 import torch
+import wandb
+import pandas as pd
+from dataclasses import dataclass, astuple
+from threading import Thread
+from typing import List, Optional
+from tqdm import tqdm
+from datetime import datetime
 from datasets import load_dataset
 from huggingface_hub import login
-
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers.cache_utils import OffloadedStaticCache
 from transformers.generation.streamers import BaseStreamer
 
+from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs
 
 # ------------------------------------------------------------------------------
 # Environment & Setup
@@ -53,11 +49,23 @@ def login_to_hf(token_env_var: str = "HF_ACCESS_TOKEN"):
     login(token=access_token)
 
 
+def login_wandb():
+    """
+    Setup Weights & Biases for logging benchmark results.
+    """
+    print("Setting up W&B...", flush=True)
+    wandb.login()
+    print("W&B logged in", flush=True)
+
+
 def parse_args() -> argparse.Namespace:
     """
     Parse command-line arguments.
     """
     parser = argparse.ArgumentParser(description="Generation Script")
+    parser.add_argument(
+        "--experiment_config", default="default", type=str, help="The experiment config to run. For example, `llama70b-it`."
+    )
     parser.add_argument(
         "--num_of_examples", default=30, type=int, help="The number of examples from the dataset to run."
     )
@@ -112,10 +120,6 @@ def clear_memory():
         for i in range(torch.cuda.device_count()):
             print(f"GPU {i} memory allocated: {torch.cuda.memory_allocated(i) / 1e9:.2f}GB", flush=True)
             print(f"GPU {i} memory cached: {torch.cuda.memory_reserved(i) / 1e9:.2f}GB", flush=True)
-
-    # Reset the PyTorch CPU memory allocator
-    if hasattr(torch, "cuda"):
-        torch.cuda.empty_cache()
 
     print("Memory cleared: Python memory garbage collected and GPU cache emptied.", flush=True)
 
@@ -176,18 +180,15 @@ class IdsIteratorStreamer(BaseStreamer):
                 # Avoid busy waiting
                 time.sleep(0.01)
 
-
 # ------------------------------------------------------------------------------
-# Model Handling
+# Schemas
 # ------------------------------------------------------------------------------
-
 
 @dataclass
 class Result:
     """
     A class to store the results of a generation experiment.
     """
-
     tok_ids_prompt: List[int]
     tok_ids_new: List[int]
     prompt_text: str
@@ -196,6 +197,55 @@ class Result:
     ttft_s: float
     tpot_s: float
 
+@dataclass
+class ResultsTableRow:
+    target: str
+    dataset_path: str
+    dataset_name: str
+    dataset_split: str
+    num_of_examples: int
+    drafter: str
+    temperature: float
+    example_id: int
+    prompt: str
+    new_text: str
+    new_toks: int
+    ttft_ms: float
+    tpot_ms: float
+    out_toks_per_sec: float
+
+    @classmethod
+    def from_experiment_config_and_result(cls, 
+                                          target: str,
+                                          dataset_path: str,
+                                          dataset_name: str,
+                                          dataset_split: str,
+                                          num_of_examples: int,
+                                          drafter: str,
+                                          temperature: float,
+                                          example_id: int, 
+                                          result: Result) -> "ResultsTableRow":
+        return cls(
+            target=target,
+            dataset_path=dataset_path,
+            dataset_name=dataset_name,
+            dataset_split=dataset_split,
+            num_of_examples=num_of_examples,
+            drafter=drafter,
+            example_id=example_id,
+            temperature=temperature,
+            prompt=result.prompt_text,
+            new_text=result.new_text,
+            new_toks=len(result.tok_ids_new),
+            ttft_ms=result.ttft_s * 1000,
+            tpot_ms=result.tpot_s * 1000,
+            out_toks_per_sec=1 / result.tpot_s,
+        )
+
+
+# ------------------------------------------------------------------------------
+# Model Handling
+# ------------------------------------------------------------------------------
 
 class HFModel:
     """
@@ -210,7 +260,17 @@ class HFModel:
         self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map=device_map, torch_dtype=torch_dtype)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    def generate_text(self, prompt: str, do_sample: bool, max_new_tokens: int = 512, **kwargs):
+    def __del__(self):
+        """
+        Clean up model resources when the object is deleted.
+        """
+        if hasattr(self, 'model'):
+            del self.model
+        if hasattr(self, 'tokenizer'):
+            del self.tokenizer
+        clear_memory()
+
+    def generate_text(self, prompt: str, do_sample: bool, max_new_tokens: int = 512, **kwargs) -> Result:
         """
         Generate text from the underlying model, measuring detailed latency metrics.
 
@@ -305,6 +365,7 @@ class HFModel:
         thread.join(timeout=300)  # 5 minute timeout
         if thread.is_alive():
             print("Warning: Generation thread did not complete within timeout", flush=True)
+            wandb.log({"warning": "Generation thread did not complete within timeout"})
 
         return Result(
             tok_ids_prompt=inputs["input_ids"][0].tolist(),
@@ -375,8 +436,8 @@ def tokenizers_are_identical(t1, t2) -> bool:
 
 
 def generate_assisted(
-    prompt: str, target_model_obj: HFModel, temperature: float, assistant_model_obj: Optional[HFModel] = None
-):
+    example_id: int, prompt: str, target_model_obj: HFModel, temperature: float, assistant_model_obj: Optional[HFModel] = None
+) -> Result:
     """
     Demonstrates an assisted generation approach:
     Optionally pass an assistant model or additional arguments if there's
@@ -405,189 +466,139 @@ def generate_assisted(
 
 
 def main():
-    # 1. Environment setup
+    # Environment setup
     set_hf_cache_env()
-
-    # 2. Login
+    login_wandb()
     login_to_hf()
 
-    # 3. Parse arguments
+    # Parse arguments
     args = parse_args()
     print("=" * 100, flush=True)
     print(f"{args=}", flush=True)
     print("=" * 100, flush=True)
-
-    # 4. Log hardware info
-    log_hardware_info()
-
-    # 5. models
-    # target_checkpoint = "meta-llama/Llama-3.1-70B-Instruct"
-    # qwen_checkpoint = "Qwen/Qwen2.5-0.5B-Instruct"
-    # llama_assistant_checkpoint = "meta-llama/Llama-3.2-1B-Instruct"
-    # llama_3b_assistant_checkpoint = "meta-llama/Llama-3.2-3B-Instruct"
-    target_model_checkpoint = "Qwen/Qwen2.5-1.5B-Instruct"
-    assistant_hom_checkpoint = "Qwen/Qwen2.5-0.5B-Instruct"
-    assistant_het_checkpoint = "double7/vicuna-68m"
-
-    # 6. dataset
-    dataset_path = "tau/scrolls"
-    dataset_name = "qasper"
-    dataset_split = "test"
-    # dataset_path = "cnn_dailymail"
-    # dataset_name = "3.0.0"
-    # dataset_split = "validation"
-
-    print("=" * 100, flush=True)
     print(f"{locals()=}", flush=True)
     print("=" * 100, flush=True)
 
-    print("Loading models...", flush=True)
-    target_model_obj = HFModel(target_model_checkpoint)
-    assistant_hom_obj = HFModel(assistant_hom_checkpoint)
-    assistant_het_obj = HFModel(assistant_het_checkpoint)
+    # Log hardware info
+    log_hardware_info()
+    
+    experiment_config_name: str = args.experiment_config
+    assert experiment_config_name in experiment_configs, f"Unknown experiment config: {experiment_config_name}"
+    experiment_config: ExperimentConfig = experiment_configs[experiment_config_name]
+    target_checkpoint: str = experiment_config.target
+    print("Loading target model...", flush=True)
+    target_obj = HFModel(target_checkpoint)
 
-    print("Loading dataset:", flush=True)
-    print(f"Dataset path: {dataset_path}", flush=True)
-    print(f"Dataset name: {dataset_name}", flush=True)
-    print(f"Dataset split: {dataset_split}", flush=True)
-    dataset = load_dataset(path=dataset_path, name=dataset_name, split=dataset_split, trust_remote_code=True)
-    dataset_sample = dataset.take(args.num_of_examples)
+    df_results: pd.DataFrame = pd.DataFrame()
 
-    # 7. Generation loop
-    results: List[Dict[str, float]] = []
-    for i, example in enumerate(dataset_sample):
-        
-        # TODO: Select the dataset ###################################################
-        # Tau/Scrolls dataset
-        prompt = example["input"]  # Adjust if the actual prompt field is different
-        # CNN Daily Mail dataset
-        # prompt = f"Summarize the following article.\nArticle:\n{example['article']}\nSummary:\n"
-        ##############################################################################
+    dataset_config: DatasetConfig
+    for dataset_config in tqdm(experiment_config.dataset_configs, desc="Datasets", position=0, leave=True, ascii=True, file=sys.stdout):
+        dataset_path = dataset_config.path
+        dataset_name = dataset_config.name
+        dataset_split = dataset_config.split
 
-        print("=" * 100, flush=True)
-        print(f"Running input prompt {i}...", flush=True)
-        print("Prompt:\n", prompt, flush=True)
-        print("=" * 100, flush=True)
+        print("Loading dataset:", flush=True)
+        print(f"Dataset path: {dataset_path}", flush=True)
+        print(f"Dataset name: {dataset_name}", flush=True)
+        print(f"Dataset split: {dataset_split}", flush=True)
+        dataset = load_dataset(path=dataset_path, name=dataset_name, split=dataset_split, trust_remote_code=True)
+        dataset_sample = dataset.take(args.num_of_examples)
 
-        print(f"Running AR with `temp=0.0` for {target_model_checkpoint}...", flush=True)
-        ar_do_sample_false_result = generate_assisted(
-            prompt=prompt, temperature=0.0, target_model_obj=target_model_obj
+        # Setting up wandb run
+        assistant_checkpoints: List[str] = experiment_config.assistants
+        run_name = f"{target_checkpoint}_{dataset_path}_{dataset_name}_{dataset_split}_{args.num_of_examples}_{'-'.join(assistant_checkpoints)}"
+        run_name = run_name.replace("/", "-")
+        wandb_run = wandb.init(
+            project="llm-benchmarks",
+            config={
+                "target": experiment_config.target,
+                "dataset_path": dataset_path,
+                "dataset_name": dataset_name,
+                "dataset_split": dataset_split,
+                "num_of_examples": args.num_of_examples,
+            },
+            tags=[
+                f"target:{target_checkpoint}",
+                f"dataset:{dataset_path}/{dataset_name}/{dataset_split}",
+                f"num_of_examples:{args.num_of_examples}",
+            ],
+            name=run_name,
         )
-
-        print(f"Running AR with `temp=1.0` for {target_model_checkpoint}...", flush=True)
-        ar_do_sample_true_result = generate_assisted(
-            prompt=prompt, temperature=1.0, target_model_obj=target_model_obj
+        wandb_artifact = wandb.Artifact(
+            name=f"results_per_example_{run_name}", 
+            type="dataset"
         )
+        columns = list(ResultsTableRow.__dataclass_fields__.keys())
+        wandb_table = wandb.Table(columns=columns)
+        print(f"{wandb_table=}", flush=True)
+        wandb_artifact.add(wandb_table, "my_table")
 
-        print(f"Running SLEM (assisted generation with `temp=0.0`) for {target_model_checkpoint} with {assistant_het_checkpoint}...", flush=True)
-        slem_result = generate_assisted(
-            prompt=prompt,
-            target_model_obj=target_model_obj,
-            temperature=0.0,
-            assistant_model_obj=assistant_het_obj,
-        )
+        assistant_checkpoints = [None] + assistant_checkpoints
+        for assistant_checkpoint in tqdm(assistant_checkpoints, desc="Assistants", position=1, leave=True, ascii=True, file=sys.stdout):
+            print(f"Loading assistant model {assistant_checkpoint}...", flush=True)
+            assistant_obj = None if assistant_checkpoint is None else HFModel(assistant_checkpoint)
+            try:
+                for temperature in tqdm(experiment_config.temperatures, desc="Temperatures", position=2, leave=True, ascii=True, file=sys.stdout):
+                    # Generation loop
+                    for example_id, example in tqdm(enumerate(dataset_sample), desc="Examples", position=3, leave=True, ascii=True, file=sys.stdout):
+                        # Get prompt
+                        match dataset_path:
+                            case "tau/scrolls":
+                                prompt = f"Summarize the following text:\n{example['input']}\nSummary:\n"
+                            case "cnn_dailymail":
+                                prompt = f"Summarize the following article:\n{example['article']}\nSummary:\n"
+                            case "openai/openai_humaneval":
+                                prompt = f"Implement the function so that it passes the tests.\nTests:\n{example['test']}\nFunction:\n{example['prompt']}\n\nYour code:\n"
+                            case _:
+                                raise ValueError(f"Unknown dataset path: {dataset_path}")
 
-        print(f"Running TLI (assisted generation with `temp=1e-7`) for {target_model_checkpoint} with {assistant_het_checkpoint}...", flush=True)
-        tli_do_sample_false_result = generate_assisted(
-            prompt=prompt,
-            target_model_obj=target_model_obj,
-            temperature=1e-7,
-            assistant_model_obj=assistant_het_obj,
-        )
+                        # Run generation
+                        print("=" * 100, flush=True)
+                        print(f"Running input prompt {example_id}...", flush=True)
+                        print("Prompt:\n", prompt, flush=True)
+                        print("=" * 100, flush=True)
 
-        print(f"Running TLI (assisted generation with `temp=1.0`) for {target_model_checkpoint} with {assistant_het_checkpoint}...", flush=True)
-        tli_do_sample_true_result = generate_assisted(
-            prompt=prompt,
-            target_model_obj=target_model_obj,
-            temperature=1.0,
-            assistant_model_obj=assistant_het_obj,
-        )
+                        print(f"Running `assistant={assistant_checkpoint}` with `temp={temperature}` for {target_checkpoint}...", flush=True)
+                        result = generate_assisted(
+                            example_id=example_id,
+                            prompt=prompt,
+                            target_model_obj=target_obj,
+                            temperature=temperature,
+                            assistant_model_obj=assistant_obj,
+                        )
+                        results_table_row = ResultsTableRow.from_experiment_config_and_result(
+                            target=target_checkpoint,
+                            dataset_path=dataset_path,
+                            dataset_name=dataset_name,
+                            dataset_split=dataset_split,
+                            num_of_examples=args.num_of_examples,
+                            drafter=assistant_checkpoint,
+                            temperature=temperature,
+                            example_id=example_id,
+                            result=result,
+                        )
+                        wandb_table.add_data(*astuple(results_table_row))
+                        df_results = pd.concat([df_results, pd.DataFrame([results_table_row])], ignore_index=True)
+            finally:
+                if assistant_obj is not None:
+                    del assistant_obj
+                    clear_memory()
 
-        print(f"Running SD (assisted generation with `temp=0.0`) for {target_model_checkpoint} with {assistant_hom_checkpoint}...", flush=True)
-        sd_do_sample_false_result = generate_assisted(
-            prompt=prompt,
-            target_model_obj=target_model_obj,
-            temperature=0.0,
-            assistant_model_obj=assistant_hom_obj,
-        )
-
-        print(f"Running SD (assisted generation with `temp=1.0`) for {target_model_checkpoint} with {assistant_hom_checkpoint}...", flush=True)
-        sd_do_sample_true_result = generate_assisted(
-            prompt=prompt,
-            target_model_obj=target_model_obj,
-            temperature=1.0,
-            assistant_model_obj=assistant_hom_obj,
-        )
-
-        # Collect results
-        results.append(
-            {
-                "AR `temp=0.0` TPOT": ar_do_sample_false_result.tpot_s,
-                "AR `temp=0.0` TTFT": ar_do_sample_false_result.ttft_s,
-                "AR `temp=0.0` LenInp": len(ar_do_sample_false_result.tok_ids_prompt),
-                "AR `temp=0.0` NewToks": len(ar_do_sample_false_result.tok_ids_new),
-                "AR `temp=1.0` TPOT": ar_do_sample_true_result.tpot_s,
-                "AR `temp=1.0` TTFT": ar_do_sample_true_result.ttft_s,
-                "AR `temp=1.0` LenInp": len(ar_do_sample_true_result.tok_ids_prompt),
-                "AR `temp=1.0` NewToks": len(ar_do_sample_true_result.tok_ids_new),
-                "TLI `temp=1e-7` TPOT": tli_do_sample_false_result.tpot_s,
-                "TLI `temp=1e-7` TTFT": tli_do_sample_false_result.ttft_s,
-                "TLI `temp=1e-7` LenInp": len(tli_do_sample_false_result.tok_ids_prompt),
-                "TLI `temp=1e-7` NewToks": len(tli_do_sample_false_result.tok_ids_new),
-                "TLI `temp=1.0` TPOT": tli_do_sample_true_result.tpot_s,
-                "TLI `temp=1.0` TTFT": tli_do_sample_true_result.ttft_s,
-                "TLI `temp=1.0` LenInp": len(tli_do_sample_true_result.tok_ids_prompt),
-                "TLI `temp=1.0` NewToks": len(tli_do_sample_true_result.tok_ids_new),
-                "SLEM TPOT": slem_result.tpot_s,
-                "SLEM TTFT": slem_result.ttft_s,
-                "SLEM LenInp": len(slem_result.tok_ids_prompt),
-                "SLEM NewToks": len(slem_result.tok_ids_new),
-                "SD `temp=0.0` TPOT": sd_do_sample_false_result.tpot_s,
-                "SD `temp=0.0` TTFT": sd_do_sample_false_result.ttft_s,
-                "SD `temp=0.0` LenInp": len(sd_do_sample_false_result.tok_ids_prompt),
-                "SD `temp=0.0` NewToks": len(sd_do_sample_false_result.tok_ids_new),
-                "SD `temp=1.0` TPOT": sd_do_sample_true_result.tpot_s,
-                "SD `temp=1.0` TTFT": sd_do_sample_true_result.ttft_s,
-                "SD `temp=1.0` LenInp": len(sd_do_sample_true_result.tok_ids_prompt),
-                "SD `temp=1.0` NewToks": len(sd_do_sample_true_result.tok_ids_new),
-            }
-        )
-
-        print(f"Results for prompt {i}:", flush=True)
-        pprint(results[-1])
-
-        print("TTFT stats:", flush=True)
-        ttft_values = [v for k, v in results[-1].items() if "TTFT" in k]
-        ttft_mean = np.mean(ttft_values)
-        ttft_std = np.std(ttft_values)
-        print("Mean: ", ttft_mean, flush=True)
-        print("Std: ", ttft_std, flush=True)
-        print("Their ratio (std/mean): ", ttft_std / ttft_mean, flush=True)
-        print("Min: ", np.min(ttft_values), flush=True)
-        print("Max: ", np.max(ttft_values), flush=True)
-        print("Median: ", np.median(ttft_values), flush=True)
-
-        print("TPOTs small to large:", flush=True)
-        tpots = {k: v for k, v in results[-1].items() if "TPOT" in k}
-        sorted_tpots = sorted(tpots.items(), key=lambda x: x[1])
-        pprint(sorted_tpots)
-
-    # 8. Convert to DataFrame & save
-    df_results = pd.DataFrame(results)
+    wandb_run.log_artifact(wandb_artifact)
+    wandb_run.log({"results": wandb.Table(dataframe=df_results)})
 
     # Create output directory if it doesn't exist
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     commit_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("utf-8").strip()
     dirpath = f"benchmark_results/{timestamp}_{commit_hash}"
     os.makedirs(dirpath, exist_ok=True)
-
     # Save to the benchmark_results directory
-    dataset_info = f"{dataset_path}_{dataset_name}_{dataset_split}".replace("/", "-")
-    target_model_info = f"{target_model_checkpoint}".replace("/", "-")
-    filename_results = os.path.join(dirpath, f"latency_benchmark_on_{target_model_info}_{dataset_info}_{args.num_of_examples}_examples.csv")
-    os.makedirs(os.path.dirname(filename_results), exist_ok=True)
-    df_results.to_csv(filename_results, index=False)
-    print(f"Results saved to {filename_results}", flush=True)
+    filepath_results = os.path.join(dirpath, f"{run_name}.csv")
+    os.makedirs(os.path.dirname(filepath_results), exist_ok=True)
+    df_results.to_csv(filepath_results, index=False)
+    print(f"Results saved to {filepath_results}", flush=True)
+
+    wandb_run.finish()
 
 
 if __name__ == "__main__":
