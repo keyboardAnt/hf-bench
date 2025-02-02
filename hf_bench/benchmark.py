@@ -21,7 +21,7 @@ from huggingface_hub import login
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation.streamers import BaseStreamer
 
-from .config import DatasetConfig, ExperimentConfig, experiment_configs
+from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs
 
 # ------------------------------------------------------------------------------
 # Environment & Setup
