@@ -1,23 +1,25 @@
 # NOTE: These lines set up the `HF_HOME` cache directory. Ensure that they run before other imports.
 from dotenv import load_dotenv
+
 load_dotenv()
 
+import argparse
+import gc
 import os
 import subprocess
 import sys
-import argparse
-import gc
 import time
-import torch
-import wandb
-import pandas as pd
-from dataclasses import dataclass, astuple
+from dataclasses import astuple, dataclass
+from datetime import datetime
 from threading import Thread
 from typing import List, Optional
-from tqdm import tqdm
-from datetime import datetime
+
+import pandas as pd
+import torch
+import wandb
 from datasets import load_dataset
 from huggingface_hub import login
+from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation.streamers import BaseStreamer
 
@@ -64,10 +66,16 @@ def parse_args() -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(description="Generation Script")
     parser.add_argument(
-        "--experiment_config", default="default", type=str, help="The experiment config to run. For example, `llama70b-it`."
+        "--experiment_config",
+        default="default",
+        type=str,
+        help="The experiment config to run. For example, `llama70b-it`.",
     )
     parser.add_argument(
-        "--num_of_examples", default=30, type=int, help="The number of examples from the dataset to run."
+        "--num_of_examples",
+        default=30,
+        type=int,
+        help="The number of examples from the dataset to run.",
     )
     return parser.parse_args()
 
@@ -85,7 +93,15 @@ def log_hardware_info():
         print(f"GPU Details:\n{gpu_info.stdout}", flush=True)
 
         # Get GPU memory usage
-        gpu_memory_info = subprocess.run(["nvidia-smi", "--query-gpu=memory.used,memory.free", "--format=csv,noheader"], capture_output=True, text=True)
+        gpu_memory_info = subprocess.run(
+            [
+                "nvidia-smi",
+                "--query-gpu=memory.used,memory.free",
+                "--format=csv,noheader",
+            ],
+            capture_output=True,
+            text=True,
+        )
         print(f"GPU Memory Usage:\n{gpu_memory_info.stdout}", flush=True)
 
         # Get CPU details using lscpu
@@ -118,10 +134,19 @@ def clear_memory():
 
         # Print memory stats for debugging (optional)
         for i in range(torch.cuda.device_count()):
-            print(f"GPU {i} memory allocated: {torch.cuda.memory_allocated(i) / 1e9:.2f}GB", flush=True)
-            print(f"GPU {i} memory cached: {torch.cuda.memory_reserved(i) / 1e9:.2f}GB", flush=True)
+            print(
+                f"GPU {i} memory allocated: {torch.cuda.memory_allocated(i) / 1e9:.2f}GB",
+                flush=True,
+            )
+            print(
+                f"GPU {i} memory cached: {torch.cuda.memory_reserved(i) / 1e9:.2f}GB",
+                flush=True,
+            )
 
-    print("Memory cleared: Python memory garbage collected and GPU cache emptied.", flush=True)
+    print(
+        "Memory cleared: Python memory garbage collected and GPU cache emptied.",
+        flush=True,
+    )
 
 
 # ------------------------------------------------------------------------------
@@ -180,15 +205,18 @@ class IdsIteratorStreamer(BaseStreamer):
                 # Avoid busy waiting
                 time.sleep(0.01)
 
+
 # ------------------------------------------------------------------------------
 # Schemas
 # ------------------------------------------------------------------------------
+
 
 @dataclass
 class Result:
     """
     A class to store the results of a generation experiment.
     """
+
     tok_ids_prompt: List[int]
     tok_ids_new: List[int]
     prompt_text: str
@@ -196,6 +224,7 @@ class Result:
     total_gen_time_s: float
     ttft_s: float
     tpot_s: float
+
 
 @dataclass
 class ResultsTableRow:
@@ -215,16 +244,18 @@ class ResultsTableRow:
     out_toks_per_sec: float
 
     @classmethod
-    def from_experiment_config_and_result(cls, 
-                                          target: str,
-                                          dataset_path: str,
-                                          dataset_name: str,
-                                          dataset_split: str,
-                                          num_of_examples: int,
-                                          drafter: str,
-                                          temperature: float,
-                                          example_id: int, 
-                                          result: Result) -> "ResultsTableRow":
+    def from_experiment_config_and_result(
+        cls,
+        target: str,
+        dataset_path: str,
+        dataset_name: str,
+        dataset_split: str,
+        num_of_examples: int,
+        drafter: str,
+        temperature: float,
+        example_id: int,
+        result: Result,
+    ) -> "ResultsTableRow":
         return cls(
             target=target,
             dataset_path=dataset_path,
@@ -247,30 +278,37 @@ class ResultsTableRow:
 # Model Handling
 # ------------------------------------------------------------------------------
 
+
 class HFModel:
     """
     Lightweight class to wrap a Hugging Face model and tokenizer for convenience.
     """
 
-    def __init__(self, model_name: str, device_map: str = "auto", torch_dtype=torch.float16):
+    def __init__(
+        self, model_name: str, device_map: str = "auto", torch_dtype=torch.float16
+    ):
         """
         Load a model and tokenizer from the Hugging Face Hub.
         """
         self.model_name = model_name
-        self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map=device_map, torch_dtype=torch_dtype)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_name, device_map=device_map, torch_dtype=torch_dtype
+        )
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     def __del__(self):
         """
         Clean up model resources when the object is deleted.
         """
-        if hasattr(self, 'model'):
+        if hasattr(self, "model"):
             del self.model
-        if hasattr(self, 'tokenizer'):
+        if hasattr(self, "tokenizer"):
             del self.tokenizer
         clear_memory()
 
-    def generate_text(self, prompt: str, do_sample: bool, max_new_tokens: int = 512, **kwargs) -> Result:
+    def generate_text(
+        self, prompt: str, do_sample: bool, max_new_tokens: int = 512, **kwargs
+    ) -> Result:
         """
         Generate text from the underlying model, measuring detailed latency metrics.
 
@@ -285,7 +323,9 @@ class HFModel:
 
         # Tokenize the input prompt and move it to the model's device
         inputs = self.tokenizer(prompt, return_tensors="pt", return_attention_mask=True)
-        inputs["input_ids"] = inputs["input_ids"].to(self.model.device, dtype=torch.int64)
+        inputs["input_ids"] = inputs["input_ids"].to(
+            self.model.device, dtype=torch.int64
+        )
 
         prompt_len = inputs["input_ids"].shape[1]
 
@@ -321,7 +361,9 @@ class HFModel:
         generation_kwargs["streamer"] = streamer
 
         # Create thread with daemon=True to ensure it's cleaned up
-        thread = Thread(target=self.model.generate, kwargs=generation_kwargs, daemon=True)
+        thread = Thread(
+            target=self.model.generate, kwargs=generation_kwargs, daemon=True
+        )
         start_time = time.time()
         thread.start()
 
@@ -364,7 +406,9 @@ class HFModel:
         # Make sure to set a timeout for join to prevent hanging
         thread.join(timeout=300)  # 5 minute timeout
         if thread.is_alive():
-            print("Warning: Generation thread did not complete within timeout", flush=True)
+            print(
+                "Warning: Generation thread did not complete within timeout", flush=True
+            )
             wandb.log({"warning": "Generation thread did not complete within timeout"})
 
         return Result(
@@ -397,13 +441,18 @@ def tokenizers_are_identical(t1, t2) -> bool:
     vocab1 = t1.get_vocab()
     vocab2 = t2.get_vocab()
     if len(vocab1) != len(vocab2):
-        print(f"✗ Different vocabulary sizes: {len(vocab1)} vs {len(vocab2)}", flush=True)
+        print(
+            f"✗ Different vocabulary sizes: {len(vocab1)} vs {len(vocab2)}", flush=True
+        )
         return False
 
     # Check each token's ID
     for token, idx in vocab1.items():
         if token not in vocab2 or vocab2[token] != idx:
-            print(f"✗ Token mismatch: '{token}' has different IDs ({idx} vs {vocab2.get(token, 'missing')})", flush=True)
+            print(
+                f"✗ Token mismatch: '{token}' has different IDs ({idx} vs {vocab2.get(token, 'missing')})",
+                flush=True,
+            )
             return False
 
     # Check for extra tokens in t2
@@ -436,7 +485,11 @@ def tokenizers_are_identical(t1, t2) -> bool:
 
 
 def generate_assisted(
-    example_id: int, prompt: str, target_model_obj: HFModel, temperature: float, assistant_model_obj: Optional[HFModel] = None
+    example_id: int,
+    prompt: str,
+    target_model_obj: HFModel,
+    temperature: float,
+    assistant_model_obj: Optional[HFModel] = None,
 ) -> Result:
     """
     Demonstrates an assisted generation approach:
@@ -457,7 +510,9 @@ def generate_assisted(
     do_sample: bool = temperature != 0.0
     if do_sample is True:
         generate_kwargs["temperature"] = temperature
-    return target_model_obj.generate_text(prompt=prompt, do_sample=do_sample, **generate_kwargs)
+    return target_model_obj.generate_text(
+        prompt=prompt, do_sample=do_sample, **generate_kwargs
+    )
 
 
 # ------------------------------------------------------------------------------
@@ -481,9 +536,11 @@ def main():
 
     # Log hardware info
     log_hardware_info()
-    
+
     experiment_config_name: str = args.experiment_config
-    assert experiment_config_name in experiment_configs, f"Unknown experiment config: {experiment_config_name}"
+    assert experiment_config_name in experiment_configs, (
+        f"Unknown experiment config: {experiment_config_name}"
+    )
     experiment_config: ExperimentConfig = experiment_configs[experiment_config_name]
     target_checkpoint: str = experiment_config.target
     print("Loading target model...", flush=True)
@@ -492,7 +549,14 @@ def main():
     df_results: pd.DataFrame = pd.DataFrame()
 
     dataset_config: DatasetConfig
-    for dataset_config in tqdm(experiment_config.dataset_configs, desc="Datasets", position=0, leave=True, ascii=True, file=sys.stdout):
+    for dataset_config in tqdm(
+        experiment_config.dataset_configs,
+        desc="Datasets",
+        position=0,
+        leave=True,
+        ascii=True,
+        file=sys.stdout,
+    ):
         dataset_path = dataset_config.path
         dataset_name = dataset_config.name
         dataset_split = dataset_config.split
@@ -501,7 +565,12 @@ def main():
         print(f"Dataset path: {dataset_path}", flush=True)
         print(f"Dataset name: {dataset_name}", flush=True)
         print(f"Dataset split: {dataset_split}", flush=True)
-        dataset = load_dataset(path=dataset_path, name=dataset_name, split=dataset_split, trust_remote_code=True)
+        dataset = load_dataset(
+            path=dataset_path,
+            name=dataset_name,
+            split=dataset_split,
+            trust_remote_code=True,
+        )
         dataset_sample = dataset.take(args.num_of_examples)
 
         # Setting up wandb run
@@ -525,8 +594,7 @@ def main():
             name=run_name,
         )
         wandb_artifact = wandb.Artifact(
-            name=f"results_per_example_{run_name}", 
-            type="dataset"
+            name=f"results_per_example_{run_name}", type="dataset"
         )
         columns = list(ResultsTableRow.__dataclass_fields__.keys())
         wandb_table = wandb.Table(columns=columns)
@@ -534,13 +602,36 @@ def main():
         wandb_artifact.add(wandb_table, "my_table")
 
         assistant_checkpoints = [None] + assistant_checkpoints
-        for assistant_checkpoint in tqdm(assistant_checkpoints, desc="Assistants", position=1, leave=True, ascii=True, file=sys.stdout):
+        for assistant_checkpoint in tqdm(
+            assistant_checkpoints,
+            desc="Assistants",
+            position=1,
+            leave=True,
+            ascii=True,
+            file=sys.stdout,
+        ):
             print(f"Loading assistant model {assistant_checkpoint}...", flush=True)
-            assistant_obj = None if assistant_checkpoint is None else HFModel(assistant_checkpoint)
+            assistant_obj = (
+                None if assistant_checkpoint is None else HFModel(assistant_checkpoint)
+            )
             try:
-                for temperature in tqdm(experiment_config.temperatures, desc="Temperatures", position=2, leave=True, ascii=True, file=sys.stdout):
+                for temperature in tqdm(
+                    experiment_config.temperatures,
+                    desc="Temperatures",
+                    position=2,
+                    leave=True,
+                    ascii=True,
+                    file=sys.stdout,
+                ):
                     # Generation loop
-                    for example_id, example in tqdm(enumerate(dataset_sample), desc="Examples", position=3, leave=True, ascii=True, file=sys.stdout):
+                    for example_id, example in tqdm(
+                        enumerate(dataset_sample),
+                        desc="Examples",
+                        position=3,
+                        leave=True,
+                        ascii=True,
+                        file=sys.stdout,
+                    ):
                         # Get prompt
                         match dataset_path:
                             case "tau/scrolls":
@@ -550,7 +641,9 @@ def main():
                             case "openai/openai_humaneval":
                                 prompt = f"Implement the function so that it passes the tests.\nTests:\n{example['test']}\nFunction:\n{example['prompt']}\n\nYour code:\n"
                             case _:
-                                raise ValueError(f"Unknown dataset path: {dataset_path}")
+                                raise ValueError(
+                                    f"Unknown dataset path: {dataset_path}"
+                                )
 
                         # Run generation
                         print("=" * 100, flush=True)
@@ -558,7 +651,10 @@ def main():
                         print("Prompt:\n", prompt, flush=True)
                         print("=" * 100, flush=True)
 
-                        print(f"Running `assistant={assistant_checkpoint}` with `temp={temperature}` for {target_checkpoint}...", flush=True)
+                        print(
+                            f"Running `assistant={assistant_checkpoint}` with `temp={temperature}` for {target_checkpoint}...",
+                            flush=True,
+                        )
                         result = generate_assisted(
                             example_id=example_id,
                             prompt=prompt,
@@ -566,19 +662,24 @@ def main():
                             temperature=temperature,
                             assistant_model_obj=assistant_obj,
                         )
-                        results_table_row = ResultsTableRow.from_experiment_config_and_result(
-                            target=target_checkpoint,
-                            dataset_path=dataset_path,
-                            dataset_name=dataset_name,
-                            dataset_split=dataset_split,
-                            num_of_examples=args.num_of_examples,
-                            drafter=assistant_checkpoint,
-                            temperature=temperature,
-                            example_id=example_id,
-                            result=result,
+                        results_table_row = (
+                            ResultsTableRow.from_experiment_config_and_result(
+                                target=target_checkpoint,
+                                dataset_path=dataset_path,
+                                dataset_name=dataset_name,
+                                dataset_split=dataset_split,
+                                num_of_examples=args.num_of_examples,
+                                drafter=assistant_checkpoint,
+                                temperature=temperature,
+                                example_id=example_id,
+                                result=result,
+                            )
                         )
                         wandb_table.add_data(*astuple(results_table_row))
-                        df_results = pd.concat([df_results, pd.DataFrame([results_table_row])], ignore_index=True)
+                        df_results = pd.concat(
+                            [df_results, pd.DataFrame([results_table_row])],
+                            ignore_index=True,
+                        )
             finally:
                 if assistant_obj is not None:
                     del assistant_obj
@@ -589,7 +690,11 @@ def main():
 
     # Create output directory if it doesn't exist
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    commit_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("utf-8").strip()
+    commit_hash = (
+        subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
+        .decode("utf-8")
+        .strip()
+    )
     dirpath = f"benchmark_results/{timestamp}_{commit_hash}"
     os.makedirs(dirpath, exist_ok=True)
     # Save to the benchmark_results directory

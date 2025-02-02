@@ -1,4 +1,4 @@
-# 
+#
 
 
 from dataclasses import dataclass
@@ -53,19 +53,23 @@ experiment_configs = {
     "llama70b-it": ExperimentConfig(
         target="meta-llama/Llama-3.1-70B-Instruct",
         dataset_configs=list(dataset_configs.values()),
-        assistants=["meta-llama/Llama-3.1-8B-Instruct",
-                    "meta-llama/Llama-3.2-3B-Instruct",
-                    "meta-llama/Llama-3.2-1B-Instruct",
-                    "Qwen/Qwen2.5-0.5B-Instruct"],
+        assistants=[
+            "meta-llama/Llama-3.1-8B-Instruct",
+            "meta-llama/Llama-3.2-3B-Instruct",
+            "meta-llama/Llama-3.2-1B-Instruct",
+            "Qwen/Qwen2.5-0.5B-Instruct",
+        ],
         temperatures=[0, 1e-7, 1],
     ),
     "llama70b": ExperimentConfig(
         target="meta-llama/Llama-3.1-70B",
         dataset_configs=list(dataset_configs.values()),
-        assistants=["meta-llama/Llama-3.1-8B",
-                    "meta-llama/Llama-3.2-3B",
-                    "meta-llama/Llama-3.2-1B",
-                    "Qwen/Qwen2.5-0.5B-Instruct"],
+        assistants=[
+            "meta-llama/Llama-3.1-8B",
+            "meta-llama/Llama-3.2-3B",
+            "meta-llama/Llama-3.2-1B",
+            "Qwen/Qwen2.5-0.5B-Instruct",
+        ],
         temperatures=[0, 1e-7, 1],
     ),
     "mixtral-8x22b-it": ExperimentConfig(
@@ -89,7 +93,11 @@ experiment_configs = {
     "llama-8b-it": ExperimentConfig(
         target="meta-llama/Llama-3.1-8B-Instruct",
         dataset_configs=list(dataset_configs.values()),
-        assistants=["meta-llama/Llama-3.2-3B-Instruct", "meta-llama/Llama-3.2-1B-Instruct", "Qwen/Qwen2.5-0.5B-Instruct"],
+        assistants=[
+            "meta-llama/Llama-3.2-3B-Instruct",
+            "meta-llama/Llama-3.2-1B-Instruct",
+            "Qwen/Qwen2.5-0.5B-Instruct",
+        ],
         temperatures=[0, 1e-7, 1],
     ),
     "codellama-13b-it": ExperimentConfig(
