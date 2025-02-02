@@ -56,7 +56,7 @@ To adjust the hardware request to the cluster, edit the submit script.
 
 #### Monitoring
 
-After loading the models, you can monitor the progress of the benchmark here: https://wandb.ai/generating-faster/hf-bench.
+After loading the models, you can monitor the progress of the benchmark here: https://wandb.ai/generating-faster/llm-benchmarks.
 
 <!-- ## Tests
 Run tests in parallel:
