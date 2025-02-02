@@ -170,11 +170,11 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-# Results and logs
-results/
-logs/
-*.log
-
 # IDE
 .vscode/
 .idea/
+
+# Results and logs
+results/
+logs/
+wandb/
