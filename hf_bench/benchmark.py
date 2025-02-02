@@ -578,7 +578,7 @@ def main():
         run_name = f"{target_checkpoint}_{dataset_path}_{dataset_name}_{dataset_split}_{args.num_of_examples}_{'-'.join(assistant_checkpoints)}"
         run_name = run_name.replace("/", "-")
         wandb_run = wandb.init(
-            project="llm-benchmarks",
+            project="hf-bench",
             config={
                 "target": experiment_config.target,
                 "dataset_path": dataset_path,
