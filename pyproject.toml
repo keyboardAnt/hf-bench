@@ -7,4 +7,7 @@ name = "hf-bench"
 version = "0.1.0"
 
 [tool.setuptools]
-packages = ["hf_bench"] 
+packages = ["hf_bench"]
+
+[tool.ruff]
+include = ["hf_bench/**/*.py"]
