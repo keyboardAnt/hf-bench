@@ -1,29 +1,30 @@
 # NOTE: These lines set up the `HF_HOME` cache directory. Ensure that they run before other imports.
+#       We mark `# noqa: E402` to avoid ruff complaining about the order of imports.
 from dotenv import load_dotenv
 
 load_dotenv()
 
-import argparse
-import gc
-import os
-import subprocess
-import sys
-import time
-from dataclasses import astuple, dataclass
-from datetime import datetime
-from threading import Thread
-from typing import List, Optional
+import argparse  # noqa: E402
+import gc  # noqa: E402
+import os  # noqa: E402
+import subprocess  # noqa: E402
+import sys  # noqa: E402
+import time  # noqa: E402
+from dataclasses import astuple, dataclass  # noqa: E402
+from datetime import datetime  # noqa: E402
+from threading import Thread  # noqa: E402
+from typing import List, Optional  # noqa: E402
 
-import pandas as pd
-import torch
-import wandb
-from datasets import load_dataset
-from huggingface_hub import login
-from tqdm import tqdm
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers.generation.streamers import BaseStreamer
+import pandas as pd  # noqa: E402
+import torch  # noqa: E402
+from datasets import load_dataset  # noqa: E402
+from huggingface_hub import login  # noqa: E402
+from tqdm import tqdm  # noqa: E402
+from transformers import AutoModelForCausalLM, AutoTokenizer # noqa: E402
+from transformers.generation.streamers import BaseStreamer # noqa: E402
 
-from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs
+import wandb # noqa: E402
+from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs # noqa: E402
 
 # ------------------------------------------------------------------------------
 # Environment & Setup
@@ -433,7 +434,7 @@ def tokenizers_are_identical(t1, t2) -> bool:
         return True
 
     # 2. Same class?
-    if type(t1) != type(t2):
+    if not isinstance(t1, type(t2)) or not isinstance(t2, type(t1)):
         print(f"✗ Different tokenizer classes: {type(t1)} vs {type(t2)}", flush=True)
         return False
 
