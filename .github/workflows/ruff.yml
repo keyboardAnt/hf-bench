@@ -1,0 +1,26 @@
+name: Ruff
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: hf-bench-env
+          environment-file: environment.yml
+          auto-activate-base: false
+          
+      - name: ruff-action
+        uses: astral-sh/ruff-action@v3
+        with:
+          version: "latest"
+          args: "format --check"
