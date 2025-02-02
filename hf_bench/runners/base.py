@@ -1,8 +1,5 @@
 from abc import ABC, abstractmethod
-from pathlib import Path
-from typing import Any
 from hf_bench.schemas import HardwareResponse
-import os
 
 class BaseRunner(ABC):
     """Base class for all runners (local, LSF, SLURM, etc.).
@@ -79,55 +76,4 @@ class BaseRunner(ABC):
             KeyError: If job_id is not found
         """
         pass
-    
-    def cancel(self, job_id: str) -> bool:
-        """Cancel a submitted job.
-        
-        Args:
-            job_id: The job identifier returned by submit()
-            
-        Returns:
-            bool: True if job was cancelled successfully, False otherwise
-            
-        Raises:
-            KeyError: If job_id is not found
-        """
-        raise NotImplementedError("Cancel not implemented for this runner")
-    
-    def wait(self, job_id: str, timeout: float | None = None) -> bool:
-        """Wait for a job to complete.
-        
-        Args:
-            job_id: The job identifier returned by submit()
-            timeout: Maximum time to wait in seconds (None for no timeout)
-            
-        Returns:
-            bool: True if job completed successfully, False if timeout or failure
-            
-        Raises:
-            KeyError: If job_id is not found
-            TimeoutError: If timeout is reached
-        """
-        raise NotImplementedError("Wait not implemented for this runner")
-    
-    def _validate_script_path(self, script_path: str | Path) -> Path:
-        """Validate that the script path exists and is executable.
-        
-        Args:
-            script_path: Path to the Python script
-            
-        Returns:
-            Path: Validated Path object
-            
-        Raises:
-            FileNotFoundError: If script doesn't exist
-            PermissionError: If script isn't executable
-        """
-        path = Path(script_path).resolve()
-        if not path.exists():
-            raise FileNotFoundError(f"Script not found: {path}")
-        if not path.is_file():
-            raise ValueError(f"Not a file: {path}")
-        if not os.access(path, os.X_OK):
-            raise PermissionError(f"Script is not executable: {path}")
-        return path
+   
