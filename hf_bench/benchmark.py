@@ -575,8 +575,8 @@ def main():
 
         # Setting up wandb run
         assistant_checkpoints: List[str] = experiment_config.assistants
-        run_name = f"{target_checkpoint}_{dataset_path}_{dataset_name}_{dataset_split}_{args.num_of_examples}_{'-'.join(assistant_checkpoints)}"
-        run_name = run_name.replace("/", "-")
+        run_name = f"{target_checkpoint}_{dataset_path}_{dataset_name}_{dataset_split}_{args.num_of_examples}_{'-'.join(assistant_checkpoints)}".replace("/", "-")
+        print(f"{run_name=}", flush=True)
         wandb_run = wandb.init(
             project="hf-bench",
             config={
