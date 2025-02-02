@@ -21,6 +21,8 @@ dependencies:
   - pytest=8.3.4
   - pytest-xdist=3.6.1
   - wandb=0.19.5
+  - ruff=0.9.4
   - pip=25.0
   - pip:
     - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
+    - -e .

@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hf-bench"
+version = "0.1.0"
+
+[tool.setuptools]
+packages = ["hf_bench"] 

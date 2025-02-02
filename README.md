@@ -4,7 +4,7 @@
 
 Create a new conda environment:
 ```bash
-conda env create -f conda/environment.yml
+conda env create -f environment.yml
 ```
 
 Activate the environment:
@@ -20,7 +20,7 @@ HF_HOME=/path/to/hf_home
 
 To update the environment after changing the `environment.yml` file:
 ```bash
-conda env update -f conda/environment.yml --prune
+conda env update -f environment.yml --prune
 ```
 
 ## CLI Usage

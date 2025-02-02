@@ -9,5 +9,5 @@ timestamp=$(date +\%Y\%m\%d_\%H\%M\%S) && bsub \
     -R "span[hosts=1]" \
     -n 1 \
     -M 200GB \
-    -o /home/projects/dharel/nadavt/repos/hf-bench/logs/${timestamp}_jobid_%J_benchmark.log \
+    -o /home/projects/dharel/nadavt/repos/hf-bench/logs/cluster/${timestamp}_jobid_%J_benchmark.log \
     "module load miniconda/24.11_environmentally && module load CUDA/12.4.0 && conda activate bench-env && python /home/projects/dharel/nadavt/repos/hf-bench/hf_bench/benchmark.py ${@}"
