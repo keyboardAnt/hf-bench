@@ -26,5 +26,5 @@ dependencies:
   - ruff=0.9.4
   - pip=25.0
   - pip:
-    - git+https://github.com/keyboardAnt/transformers.git@usd#egg=transformers
+    - git+https://github.com/keyboardAnt/transformers.git@ae2f16ffe8d3d30dc0ac426dc882cea7a7ffd255#egg=transformers
     - -e .
