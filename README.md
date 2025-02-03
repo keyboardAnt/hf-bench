@@ -63,3 +63,10 @@ Run tests in parallel:
 ```bash
 pytest -n 4 -v
 ``` -->
+
+### Analyze
+
+Analyze the CSV of benchmark results:
+```bash
+python -m hf_bench.analyze --filepath_to_csv=path/to/csv
+```

@@ -21,6 +21,8 @@ dependencies:
   - pytest=8.3.4
   - pytest-xdist=3.6.1
   - wandb=0.19.5
+  - scipy=1.15.1
+  - fire=0.7.0
   - ruff=0.9.4
   - pip=25.0
   - pip:
