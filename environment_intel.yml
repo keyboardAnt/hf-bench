@@ -1,7 +1,7 @@
 name: hf-bench-env
 channels:
-#  - pytorch
-#  - nvidia
+  - pytorch
+  - nvidia
   - conda-forge
 #  - defaults
 dependencies:
@@ -29,7 +29,8 @@ dependencies:
     - torch 
     - torchvision 
     - torchaudio
-    - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
+    - git+https://github.com/keyboardAnt/transformers.git@usd#egg=transformers
+#    - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
     - -e .
 
   
