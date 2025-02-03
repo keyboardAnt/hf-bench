@@ -1,0 +1,35 @@
+name: hf-bench-env
+channels:
+#  - pytorch
+#  - nvidia
+  - conda-forge
+#  - defaults
+dependencies:
+  - python=3.11.11
+  - pytorch=2.5.1
+#  - pytorch-cuda=12.4
+  - python-dotenv=1.0.1
+  - pandas=2.2.3
+  - numpy=2.2.2
+  - datasets=3.2.0
+  - huggingface_hub=0.27.1
+  - accelerate=1.3.0
+  - tiktoken=0.8.0
+  - protobuf=5.28.3
+  - blobfile=3.0.0
+  - sentencepiece=0.2.0
+  - pytest=8.3.4
+  - pytest-xdist=3.6.1
+  - wandb=0.19.5
+  - scipy=1.15.1
+  - fire=0.7.0
+  - ruff=0.9.4
+  - pip=25.0
+  - pip:
+    - torch 
+    - torchvision 
+    - torchaudio
+    - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
+    - -e .
+
+  
