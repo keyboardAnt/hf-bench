@@ -20,11 +20,11 @@ import torch  # noqa: E402
 from datasets import load_dataset  # noqa: E402
 from huggingface_hub import login  # noqa: E402
 from tqdm import tqdm  # noqa: E402
-from transformers import AutoModelForCausalLM, AutoTokenizer # noqa: E402
-from transformers.generation.streamers import BaseStreamer # noqa: E402
+from transformers import AutoModelForCausalLM, AutoTokenizer  # noqa: E402
+from transformers.generation.streamers import BaseStreamer  # noqa: E402
 
-import wandb # noqa: E402
-from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs # noqa: E402
+import wandb  # noqa: E402
+from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs  # noqa: E402
 
 # ------------------------------------------------------------------------------
 # Environment & Setup
