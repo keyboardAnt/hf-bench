@@ -124,17 +124,58 @@ experiment_configs = {
         assistants=["codellama/CodeLlama-7b-Instruct-hf", "bigcode/tiny_starcoder_py"],
         temperatures=[0, 1e-7, 1],
     ),
-    "deepseek-r1-qwen-32b": ExperimentConfig(
+    "deepseek-r1-qwen-32b-sum": ExperimentConfig(
         target="deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
         dataset_configs=[
             DatasetConfig.from_path("tau/scrolls"),
             DatasetConfig.from_path("cnn_dailymail"),
         ],
         assistants=[
-            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
-            "deepseek-ai/DeepSeek-R1-Distill-Qwen-0.5B",
-            "double7/vicuna-68m",
-        ],
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B", 
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-0.5B", 
+            "double7/vicuna-68m"],
         temperatures=[0, 1],
     ),
+
+    "deepseek-r1-llama-70b-sum": ExperimentConfig(
+        target="deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+        dataset_configs=[
+            DatasetConfig.from_path("tau/scrolls"),
+            DatasetConfig.from_path("cnn_dailymail"),
+        ],
+        assistants=[
+            "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+            "double7/vicuna-68m", 
+            "meta-llama/Llama-3.1-8B",
+            "meta-llama/Llama-3.2-3B",
+            "meta-llama/Llama-3.2-1B"],
+        temperatures=[0, 1],
+    ),
+
+        "deepseek-r1-qwen-32b-code": ExperimentConfig(
+        target="deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+        dataset_configs=[
+            DatasetConfig.from_path("tau/scrolls"),
+            DatasetConfig.from_path("cnn_dailymail"),
+        ],
+        assistants=[
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B", 
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-0.5B", 
+            "codellama/CodeLlama-7b-Instruct-hf", 
+            "bigcode/tiny_starcoder_py"],
+        temperatures=[0, 1],
+    ),
+
+    "deepseek-r1-llama-70b-code": ExperimentConfig(
+        target="deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+        dataset_configs=[
+            DatasetConfig.from_path("openai/openai_humaneval")
+        ],
+        assistants=[
+            "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+            "codellama/CodeLlama-7b-Instruct-hf", 
+            "bigcode/tiny_starcoder_py"],
+        temperatures=[0, 1],
+    ),
+
 }
