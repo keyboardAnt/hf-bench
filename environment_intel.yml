@@ -3,11 +3,9 @@ channels:
   - pytorch
   - nvidia
   - conda-forge
-#  - defaults
 dependencies:
   - python=3.11.11
   - pytorch=2.5.1
-#  - pytorch-cuda=12.4
   - python-dotenv=1.0.1
   - pandas=2.2.3
   - numpy=2.2.2
@@ -26,11 +24,10 @@ dependencies:
   - ruff=0.9.4
   - pip=25.0
   - pip:
-    - torch 
-    - torchvision 
-    - torchaudio
-    - git+https://github.com/keyboardAnt/transformers.git@usd#egg=transformers
-#    - git+https://github.com/keyboardAnt/transformers.git@f63fa1c42562cb1f64b391811d1c9acf1e7521ac#egg=transformers
+    - torch==2.6.0 
+    - torchvision==0.21.0
+    - torchaudio==2.6.0
+    - git+https://github.com/keyboardAnt/transformers.git@ae2f16ffe8d3d30dc0ac426dc882cea7a7ffd255#egg=transformers
     - -e .
 
   
