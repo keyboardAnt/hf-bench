@@ -46,7 +46,6 @@ def main(csv_path: str):
     for drafter, df in df.groupby("drafter", dropna=False):
         if pd.isna(drafter):
             drafter = "N/A (AR)"
-        print(f"\n\nDrafter: {drafter}\n")
         for temp, df in df.groupby("temperature"):
             print(f"\n\n{drafter=}, {temp=}\n")
             print("New Toks:")
