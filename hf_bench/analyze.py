@@ -50,27 +50,33 @@ def main(csv_path: str):
             print(f"\n\n{drafter=}, {temp=}\n")
             print("New Toks:")
             columns_for_new_toks = [
-                col for col in df.columns if "New Toks" in col or "NewToks" in col or "new_toks" in col
+                col
+                for col in df.columns
+                if "New Toks" in col or "NewToks" in col or "new_toks" in col
             ]
             print(df[columns_for_new_toks].mean().round(1))
             print("=" * 100)
-            columns_for_ttft = [col for col in df.columns if "TTFT" in col or "ttft_ms" in col]
+            columns_for_ttft = [
+                col for col in df.columns if "TTFT" in col or "ttft_ms" in col
+            ]
             print("TTFT (ms):")
             df_ttft_s = df[columns_for_ttft]
             print((df_ttft_s * 1000).mean().round(1))
             print("=" * 100)
             print("TPOT (ms), harmonic mean: (unsorted)")
-            columns_for_tpot_s = [col for col in df.columns if "TPOT" in col or "tpot_ms" in col]  
+            columns_for_tpot_s = [
+                col for col in df.columns if "TPOT" in col or "tpot_ms" in col
+            ]
             df_tpot_s = df[columns_for_tpot_s]
             print((df_tpot_s * 1000).agg(hmean).round(1))
             print("=" * 100)
             print("Toks/sec: (unsorted)")
-            df_tpot_s_hmean = df_tpot_s.agg(hmean)  
+            df_tpot_s_hmean = df_tpot_s.agg(hmean)
             print((1000 / df_tpot_s_hmean).round(1))
             # Alternative
-            # columns_for_out_toks = [col for col in df.columns if "out_toks_per_sec" in col]  
+            # columns_for_out_toks = [col for col in df.columns if "out_toks_per_sec" in col]
             # df_out_toks = df[columns_for_out_toks]
-            # print(df_out_toks.agg(hmean).round(1)) 
+            # print(df_out_toks.agg(hmean).round(1))
             print("=" * 100)
             per_example_tpot_s_of_ar_star = get_per_example_tpot_s_of_ar_star(df=df)
             per_example_speedup_over_the_per_example_ar_star = get_per_example_speedup_over_the_per_example_ar_star(

@@ -408,9 +408,14 @@ def generate_assisted(
             )
         except ValueError as e:
             print(f"Warning: {e}", flush=True)
-            if "`assistant_tokenizer` is not required when the main and assistant models use the same tokenizer." in str(e):
+            if (
+                "`assistant_tokenizer` is not required when the main and assistant models use the same tokenizer."
+                in str(e)
+            ):
                 are_tokenizers_identical = True
-            elif "The main and assistant moedels have different tokenizers." not in str(e): 
+            elif "The main and assistant moedels have different tokenizers." not in str(
+                e
+            ):
                 raise ValueError(e)
         print("Tokenizers are identical:", are_tokenizers_identical, flush=True)
         if not are_tokenizers_identical:
