@@ -48,7 +48,7 @@ experiment_configs = {
         target="Qwen/Qwen2.5-1.5B-Instruct",
         dataset_configs=[DatasetConfig.from_path("tau/scrolls")],
         assistants=["Qwen/Qwen2.5-0.5B-Instruct", "double7/vicuna-68m"],
-        temperatures=[0, 1e-7, 1],
+        temperatures=[0, 1],
     ),
     "llama70b-it": ExperimentConfig(
         target="meta-llama/Llama-3.1-70B-Instruct",
