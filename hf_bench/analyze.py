@@ -44,6 +44,8 @@ def main(csv_path: str):
     print(f"Analyzing CSV with {len(df)} rows for {num_examples} unique examples.")
     print("=" * 100)
     for drafter, df in df.groupby("drafter", dropna=False):
+        if pd.isna(drafter):
+            drafter = "N/A (AR)"
         print(f"\n\nDrafter: {drafter}\n")
         print("New Toks:")
         columns_for_new_toks = [
