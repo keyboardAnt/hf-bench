@@ -221,4 +221,13 @@ experiment_configs = {
             "bigcode/tiny_starcoder_py"],
         temperatures=[0, 1],
     ),
+    "deepseek-r1-llama-70b-qwen-1.5b": ExperimentConfig(
+        target="deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+        dataset_configs=list(dataset_configs.values()),
+        assistants=[
+            "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B", 
+        ],
+        temperatures=[0, 1],
+    ),
 }
