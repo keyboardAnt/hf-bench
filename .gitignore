@@ -175,6 +175,6 @@ cython_debug/
 .idea/
 
 # Results and logs
-results/
+benchmark_results/
 logs/
 wandb/
