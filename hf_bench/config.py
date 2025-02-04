@@ -203,8 +203,7 @@ experiment_configs = {
         "deepseek-r1-qwen-32b-code": ExperimentConfig(
         target="deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
         dataset_configs=[
-            DatasetConfig.from_path("tau/scrolls"),
-            DatasetConfig.from_path("cnn_dailymail"),
+            DatasetConfig.from_path("openai/openai_humaneval")
         ],
         assistants=[
             "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B", 
