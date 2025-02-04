@@ -401,7 +401,7 @@ def generate_assisted(
         generate_kwargs["assistant_model"] = assistant_model_obj.model
         are_tokenizers_identical: bool = True
         try:
-            target_model_obj._validate_assistant(
+            target_model_obj.model._validate_assistant(
                 assistant_model=assistant_model_obj.model,
                 tokenizer=target_model_obj.tokenizer,
                 assistant_tokenizer=assistant_model_obj.tokenizer,
