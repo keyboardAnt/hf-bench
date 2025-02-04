@@ -378,63 +378,6 @@ class HFModel:
         )
 
 
-def tokenizers_are_identical(t1, t2) -> bool:
-    """
-    Return True if t1 and t2 are effectively the same tokenizer, i.e.,
-    produce identical results for any input text.
-    """
-    # 1. Same Python object?
-    if t1 is t2:
-        print("✓ Tokenizers are the same Python object", flush=True)
-        return True
-
-    # 2. Same class?
-    if not isinstance(t1, type(t2)) or not isinstance(t2, type(t1)):
-        print(f"✗ Different tokenizer classes: {type(t1)} vs {type(t2)}", flush=True)
-        return False
-
-    # 3. Compare vocabulary
-    vocab1 = t1.get_vocab()
-    vocab2 = t2.get_vocab()
-    if len(vocab1) != len(vocab2):
-        print(
-            f"✗ Different vocabulary sizes: {len(vocab1)} vs {len(vocab2)}", flush=True
-        )
-        return False
-
-    # Check each token's ID
-    for token, idx in vocab1.items():
-        if token not in vocab2 or vocab2[token] != idx:
-            print(
-                f"✗ Token mismatch: '{token}' has different IDs ({idx} vs {vocab2.get(token, 'missing')})",
-                flush=True,
-            )
-            return False
-
-    # Check for extra tokens in t2
-    for token, idx in vocab2.items():
-        if token not in vocab1 or vocab1[token] != idx:
-            print(f"✗ Extra token in t2: '{token}' with ID {idx}", flush=True)
-            return False
-
-    # 4. Compare merges
-    merges_t1 = getattr(t1, "merges", None)
-    merges_t2 = getattr(t2, "merges", None)
-    if merges_t1 != merges_t2:
-        print("✗ Different merges rules", flush=True)
-        return False
-
-    # 5. Compare special tokens
-    if t1.special_tokens_map != t2.special_tokens_map:
-        print("✗ Different special tokens maps:", flush=True)
-        print(f"  T1: {t1.special_tokens_map}", flush=True)
-        print(f"  T2: {t2.special_tokens_map}", flush=True)
-        return False
-
-    print("✓ Tokenizers are identical", flush=True)
-    return True
-
-
 # ------------------------------------------------------------------------------
 # Generation Logic
 # ------------------------------------------------------------------------------
@@ -456,9 +399,15 @@ def generate_assisted(
     generate_kwargs = {}
     if assistant_model_obj is not None:
         generate_kwargs["assistant_model"] = assistant_model_obj.model
-        are_tokenizers_identical: bool = tokenizers_are_identical(
-            target_model_obj.tokenizer, assistant_model_obj.tokenizer
-        )
+        are_tokenizers_identical: bool = True
+        try:
+            target_model_obj._validate_assistant(
+                assistant_model=assistant_model_obj.model,
+                tokenizer=target_model_obj.tokenizer,
+                assistant_tokenizer=assistant_model_obj.tokenizer,
+            )
+        except ValueError:
+            are_tokenizers_identical = False
         print("Tokenizers are identical:", are_tokenizers_identical, flush=True)
         if not are_tokenizers_identical:
             generate_kwargs["assistant_tokenizer"] = assistant_model_obj.tokenizer
