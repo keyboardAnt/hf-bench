@@ -39,6 +39,9 @@ def main(csv_path: str):
     df = pd.read_csv(csv_path)
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", 180)
+    assert len(df) > 0, f"No rows in {csv_path}"
+    num_examples = df["example_id"].nunique()
+    print(f"Analyzing CSV with {len(df)} rows for {num_examples} unique examples.")
     print("=" * 100)
     print("New Toks:")
     columns_for_new_toks = [
