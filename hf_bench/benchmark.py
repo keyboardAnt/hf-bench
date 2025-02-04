@@ -78,6 +78,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         help="The number of examples from the dataset to run.",
     )
+    parser.add_argument(
+        "--results_checkpoint_dirpath",
+        default=None,
+        type=Optional[str],
+        help="The directory for storing benchmark results. If provided, the benchmark will resume from the latest checkpoint in this directory.",
+    )
     return parser.parse_args()
 
 
@@ -111,6 +117,19 @@ def log_hardware_info():
 
     except Exception as e:
         print(f"Error logging hardware information: {e}", flush=True)
+
+
+def get_results_dirpath(root_dirpath: str) -> str:
+    """Create a timestamped output directory for storing benchmark results."""
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    commit_hash = (
+        subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
+        .decode("utf-8")
+        .strip()
+    )
+    dirpath = f"{root_dirpath}/{timestamp}_{commit_hash}"
+    os.makedirs(dirpath, exist_ok=True)
+    return dirpath
 
 
 def clear_memory():
@@ -220,8 +239,6 @@ class Result:
 
     tok_ids_prompt: List[int]
     tok_ids_new: List[int]
-    prompt_text: str
-    new_text: str
     total_gen_time_s: float
     ttft_s: float
     tpot_s: float
@@ -237,8 +254,6 @@ class ResultsTableRow:
     drafter: str
     temperature: float
     example_id: int
-    prompt: str
-    new_text: str
     new_toks: int
     ttft_ms: float
     tpot_ms: float
@@ -266,8 +281,6 @@ class ResultsTableRow:
             drafter=drafter,
             example_id=example_id,
             temperature=temperature,
-            prompt=result.prompt_text,
-            new_text=result.new_text,
             new_toks=len(result.tok_ids_new),
             ttft_ms=result.ttft_s * 1000,
             tpot_ms=result.tpot_s * 1000,
@@ -415,8 +428,6 @@ class HFModel:
         return Result(
             tok_ids_prompt=inputs["input_ids"][0].tolist(),
             tok_ids_new=new_token_ids,
-            prompt_text=prompt,
-            new_text=generated_text,
             total_gen_time_s=total_gen_time,
             ttft_s=time_to_first_token,
             tpot_s=tpot,
@@ -521,6 +532,43 @@ def generate_assisted(
 # ------------------------------------------------------------------------------
 
 
+def get_checkpoint_path(dirpath: str, run_name: str) -> str:
+    """Returns the path to the checkpoint file."""
+    return os.path.join(dirpath, f"{run_name}_checkpoint.csv")
+
+
+def load_checkpoint(checkpoint_path: str) -> tuple[pd.DataFrame, set]:
+    """
+    Load existing results and completed examples from checkpoint.
+    Returns (DataFrame of results, set of completed example IDs)
+    """
+    if not os.path.exists(checkpoint_path):
+        return pd.DataFrame(), set()
+
+    df = pd.read_csv(checkpoint_path)
+    completed = set(
+        (
+            row.dataset_path,
+            row.dataset_name,
+            row.dataset_split,
+            row.drafter,
+            row.temperature,
+            row.example_id,
+        )
+        for row in df.itertuples()
+    )
+    return df, completed
+
+
+def save_checkpoint(df: pd.DataFrame, checkpoint_path: str):
+    """Save current results to checkpoint file."""
+    try:
+        df.to_csv(checkpoint_path, index=False)
+    except Exception as e:
+        print(f"Warning: Failed to save checkpoint: {e}", flush=True)
+        wandb.log({"warning": f"Failed to save checkpoint: {e}"})
+
+
 def main():
     # Environment setup
     set_hf_cache_env()
@@ -546,6 +594,16 @@ def main():
     target_checkpoint: str = experiment_config.target
     print("Loading target model...", flush=True)
     target_obj = HFModel(target_checkpoint)
+
+    results_root_dirpath: str = "benchmark_results"
+    dirpath: str = args.results_checkpoint_dirpath
+    print(f"Received from args: {dirpath=}")
+    if dirpath is None:
+        print(
+            "No checkpoint dirpath provided, using default results dirpath", flush=True
+        )
+        dirpath = get_results_dirpath(results_root_dirpath)
+    print(f"Using results dirpath: {dirpath}", flush=True)
 
     df_results: pd.DataFrame = pd.DataFrame()
 
@@ -604,6 +662,10 @@ def main():
         print(f"{wandb_table=}", flush=True)
         wandb_artifact.add(wandb_table, "my_table")
 
+        # Initialize results tracking
+        checkpoint_path = get_checkpoint_path(dirpath, run_name)
+        df_results, completed_examples = load_checkpoint(checkpoint_path)
+
         assistant_checkpoints = [None] + assistant_checkpoints
         for assistant_checkpoint in tqdm(
             assistant_checkpoints,
@@ -635,6 +697,22 @@ def main():
                         ascii=True,
                         file=sys.stdout,
                     ):
+                        # Check if this example was already processed
+                        example_key = (
+                            dataset_config.path,
+                            dataset_config.name,
+                            dataset_config.split,
+                            assistant_checkpoint,
+                            temperature,
+                            example_id,
+                        )
+                        if example_key in completed_examples:
+                            print(
+                                f"Skipping already completed example {example_key}",
+                                flush=True,
+                            )
+                            continue
+
                         # Get prompt
                         match dataset_path:
                             case "tau/scrolls":
@@ -678,10 +756,27 @@ def main():
                                 result=result,
                             )
                         )
-                        wandb_table.add_data(*astuple(results_table_row))
+
+                        # Stream results after each generation
                         df_results = pd.concat(
                             [df_results, pd.DataFrame([results_table_row])],
                             ignore_index=True,
+                        )
+                        save_checkpoint(df_results, checkpoint_path)
+                        completed_examples.add(example_key)
+
+                        # Update W&B table and log progress
+                        wandb_table.add_data(*astuple(results_table_row))
+                        wandb.log(
+                            {
+                                "completed_examples": len(completed_examples),
+                                "progress": len(completed_examples)
+                                / (
+                                    len(dataset_sample)
+                                    * len(experiment_config.temperatures)
+                                    * len(assistant_checkpoints)
+                                ),
+                            }
                         )
             finally:
                 if assistant_obj is not None:
@@ -691,15 +786,6 @@ def main():
     wandb_run.log_artifact(wandb_artifact)
     wandb_run.log({"results": wandb.Table(dataframe=df_results)})
 
-    # Create output directory if it doesn't exist
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    commit_hash = (
-        subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
-        .decode("utf-8")
-        .strip()
-    )
-    dirpath = f"benchmark_results/{timestamp}_{commit_hash}"
-    os.makedirs(dirpath, exist_ok=True)
     # Save to the benchmark_results directory
     filepath_results = os.path.join(dirpath, f"{run_name}.csv")
     os.makedirs(os.path.dirname(filepath_results), exist_ok=True)
