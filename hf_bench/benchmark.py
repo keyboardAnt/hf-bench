@@ -10,6 +10,7 @@ import os  # noqa: E402
 import subprocess  # noqa: E402
 import sys  # noqa: E402
 import time  # noqa: E402
+import traceback  # noqa: E402
 from dataclasses import astuple, dataclass  # noqa: E402
 from datetime import datetime  # noqa: E402
 from threading import Thread  # noqa: E402
@@ -24,7 +25,11 @@ from transformers import AutoModelForCausalLM, AutoTokenizer  # noqa: E402
 from transformers.generation.streamers import BaseStreamer  # noqa: E402
 
 import wandb  # noqa: E402
-from hf_bench.config import DatasetConfig, ExperimentConfig, experiment_configs  # noqa: E402
+from hf_bench.config import (  # noqa: E402
+    DatasetConfig,
+    ExperimentConfig,
+    experiment_configs,
+)
 
 # ------------------------------------------------------------------------------
 # Environment & Setup
@@ -736,48 +741,54 @@ def main():
                             f"Running `assistant={assistant_checkpoint}` with `temp={temperature}` for {target_checkpoint}...",
                             flush=True,
                         )
-                        result = generate_assisted(
-                            example_id=example_id,
-                            prompt=prompt,
-                            target_model_obj=target_obj,
-                            temperature=temperature,
-                            assistant_model_obj=assistant_obj,
-                        )
-                        results_table_row = (
-                            ResultsTableRow.from_experiment_config_and_result(
-                                target=target_checkpoint,
-                                dataset_path=dataset_path,
-                                dataset_name=dataset_name,
-                                dataset_split=dataset_split,
-                                num_of_examples=args.num_of_examples,
-                                drafter=assistant_checkpoint,
-                                temperature=temperature,
+                        try:
+                            result = generate_assisted(
                                 example_id=example_id,
-                                result=result,
+                                prompt=prompt,
+                                target_model_obj=target_obj,
+                                temperature=temperature,
+                                assistant_model_obj=assistant_obj,
                             )
-                        )
+                            results_table_row = (
+                                ResultsTableRow.from_experiment_config_and_result(
+                                    target=target_checkpoint,
+                                    dataset_path=dataset_path,
+                                    dataset_name=dataset_name,
+                                    dataset_split=dataset_split,
+                                    num_of_examples=args.num_of_examples,
+                                    drafter=assistant_checkpoint,
+                                    temperature=temperature,
+                                    example_id=example_id,
+                                    result=result,
+                                )
+                            )
 
-                        # Stream results after each generation
-                        df_results = pd.concat(
-                            [df_results, pd.DataFrame([results_table_row])],
-                            ignore_index=True,
-                        )
-                        save_checkpoint(df_results, checkpoint_path)
-                        completed_examples.add(example_key)
+                            # Stream results after each generation
+                            df_results = pd.concat(
+                                [df_results, pd.DataFrame([results_table_row])],
+                                ignore_index=True,
+                            )
+                            save_checkpoint(df_results, checkpoint_path)
+                            completed_examples.add(example_key)
 
-                        # Update W&B table and log progress
-                        wandb_table.add_data(*astuple(results_table_row))
-                        wandb.log(
-                            {
-                                "completed_examples": len(completed_examples),
-                                "progress": len(completed_examples)
-                                / (
-                                    len(dataset_sample)
-                                    * len(experiment_config.temperatures)
-                                    * len(assistant_checkpoints)
-                                ),
-                            }
-                        )
+                            # Update W&B table and log progress
+                            wandb_table.add_data(*astuple(results_table_row))
+                            wandb.log(
+                                {
+                                    "completed_examples": len(completed_examples),
+                                    "progress": len(completed_examples)
+                                    / (
+                                        len(dataset_sample)
+                                        * len(experiment_config.temperatures)
+                                        * len(assistant_checkpoints)
+                                    ),
+                                }
+                            )
+                        except Exception as e:
+                            print(f"Error: {e}", flush=True)
+                            wandb.log({"error": str(e)})
+                            traceback.print_exc()
+                            wandb.log({"traceback": traceback.format_exc()})
             finally:
                 if assistant_obj is not None:
                     del assistant_obj
