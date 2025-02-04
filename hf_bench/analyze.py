@@ -35,8 +35,8 @@ def get_per_example_speedup_over_the_per_example_ar_star(
     )
 
 
-def main(filepath_to_csv: str):
-    df = pd.read_csv(filepath_to_csv)
+def main(csv_path: str):
+    df = pd.read_csv(csv_path)
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", 180)
     print("=" * 100)

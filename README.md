@@ -68,5 +68,5 @@ pytest -n 4 -v
 
 Analyze the CSV of benchmark results:
 ```bash
-python -m hf_bench.analyze --filepath_to_csv=path/to/csv
+python -m hf_bench.analyze --csv_path=path/to/csv
 ```
