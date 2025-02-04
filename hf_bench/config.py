@@ -61,6 +61,15 @@ experiment_configs = {
         ],
         temperatures=[0, 1e-7, 1],
     ),
+    "llama70b-it-vicuna-68m": ExperimentConfig(
+        target="meta-llama/Llama-3.1-70B-Instruct",
+        dataset_configs=[
+            DatasetConfig.from_path("tau/scrolls"),
+            DatasetConfig.from_path("cnn_dailymail"),
+        ],
+        assistants=["double7/vicuna-68m"],
+        temperatures=[0, 0.2, 1],
+    ),
     "llama70b": ExperimentConfig(
         target="meta-llama/Llama-3.1-70B",
         dataset_configs=list(dataset_configs.values()),
@@ -99,6 +108,15 @@ experiment_configs = {
             "Qwen/Qwen2.5-0.5B-Instruct",
         ],
         temperatures=[0, 1e-7, 1],
+    ),
+    "llama-8b-it-vicuna-68m": ExperimentConfig(
+        target="meta-llama/Llama-3.1-8B-Instruct",
+        dataset_configs=[
+            DatasetConfig.from_path("tau/scrolls"),
+            DatasetConfig.from_path("cnn_dailymail"),
+        ],
+        assistants=["double7/vicuna-68m"],
+        temperatures=[0, 0.2, 1],
     ),
     "codellama-13b-it": ExperimentConfig(
         target="codellama/CodeLlama-13b-Instruct-hf",
