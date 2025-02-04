@@ -399,15 +399,19 @@ def generate_assisted(
     generate_kwargs = {}
     if assistant_model_obj is not None:
         generate_kwargs["assistant_model"] = assistant_model_obj.model
-        are_tokenizers_identical: bool = True
+        are_tokenizers_identical: bool = False
         try:
             target_model_obj.model._validate_assistant(
                 assistant_model=assistant_model_obj.model,
                 tokenizer=target_model_obj.tokenizer,
                 assistant_tokenizer=assistant_model_obj.tokenizer,
             )
-        except ValueError:
-            are_tokenizers_identical = False
+        except ValueError as e:
+            print(f"Warning: {e}", flush=True)
+            if "`assistant_tokenizer` is not required when the main and assistant models use the same tokenizer." in str(e):
+                are_tokenizers_identical = True
+            elif "The main and assistant moedels have different tokenizers." not in str(e): 
+                raise ValueError(e)
         print("Tokenizers are identical:", are_tokenizers_identical, flush=True)
         if not are_tokenizers_identical:
             generate_kwargs["assistant_tokenizer"] = assistant_model_obj.tokenizer
