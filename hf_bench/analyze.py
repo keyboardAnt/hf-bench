@@ -43,7 +43,7 @@ def main(csv_path: str):
     num_examples = df["example_id"].nunique()
     print(f"Analyzing CSV with {len(df)} rows for {num_examples} unique examples.")
     print("=" * 100)
-    for drafter, df in df.groupby("drafter"):
+    for drafter, df in df.groupby("drafter", dropna=False):
         print(f"\n\nDrafter: {drafter}\n")
         print("New Toks:")
         columns_for_new_toks = [
