@@ -226,4 +226,12 @@ experiment_configs = {
         ],
         temperatures=[0, 1],
     ),
+    "deepseek-r1": ExperimentConfig(
+        target="deepseek-ai/DeepSeek-R1",
+        dataset_configs=list(dataset_configs.values()),
+        assistants=[
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        ],
+        temperatures=[0, 1],
+    ),
 }
