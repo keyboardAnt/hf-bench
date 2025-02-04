@@ -80,8 +80,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--results_checkpoint_dirpath",
-        default=None,
-        type=Optional[str],
+        default="",
+        type=str,
         help="The directory for storing benchmark results. If provided, the benchmark will resume from the latest checkpoint in this directory.",
     )
     return parser.parse_args()
@@ -598,7 +598,7 @@ def main():
     results_root_dirpath: str = "benchmark_results"
     dirpath: str = args.results_checkpoint_dirpath
     print(f"Received from args: {dirpath=}")
-    if dirpath is None:
+    if not dirpath:
         print(
             "No checkpoint dirpath provided, using default results dirpath", flush=True
         )

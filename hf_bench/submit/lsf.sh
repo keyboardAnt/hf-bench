@@ -3,7 +3,7 @@
 timestamp=$(date +\%Y\%m\%d_\%H\%M\%S) && bsub \
     -N \
     -q "long-gpu short-gpu risk-gpu" \
-    -gpu "num=1:j_exclusive=yes:gmem=80GB" \
+    -gpu "num=1:j_exclusive=yes:gmem=10GB" \
     -R "rusage[mem=200GB]" \
     -R "affinity[core(8)]" \
     -R "span[hosts=1]" \
