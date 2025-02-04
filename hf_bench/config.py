@@ -130,7 +130,11 @@ experiment_configs = {
             DatasetConfig.from_path("tau/scrolls"),
             DatasetConfig.from_path("cnn_dailymail"),
         ],
-        assistants=["deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"],
+        assistants=[
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-0.5B",
+            "double7/vicuna-68m",
+        ],
         temperatures=[0, 1],
     ),
 }
