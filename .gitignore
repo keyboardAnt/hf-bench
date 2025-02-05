@@ -178,3 +178,4 @@ cython_debug/
 benchmark_results/
 logs/
 wandb/
+slurm-*.out
