@@ -34,7 +34,8 @@ if __name__ == "__main__":
 
     config = experiment_configs.get(args.config_name)
     if config:
-        print(f"Running experiment with target: {config.target}")
         for assistant_model in config.assistants:
             print(f"{config.target=},{assistant_model}")
             common_tokens = validate_assistant(config.target, assistant_model)
+    else:
+        print(f"No configuration found for {args.config_name}")
