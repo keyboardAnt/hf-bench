@@ -36,12 +36,17 @@ def get_df_concat(dirpath: str) -> pd.DataFrame:
         df_new["submission_id"] = submission_id
         df_new = df_new[columns]
         df = pd.concat([df, df_new])
-    df.sort_values(by=["target", "dataset_name", "drafter", "temperature", "example_id"], inplace=True)
+    df.sort_values(
+        by=["target", "dataset_name", "drafter", "temperature", "example_id"],
+        inplace=True,
+    )
     return df
+
 
 def main(dirpath: str):
     df: pd.DataFrame = get_df_concat(dirpath)
     print(df)
+
 
 if __name__ == "__main__":
     fire.Fire(main)
