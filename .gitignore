@@ -175,7 +175,7 @@ cython_debug/
 .idea/
 
 # Results and logs
-benchmark_results/
+hf_bench/**/benchmark_results/
 logs/
 wandb/
 slurm-*.out
