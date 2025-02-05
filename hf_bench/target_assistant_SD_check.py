@@ -1,6 +1,7 @@
 from hf_bench.benchmark import HFModel
 
 import argparse
+from hf_bench.config import experiment_configs
 
 def validate_assistant(target_model_name, assistant_model_name):
     """
@@ -28,8 +29,12 @@ def validate_assistant(target_model_name, assistant_model_name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Check whether target/draft Models can run with regular SD")
-    parser.add_argument("--target", type=str, help="Target model name")
-    parser.add_argument("--draft", type=str, help="Draft model name")
-    
+    parser.add_argument("--config_name", type=str, help="The name of the configuration to use.")
     args = parser.parse_args()
-    validate_assistant(args.target, args.draft)
+
+    config = experiment_configs.get(args.config_name)
+    if config:
+        print(f"Running experiment with target: {config.target}")
+        for assistant_model in config.assistants:
+            print(f"{config.target=},{assistant_model}")
+            common_tokens = validate_assistant(config.target, assistant_model)
