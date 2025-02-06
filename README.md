@@ -75,4 +75,6 @@ Summarize the benchmark results:
 ```bash
 python -m  hf_bench.summarize_results --dirpath benchmark_results
 ```
-This will create `benchmark_results/all_results.csv` and `benchmark_results/summary.csv`.
+This will create:
+* [`benchmark_results/all_results.csv`](benchmark_results/all_results.csv)
+* [`benchmark_results/summary.csv`](benchmark_results/summary.csv)
