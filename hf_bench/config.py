@@ -141,6 +141,7 @@ experiment_configs = {
             "meta-llama/Llama-3.1-8B",
             "meta-llama/Llama-3.2-3B",
             "meta-llama/Llama-3.2-1B",
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
             "double7/vicuna-68m",
         ],
         temperatures=[0, 1],
@@ -151,16 +152,8 @@ experiment_configs = {
         assistants=[
             "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
             "codellama/CodeLlama-7b-Instruct-hf",
-            "bigcode/tiny_starcoder_py",
-        ],
-        temperatures=[0, 1],
-    ),
-    "deepseek-r1-llama-70b-qwen-1.5b": ExperimentConfig(
-        target="deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
-        dataset_configs=list(dataset_configs.values()),
-        assistants=[
-            "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
             "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+            "bigcode/tiny_starcoder_py",
         ],
         temperatures=[0, 1],
     ),
