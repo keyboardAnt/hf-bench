@@ -76,6 +76,8 @@ def main(dirpath: str):
     print("Counting the number of unique example IDs for each experiment...")
     df_summary: pd.DataFrame = get_df_summary_of_results(df_concat)
     df_summary.to_csv(dirpath + "/summary.csv", index=True)
+    print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
+    print("Done!")
 
 
 if __name__ == "__main__":

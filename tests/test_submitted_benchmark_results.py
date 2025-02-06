@@ -1,7 +1,7 @@
 from collections import Counter
 import warnings
 import pandas as pd
-from hf_bench.parse_results import list_tracked_files, get_columns
+from hf_bench.summarize_results import list_tracked_files, get_columns
 
 
 def test_submitted_benchmark_results():
