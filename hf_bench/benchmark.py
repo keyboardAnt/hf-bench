@@ -250,7 +250,10 @@ class HFModel:
         """
         self.model_name = model_name
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_name, device_map=device_map, torch_dtype=torch_dtype, trust_remote_code=True
+            model_name,
+            device_map=device_map,
+            torch_dtype=torch_dtype,
+            trust_remote_code=True,
         )
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 

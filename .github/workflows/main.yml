@@ -1,0 +1,28 @@
+name: Main Workflow (Pytest + Summarize Results + Push Results)
+on: push
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          conda env update -f environment.yml --prune
+      - name: Run tests
+        run: conda run -n hf-bench-env pytest tests/
+      - name: Summarize results
+        run: conda run -n hf-bench-env python -m hf_bench.summarize_results --dirpath benchmark_results
+      - name: Push results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b results
+          git add "results_*.csv"
+          git commit -m "Update benchmark results"
+          git push -f origin results
