@@ -185,6 +185,7 @@ experiment_configs = {
         assistants=[
             "codellama/CodeLlama-7b-Instruct-hf",
             "bigcode/tiny_starcoder_py",
+            "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
         ],
         temperatures=[0, 1],
     ),
