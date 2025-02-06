@@ -64,12 +64,33 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_summary = example_id_nunique.to_frame()
     df_summary.rename(columns={"example_id": "example_id_nunique"}, inplace=True)
     df_mean_vals = df_concat.groupby(columns_for_index)[["new_toks", "ttft_ms"]].mean()
+    df_mean_vals['new_toks'] = df_mean_vals['new_toks'].round(0).astype(int)
+    df_mean_vals['ttft_ms'] = df_mean_vals['ttft_ms'].round(1)
     df_hmean_vals = df_concat.groupby(columns_for_index)[
         ["tpot_ms", "out_toks_per_sec"]
-    ].agg(hmean)
-    df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
-    return df_summary
+    ].agg(hmean).round(1)
 
+    # Calculate speedup
+    # Reset index to bring drafter back as a column
+    df_concat.reset_index(inplace=True)
+    # Filter out rows where drafter is 'No Drafter (Autoregressive)'
+    reference_df = df_concat[df_concat['drafter'] == 'No Drafter (Autoregressive)']
+    # Group by the columns that will match across rows and get the first value of out_toks_per_sec
+    reference_df = reference_df.groupby(['target', 'submission_id', 'dataset_path', 'temperature'], as_index=False)['out_toks_per_sec'].first()
+    # Merge reference_df back to the original DataFrame based on matching group keys
+    df_concat = df_concat.merge(reference_df, on=['target', 'submission_id', 'dataset_path', 'temperature'], suffixes=('', '_ref'))
+    # Add a new column 'speedup' by dividing 'out_toks_per_sec' by the reference value
+    df_concat['speedup'] = (df_concat['out_toks_per_sec'] / df_concat['out_toks_per_sec_ref']).round(2)
+    # Drop the reference column as it's no longer needed
+    df_concat.drop(columns=['out_toks_per_sec_ref'], inplace=True)
+    # Set the index back to the original columns
+    df_concat.set_index(columns_for_index, inplace=True)
+    # Merge df_concat with df_summary on the group keys to bring speedup into the summary dataframe
+    df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
+    # Merge the speedup column into df_summary by matching the index
+    df_summary = df_summary.merge(df_concat[['speedup']], left_index=True, right_index=True, how='left')
+
+    return df_summary
 
 def main(dirpath: str):
     print("Concatenating all the results CSVs into one dataframe...")
