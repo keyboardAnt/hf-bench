@@ -70,14 +70,26 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
         ["tpot_ms", "out_toks_per_sec"]
     ].agg(hmean).round(1)
 
-    # speedup calculation
-    # First, get the 'out_toks_per_sec' for drafter == "No Drafter (Autoregressive)"
-    print(df_concat.columns)
-    reference_speed = df_concat[df_concat['drafter'] == "No Drafter (Autoregressive)"]['out_toks_per_sec']
-    # Calculate speedup as out_toks_per_sec / reference_speed for each row
-    df_hmean_vals['speedup'] = (df_hmean_vals['out_toks_per_sec'] / reference_speed).round(2)
-
+    # Calculate speedup
+    # Reset index to bring drafter back as a column
+    df_concat.reset_index(inplace=True)
+    # Filter out rows where drafter is 'No Drafter (Autoregressive)'
+    reference_df = df_concat[df_concat['drafter'] == 'No Drafter (Autoregressive)']
+    # Group by the columns that will match across rows and get the first value of out_toks_per_sec
+    reference_df = reference_df.groupby(['target', 'submission_id', 'dataset_path', 'temperature'], as_index=False)['out_toks_per_sec'].first()
+    # Merge reference_df back to the original DataFrame based on matching group keys
+    df_concat = df_concat.merge(reference_df, on=['target', 'submission_id', 'dataset_path', 'temperature'], suffixes=('', '_ref'))
+    # Add a new column 'speedup' by dividing 'out_toks_per_sec' by the reference value
+    df_concat['speedup'] = (df_concat['out_toks_per_sec'] / df_concat['out_toks_per_sec_ref']).round(2)
+    # Drop the reference column as it's no longer needed
+    df_concat.drop(columns=['out_toks_per_sec_ref'], inplace=True)
+    # Set the index back to the original columns
+    df_concat.set_index(columns_for_index, inplace=True)
+    # Merge df_concat with df_summary on the group keys to bring speedup into the summary dataframe
     df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
+    # Merge the speedup column into df_summary by matching the index
+    df_summary = df_summary.merge(df_concat[['speedup']], left_index=True, right_index=True, how='left')
+
     return df_summary
 
 def main(dirpath: str):
