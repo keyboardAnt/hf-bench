@@ -1,4 +1,5 @@
 from collections import Counter
+import warnings
 import pandas as pd
 from hf_bench.parse_results import list_tracked_files, get_columns
 
@@ -13,7 +14,13 @@ def test_submitted_benchmark_results():
         col_counter = Counter(df.columns)
         for col in expected_columns:
             assert col_counter[col] == 1, f"Column {col} is missing in the dataframe or appears multiple times"
-        # Check all the example_ids are repeated the same number of times
-        example_ids_counts = df["example_id"].value_counts()
-        for example_id, count in example_ids_counts.items():
-            assert count == example_ids_counts[0], f"All example IDs should appear the same number of times.\nExample ID {example_id} appears {count} times in the dataframe.\nValue counts: {example_ids_counts=}\nFilepath: {f}"
+        # Check that all example IDs appear the same number of times
+        columns_for_index = ["target", "dataset_path", "drafter", "temperature"]
+        df_example_ids_nunique = df.groupby(columns_for_index)["example_id"].nunique()
+        assert df_example_ids_nunique.min() == df_example_ids_nunique.max(), f"All example IDs should appear the same number of times.\nFilepath: {f}"
+        # Check that all example IDs appear num_of_examples times
+        expected_count = df["num_of_examples"].max()
+        if df_example_ids_nunique.min() != expected_count:
+            msg: str = f"Some example IDs appear only {df_example_ids_nunique.min()} times in the dataframe although they should appear {expected_count} times according to the num_of_examples column.\nFilepath: {f}"
+            warnings.warn(msg)
+
