@@ -38,6 +38,7 @@ def get_df_concat(dirpath: str) -> pd.DataFrame:
     for f in filepaths:
         submission_id: str = Path(f).parent.stem
         df_new = pd.read_csv(f)
+        df_new["drafter"] = df_new["drafter"].fillna("No Drafter (Autoregressive)")
         df_new["submission_id"] = submission_id
         df_new = df_new[columns]
         df = pd.concat([df, df_new])
