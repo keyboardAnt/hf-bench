@@ -13,7 +13,7 @@ def test_submitted_benchmark_results():
         df = pd.read_csv(f)
         col_counter = Counter(df.columns)
         for col in expected_columns:
-            assert col_counter[col] == 1, f"Column {col} is missing in the dataframe or appears multiple times"
+            assert col_counter[col] == 1, f"Column {col} is missing in the dataframe or appears multiple times.\nFilepath: {f}"
         # Check that all example IDs appear the same number of times
         columns_for_index = ["target", "dataset_path", "drafter", "temperature"]
         df_example_ids_nunique = df.groupby(columns_for_index)["example_id"].nunique()
