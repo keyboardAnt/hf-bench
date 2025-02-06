@@ -22,6 +22,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b results
           git add "results_*.csv"
           git commit -m "Update benchmark results"
-          git push
+          git push -f origin results
