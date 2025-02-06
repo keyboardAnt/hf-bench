@@ -31,7 +31,7 @@ def get_df_concat(dirpath: str) -> pd.DataFrame:
     df_first = pd.read_csv(filepaths[0])
     column_dtypes: Dict[str, Any] = {
         "submission_id": str,
-        **{col: df_first[col].dtype for col in get_columns()}
+        **{col: df_first[col].dtype for col in get_columns()},
     }
     columns = ["submission_id"] + list(get_columns())
     df = pd.DataFrame(columns=columns).astype(column_dtypes)
@@ -50,15 +50,24 @@ def get_df_concat(dirpath: str) -> pd.DataFrame:
 
 def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_concat.reset_index(drop=True, inplace=True)
-    columns_for_index: List[str] = ["target", "submission_id", "dataset_path", "drafter", "temperature"]
+    columns_for_index: List[str] = [
+        "target",
+        "submission_id",
+        "dataset_path",
+        "drafter",
+        "temperature",
+    ]
     df_concat.set_index(columns_for_index, inplace=True)
     example_id_nunique = df_concat["example_id"].groupby(columns_for_index).nunique()
     df_summary = example_id_nunique.to_frame()
     df_summary.rename(columns={"example_id": "example_id_nunique"}, inplace=True)
-    df_mean_vals = df_concat.groupby(columns_for_index)[['new_toks', 'ttft_ms']].mean()
-    df_hmean_vals = df_concat.groupby(columns_for_index)[['tpot_ms', 'out_toks_per_sec']].agg(hmean)
+    df_mean_vals = df_concat.groupby(columns_for_index)[["new_toks", "ttft_ms"]].mean()
+    df_hmean_vals = df_concat.groupby(columns_for_index)[
+        ["tpot_ms", "out_toks_per_sec"]
+    ].agg(hmean)
     df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
     return df_summary
+
 
 def main(dirpath: str):
     print("Concatenating all the results CSVs into one dataframe...")
