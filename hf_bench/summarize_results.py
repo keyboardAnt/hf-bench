@@ -14,7 +14,7 @@ def get_columns() -> List[str]:
 
 def list_tracked_files(dirpath: str) -> Dict[str, str]:
     # Run git ls-tree command and capture output
-    cmd = ["git", "ls-tree", "-r", "origin/main", "--name-only", dirpath]
+    cmd = ["git", "ls-tree", "-r", "HEAD", "--name-only", dirpath]
     result = subprocess.run(cmd, capture_output=True, text=True, check=True)
     # Split output into list of files
     files = result.stdout.strip().split("\n")
