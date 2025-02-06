@@ -64,9 +64,11 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_summary = example_id_nunique.to_frame()
     df_summary.rename(columns={"example_id": "example_id_nunique"}, inplace=True)
     df_mean_vals = df_concat.groupby(columns_for_index)[["new_toks", "ttft_ms"]].mean()
+    df_mean_vals['new_toks'] = df_mean_vals['new_toks'].round(0).astype(int)
+    df_mean_vals['ttft_ms'] = df_mean_vals['ttft_ms'].round(1)
     df_hmean_vals = df_concat.groupby(columns_for_index)[
         ["tpot_ms", "out_toks_per_sec"]
-    ].agg(hmean)
+    ].agg(hmean).round(1)
     df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
     return df_summary
 
