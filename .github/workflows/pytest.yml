@@ -1,4 +1,4 @@
-name: CI
+name: Pytest
 on: push
 jobs:
   build:
@@ -13,7 +13,5 @@ jobs:
         run: |
           conda env update -f environment.yml --prune
           conda activate hf-bench-env
-      - name: Run Ruff
-        run: ruff check --output-format=github .
       - name: Run tests
         run: pytest tests/
