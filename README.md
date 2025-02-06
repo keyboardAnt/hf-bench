@@ -78,5 +78,3 @@ python -m  hf_bench.summarize_results --dirpath benchmark_results
 This will create new CSV files in the `results` branch:
 * [`results_all.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_all.csv)
 * [`results_summary.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_summary.csv)
-
-To view the results, go to the `results` branch: https://github.com/keyboardAnt/hf-bench/tree/results
