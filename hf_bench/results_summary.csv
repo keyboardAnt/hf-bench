@@ -1,0 +1,85 @@
+target,submission_id,dataset_path,drafter,temperature,example_id_nunique,new_toks,ttft_ms,tpot_ms,out_toks_per_sec
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,No Drafter (Autoregressive),0,30,512.0,297.1085548400879,122.58502219860164,8.15342887120799
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,No Drafter (Autoregressive),1,30,512.0,244.01081403096518,123.48281399572242,8.09636445828043
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,bigcode/tiny_starcoder_py,0,30,512.0,265.93206723531085,84.5921265765326,11.75158052457159
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,bigcode/tiny_starcoder_py,1,30,512.0,258.6798270543416,85.46172928479295,11.655785024798526
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,codellama/CodeLlama-7b-Instruct-hf,0,30,512.0,428.67663701375324,101.4862155057325,9.642754948980862
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,codellama/CodeLlama-7b-Instruct-hf,1,30,511.8666666666667,317.29934215545654,87.20099422090425,11.403309292736974
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,0,30,512.0,353.5195430119832,54.29291596543475,18.315642661042872
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_01-05-29_4c55336,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,1,30,512.0,358.23681354522705,53.126245464799666,18.615135306906808
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,cnn_dailymail,No Drafter (Autoregressive),0,30,494.7,232.3214610417684,77.44780817232851,12.899085299067352
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,cnn_dailymail,No Drafter (Autoregressive),1,30,472.6333333333333,232.6073964436849,77.73757987872408,12.85154280689092
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,0,30,492.7,461.3376458485921,79.34843519107346,12.420611961979704
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,1,30,462.0,347.95308113098145,58.069087573218845,17.156837055302574
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,496.56666666666666,296.1089054743449,72.55759771312837,13.59430661860404
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,496.03333333333336,329.0356794993083,59.3431898910271,16.769740225137966
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,openai/openai_humaneval,No Drafter (Autoregressive),0,30,512.0,128.3557891845703,75.81149006315138,13.190332679387803
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,openai/openai_humaneval,No Drafter (Autoregressive),1,30,512.0,128.21263472239175,76.26928169327785,13.111232390845931
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,0,30,512.0,222.63826529184976,52.79787141087807,18.84048927368552
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,1,30,512.0,182.24121729532877,44.4364404008539,22.419773400219775
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,512.0,296.00097338358563,60.66045655292999,16.272820612164562
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,512.0,218.57680479685465,46.23995958320183,21.5016021249471
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,tau/scrolls,No Drafter (Autoregressive),0,30,469.1333333333333,1836.8865013122559,127.09834270030238,7.65618822095235
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,tau/scrolls,No Drafter (Autoregressive),1,30,467.03333333333336,1837.1484120686848,126.6323089731547,7.670110935016064
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,0,30,465.2,2121.399188041687,87.97705879086142,10.908274454810883
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,1,30,474.3,2059.352946281433,65.07557736113408,15.223802746082015
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,464.4,1890.938131014506,85.81035184155702,11.287648981970765
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,2025-02-04_20-52-14_eb664c5,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,500.03333333333336,1898.5047260920207,70.91753289743305,13.939123371039209
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,No Drafter (Autoregressive),0,30,497.8,115.45449892679851,40.94356305185617,24.40581644908636
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,No Drafter (Autoregressive),1,30,491.53333333333336,115.59364000956218,41.339203458174275,24.172313488851387
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,486.3333333333333,219.67355410257974,65.08563395038259,15.093473011839205
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,496.5,190.64815044403076,55.97221284822458,17.808937360665464
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,double7/vicuna-68m,0,30,492.93333333333334,175.80872376759848,31.3421564761846,31.478225030305854
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,double7/vicuna-68m,1,30,476.96666666666664,150.19750595092773,33.77256648569271,29.481165367989945
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,meta-llama/Llama-3.2-1B,0,30,486.3333333333333,143.6414877573649,38.239419233998184,25.95685435806524
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,meta-llama/Llama-3.2-1B,1,30,476.8666666666667,150.7860024770101,34.58250289626777,28.771910018488683
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,meta-llama/Llama-3.2-3B,0,30,492.2,168.5359795888265,54.261182250933636,18.246984140371627
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,cnn_dailymail,meta-llama/Llama-3.2-3B,1,30,480.4,171.6355244318644,42.629838415202215,23.409303662871228
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,No Drafter (Autoregressive),0,30,483.1666666666667,853.8925091425577,70.23481958406757,13.785430289391723
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,No Drafter (Autoregressive),1,30,479.3,855.344025293986,69.99782873250369,13.771264882358267
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,476.0,1068.4868415196736,64.33256727426985,14.935082720135261
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,499.1,1057.0157766342163,56.74537054786904,17.32463324116462
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,double7/vicuna-68m,0,30,479.0,901.2706438700358,49.407154146727905,19.772268563152313
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,double7/vicuna-68m,1,30,475.56666666666666,867.1375274658203,51.920232039011566,18.98500831831221
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,meta-llama/Llama-3.2-1B,0,30,469.9,991.4796352386475,36.686003283013704,26.156879355393013
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,meta-llama/Llama-3.2-1B,1,30,476.6,1007.2550853093466,38.65673647776863,25.368871245030135
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,meta-llama/Llama-3.2-3B,0,30,480.1333333333333,1240.1755571365356,57.57720678941092,16.669219587055238
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-18-59_d7c02fb,tau/scrolls,meta-llama/Llama-3.2-3B,1,30,452.0,1238.9781316121419,51.84648362605857,19.0531867269795
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-36-26_d7c02fb,openai/openai_humaneval,No Drafter (Autoregressive),0,30,512.0,73.04704189300537,40.759836251650604,24.53335923213863
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-36-26_d7c02fb,openai/openai_humaneval,No Drafter (Autoregressive),1,30,512.0,73.03276062011719,41.06735406927821,24.349783040267823
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-36-26_d7c02fb,openai/openai_humaneval,bigcode/tiny_starcoder_py,0,29,512.0,96.42396302058779,52.61412721694526,18.200863531441666
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-36-26_d7c02fb,openai/openai_humaneval,bigcode/tiny_starcoder_py,1,30,512.0,83.47437381744385,39.40697272774735,25.228109942297948
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-36-26_d7c02fb,openai/openai_humaneval,codellama/CodeLlama-7b-Instruct-hf,0,30,512.0,292.3961321512858,123.07056492522209,7.266464865532929
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,2025-02-05_03-36-26_d7c02fb,openai/openai_humaneval,codellama/CodeLlama-7b-Instruct-hf,1,30,512.0,215.99843502044678,62.985512843269824,15.739917820530444
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,cnn_dailymail,No Drafter (Autoregressive),0,30,475.26666666666665,120.0821081797282,47.91192181475867,20.862795601250212
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,cnn_dailymail,No Drafter (Autoregressive),1,30,417.6333333333333,120.34637133280437,48.352781862116814,20.673351399756896
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,475.0,166.03996753692627,49.58613054476329,19.921853018064958
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,454.4,164.42546049753824,37.14920337812532,26.774893973131316
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,cnn_dailymail,double7/vicuna-68m,0,30,475.0,149.69523747762045,32.24259649825549,30.819374989283205
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,cnn_dailymail,double7/vicuna-68m,1,30,417.76666666666665,168.22476387023926,33.8476720224531,29.330124756996828
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,tau/scrolls,No Drafter (Autoregressive),0,30,336.9,932.6409896214803,75.56053033764869,12.821335688215374
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,tau/scrolls,No Drafter (Autoregressive),1,30,338.73333333333335,936.4633321762085,75.85516969711759,12.766077069956955
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,339.3333333333333,986.3899866739908,56.6984798327204,17.389431682593354
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,295.23333333333335,987.2552712758383,44.84957552454638,22.046748165377927
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,tau/scrolls,double7/vicuna-68m,0,30,338.8333333333333,972.4597771962484,58.58694765207203,16.64228489277798
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,2025-02-04_18-20-41_bccb1bd,tau/scrolls,double7/vicuna-68m,1,30,308.96666666666664,979.2536576588949,60.821598326111854,15.96745310002739
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,cnn_dailymail,No Drafter (Autoregressive),0,30,477.3333333333333,105.75775305430095,37.428118524780245,26.71758439427078
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,cnn_dailymail,No Drafter (Autoregressive),1,30,474.6333333333333,106.00903828938802,37.8823626767289,26.39724159458728
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,478.3,209.82979933420816,59.80788336642112,16.213347885227684
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,cnn_dailymail,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,461.8,191.48136774698892,47.88947331545507,20.793814354962908
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,cnn_dailymail,double7/vicuna-68m,0,30,476.93333333333334,167.4384037653605,28.35899480406693,34.519340502318
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,cnn_dailymail,double7/vicuna-68m,1,30,387.1333333333333,139.31081295013428,31.604214386585078,31.576770947608054
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,tau/scrolls,No Drafter (Autoregressive),0,30,369.46666666666664,785.9619696935018,49.45811430580797,19.817649562120245
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,tau/scrolls,No Drafter (Autoregressive),1,30,398.4,785.5539242426554,49.79504774899711,19.697766426517937
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,371.26666666666665,1011.9614839553833,64.98479051584034,14.978736124029572
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,tau/scrolls,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,394.53333333333336,998.7431685129801,50.47428652243028,19.433183319631006
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,tau/scrolls,double7/vicuna-68m,0,30,370.1666666666667,834.210999806722,44.33984827541352,22.26324318726479
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-45_d7c02fb,tau/scrolls,double7/vicuna-68m,1,30,405.1666666666667,798.95867506663,46.72206643054284,21.148821207989606
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,No Drafter (Autoregressive),0,30,465.6,69.02117729187012,37.98911033497461,26.32284459320478
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,No Drafter (Autoregressive),1,30,472.8333333333333,69.304625193278,38.3794124126157,26.0549107919858
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,bigcode/tiny_starcoder_py,0,30,463.8,91.02199077606201,36.11314413065638,26.361933806815316
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,bigcode/tiny_starcoder_py,1,30,482.8,80.20477294921875,38.50327270738532,25.897577699921367
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,codellama/CodeLlama-7b-Instruct-hf,0,30,465.8,287.97486623128253,93.87016754580205,10.064319123793762
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,codellama/CodeLlama-7b-Instruct-hf,1,30,465.53333333333336,153.01407972971597,65.54287939148284,15.13259266152864
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,0,30,466.76666666666665,324.73342418670654,63.594529271835746,15.117397911374939
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,2025-02-05_03-44-51_d7c02fb,openai/openai_humaneval,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,1,30,463.06666666666666,162.61045932769775,40.64054792703968,24.476795963580958
