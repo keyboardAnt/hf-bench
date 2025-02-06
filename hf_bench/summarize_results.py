@@ -74,10 +74,10 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
 def main(dirpath: str):
     print("Concatenating all the results CSVs into one dataframe...")
     df_concat: pd.DataFrame = get_df_concat(dirpath)
-    df_concat.to_csv(dirpath + "/results_all.csv", index=False)
+    df_concat.to_csv("results_all.csv", index=False)
     print("Counting the number of unique example IDs for each experiment...")
     df_summary: pd.DataFrame = get_df_summary_of_results(df_concat)
-    df_summary.to_csv(dirpath + "/results_summary.csv", index=True)
+    df_summary.to_csv("results_summary.csv", index=True)
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
     print("Done!")
 

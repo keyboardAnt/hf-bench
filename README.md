@@ -76,5 +76,5 @@ Summarize the benchmark results:
 python -m  hf_bench.summarize_results --dirpath benchmark_results
 ```
 This will create:
-* [`benchmark_results/results_all.csv`](benchmark_results/results_all.csv)
-* [`benchmark_results/results_summary.csv`](benchmark_results/results_summary.csv)
+* [`results_all.csv`](results_all.csv)
+* [`results_summary.csv`](results_summary.csv)
