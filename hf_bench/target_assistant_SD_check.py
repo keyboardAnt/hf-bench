@@ -24,7 +24,7 @@ def validate_assistant(target_model_name, assistant_model_name):
         )
         print("Need universal SD")
     except ValueError:
-        print(f"Can run with regular SD")
+        print("Can run with regular SD")
 
 
 if __name__ == "__main__":
