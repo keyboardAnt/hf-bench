@@ -64,7 +64,7 @@ Run tests in parallel:
 pytest -n 4 -v
 ``` -->
 
-### Analyze
+<!-- ### Analyze
 
 Analyze the CSV of benchmark results:
 ```bash
@@ -74,7 +74,12 @@ python -m hf_bench.analyze --csv_path=path/to/csv
 Summarize the benchmark results:
 ```bash
 python -m  hf_bench.summarize_results --dirpath benchmark_results
-```
-This will create new CSV files in the `results` branch:
+``` -->
+
+## Results
+
+The results are stored in the `results` branch:
 * [`results_all.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_all.csv)
 * [`results_summary.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_summary.csv)
+
+To add new results, add the results CSV to the `benchmark_results` directory. GitHub Actions will automatically update the `results_all.csv` and `results_summary.csv` files.
