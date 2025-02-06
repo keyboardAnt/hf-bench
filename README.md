@@ -70,3 +70,11 @@ Analyze the CSV of benchmark results:
 ```bash
 python -m hf_bench.analyze --csv_path=path/to/csv
 ```
+
+Summarize the benchmark results:
+```bash
+python -m  hf_bench.summarize_results --dirpath benchmark_results
+```
+This will create:
+* [`benchmark_results/results_all.csv`](benchmark_results/results_all.csv)
+* [`benchmark_results/results_summary.csv`](benchmark_results/results_summary.csv)
