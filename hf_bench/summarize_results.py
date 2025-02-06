@@ -69,9 +69,16 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_hmean_vals = df_concat.groupby(columns_for_index)[
         ["tpot_ms", "out_toks_per_sec"]
     ].agg(hmean).round(1)
+
+    # speedup calculation
+    # First, get the 'out_toks_per_sec' for drafter == "No Drafter (Autoregressive)"
+    print(df_concat.columns)
+    reference_speed = df_concat[df_concat['drafter'] == "No Drafter (Autoregressive)"]['out_toks_per_sec']
+    # Calculate speedup as out_toks_per_sec / reference_speed for each row
+    df_hmean_vals['speedup'] = (df_hmean_vals['out_toks_per_sec'] / reference_speed).round(2)
+
     df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
     return df_summary
-
 
 def main(dirpath: str):
     print("Concatenating all the results CSVs into one dataframe...")
