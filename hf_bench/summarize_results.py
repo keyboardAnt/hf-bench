@@ -28,6 +28,7 @@ def get_df_concat(dirpath: str) -> pd.DataFrame:
     Get a dataframe of all the results in the given directory.
     """
     filepaths = list_tracked_files(dirpath)
+    print(f"Found {len(filepaths)} tracked files in {dirpath}.")
     df_first = pd.read_csv(filepaths[0])
     column_dtypes: Dict[str, Any] = {
         "submission_id": str,
