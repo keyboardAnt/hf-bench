@@ -70,7 +70,7 @@ experiment_configs = {
             "meta-llama/Llama-3.2-3B",
             "meta-llama/Llama-3.2-1B",
             "Qwen/Qwen2.5-0.5B",
-            "double7/vicuna-68m"
+            "double7/vicuna-68m",
         ],
         temperatures=[0, 1],
     ),

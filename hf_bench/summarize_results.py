@@ -87,15 +87,20 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_ar_otps_reset = df_ar_otps.reset_index()
     # Merge the dataframes on the common index columns
     merge_cols = ["target", "dataset_path", "temperature", "submission_id"]
-    df_merged = pd.merge(df_otps_reset, df_ar_otps_reset, 
-                        on=merge_cols,
-                        suffixes=('', '_ar'))
+    df_merged = pd.merge(
+        df_otps_reset, df_ar_otps_reset, on=merge_cols, suffixes=("", "_ar")
+    )
     # Perform the division
-    df_merged['speedup'] = df_merged['out_toks_per_sec'] / df_merged['out_toks_per_sec_ar']
+    df_merged["speedup"] = (
+        df_merged["out_toks_per_sec"] / df_merged["out_toks_per_sec_ar"]
+    )
     # Set back the multi-index structure
-    df_speedups = df_merged.set_index(merge_cols + ['drafter'])[['speedup']]
+    df_speedups = df_merged.set_index(merge_cols + ["drafter"])[["speedup"]]
     df_summary.reset_index(inplace=True)
-    df_summary.set_index(["target", "dataset_path", "drafter", "temperature", "submission_id"], inplace=True)
+    df_summary.set_index(
+        ["target", "dataset_path", "drafter", "temperature", "submission_id"],
+        inplace=True,
+    )
     df_summary = df_summary.join(df_speedups)
     # Reorder the multi-index columns
     df_summary.reset_index(inplace=True)
@@ -107,9 +112,22 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
 
 def get_df_max_speedup(df_summary: pd.DataFrame) -> pd.DataFrame:
     df_summary.reset_index(inplace=True)
-    df_max_speedup = df_summary.loc[df_summary.groupby(["target", "dataset_path", "submission_id", "temperature"])['speedup'].idxmax()]
+    df_max_speedup = df_summary.loc[
+        df_summary.groupby(["target", "dataset_path", "submission_id", "temperature"])[
+            "speedup"
+        ].idxmax()
+    ]
     df_max_speedup.rename(columns={"drafter": "drafter_of_max_speedup"}, inplace=True)
-    df_max_speedup.set_index(["target", "dataset_path", "submission_id", "temperature", "drafter_of_max_speedup"], inplace=True)
+    df_max_speedup.set_index(
+        [
+            "target",
+            "dataset_path",
+            "submission_id",
+            "temperature",
+            "drafter_of_max_speedup",
+        ],
+        inplace=True,
+    )
     return df_max_speedup
 
 
