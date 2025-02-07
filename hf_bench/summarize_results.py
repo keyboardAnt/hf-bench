@@ -12,13 +12,21 @@ def get_columns() -> List[str]:
     return ResultsTableRow.__annotations__.keys()
 
 
-def list_tracked_files(dirpath: str) -> Dict[str, str]:
+def list_tracked_files(dirpath: str) -> List[str]:
     # Run git ls-tree command and capture output
     cmd = ["git", "ls-tree", "-r", "HEAD", "--name-only", dirpath]
     result = subprocess.run(cmd, capture_output=True, text=True, check=True)
     # Split output into list of files
     files = result.stdout.strip().split("\n")
     # Filter out empty strings
+    files = [f for f in files if f]
+    return files
+
+
+def list_staged_files(dirpath: str) -> List[str]:
+    cmd = ["git", "diff", "--name-only", "--cached", "HEAD", dirpath]
+    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    files = result.stdout.strip().split("\n")
     files = [f for f in files if f]
     return files
 
