@@ -97,6 +97,11 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_summary.reset_index(inplace=True)
     df_summary.set_index(["target", "dataset_path", "drafter", "temperature", "submission_id"], inplace=True)
     df_summary = df_summary.join(df_speedups)
+    # Reorder the multi-index columns
+    df_summary.reset_index(inplace=True)
+    new_index = ["target", "dataset_path", "submission_id", "temperature", "drafter"]
+    df_summary.set_index(new_index, inplace=True)
+    df_summary.sort_index(level=new_index, inplace=True)
     return df_summary
 
 
@@ -121,11 +126,6 @@ def main(dirpath: str):
     df_summary["tpot_ms"] = df_summary["tpot_ms"].round(1)
     df_summary["out_toks_per_sec"] = df_summary["out_toks_per_sec"].round(1)
     df_summary["speedup"] = df_summary["speedup"].round(2)
-    # Reorder the multi-index columns
-    df_summary.reset_index(inplace=True)
-    new_index = ["target", "dataset_path", "submission_id", "temperature", "drafter"]
-    df_summary.set_index(new_index, inplace=True)
-    df_summary.sort_index(level=new_index, inplace=True)
     df_summary.to_csv("results_summary.csv", index=True)
 
     print("Getting the maximum speedup for each experiment...")
