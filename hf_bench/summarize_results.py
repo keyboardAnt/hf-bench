@@ -58,6 +58,19 @@ def get_df_concat(dirpath: str) -> pd.DataFrame:
     return df
 
 
+def get_df_concat_filtered(df_concat: pd.DataFrame, minimum_new_toks: int) -> pd.DataFrame:
+    df_concat_filtered = df_concat.set_index(["target", "submission_id", "dataset_path", "dataset_name", "dataset_split"])
+    df_low_new_toks = (df_concat_filtered[df_concat_filtered["new_toks"] < minimum_new_toks]
+                   .set_index("example_id", append=True)
+                   .sort_index())
+    index_low_new_toks = df_low_new_toks.index.unique() # Multi-index (target, submission_id, dataset_path, dataset_name, dataset_split, example_id) for which new_toks < 64
+    # Remove all the rows corresponding to these multi-indices from df_concat_filtered
+    df_concat_filtered.set_index("example_id", inplace=True, append=True)
+    df_concat_filtered = df_concat_filtered[~df_concat_filtered.index.isin(index_low_new_toks)]
+    df_concat_filtered.reset_index(inplace=True)
+    return df_concat_filtered
+
+
 def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     df_concat.reset_index(drop=True, inplace=True)
     columns_for_index: List[str] = [
@@ -137,8 +150,12 @@ def main(dirpath: str):
     df_concat: pd.DataFrame = get_df_concat(dirpath)
     df_concat.to_csv("results_all.csv", index=False)
 
+    minimum_new_toks = 128
+    print(f"Filtering out experiments with less than {minimum_new_toks} new tokens...")
+    df_concat_filtered = get_df_concat_filtered(df_concat, minimum_new_toks)
+
     print("Counting the number of unique example IDs for each experiment...")
-    df_summary: pd.DataFrame = get_df_summary_of_results(df_concat)
+    df_summary: pd.DataFrame = get_df_summary_of_results(df_concat_filtered)
     # Round the values to 1 decimal place
     df_summary["new_toks"] = df_summary["new_toks"].round(1)
     df_summary["ttft_ms"] = df_summary["ttft_ms"].round(1)
