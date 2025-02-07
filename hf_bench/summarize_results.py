@@ -123,7 +123,7 @@ def main(dirpath: str):
     df_summary["speedup"] = df_summary["speedup"].round(2)
     # Reorder the multi-index columns
     df_summary.reset_index(inplace=True)
-    new_index = ["target", "dataset_path", "submission_id", "drafter", "temperature"]
+    new_index = ["target", "dataset_path", "submission_id", "temperature", "drafter"]
     df_summary.set_index(new_index, inplace=True)
     df_summary.sort_index(level=new_index, inplace=True)
     df_summary.to_csv("results_summary.csv", index=True)
