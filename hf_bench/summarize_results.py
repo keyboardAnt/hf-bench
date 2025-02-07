@@ -168,7 +168,12 @@ def main(dirpath: str):
     df_max_speedup: pd.DataFrame = get_df_max_speedup(df_summary.copy())
     df_max_speedup.to_csv("results_max_speedup.csv", index=True)
 
-    print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
+    print("Getting the summary for the DeepSeek Qwen 14B model at temperature 0...")
+    df_summary_deepseek_qwen_14b = df_summary[df_summary.index.get_level_values("target").str.startswith("deepseek-ai/DeepSeek-R1-Distill-Qwen-14B")]
+    df_summary_deepseek_qwen_14b_temperature_0 = df_summary_deepseek_qwen_14b[df_summary_deepseek_qwen_14b.index.get_level_values("temperature") == 0]
+    df_summary_deepseek_qwen_14b_temperature_0.to_csv("results_summary_deepseek_qwen_14b_temperature_0.csv", index=True)
+
+    print(f"Stored all the results in {dirpath}.")
     print("Done!")
 
 
