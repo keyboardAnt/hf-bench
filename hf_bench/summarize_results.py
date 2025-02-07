@@ -116,7 +116,7 @@ def main(dirpath: str):
     # # Reorder the multi-index columns so that the `submission_id` column is the last one
     # df_summary.reset_index(level="submission_id", inplace=True)
     # df_summary.set_index("submission_id", append=True, inplace=True)
-    # df_summary.sort_index(level=["target", "dataset_path", "drafter", "temperature", "submission_id"], inplace=True)
+    df_summary.sort_index(level=["target", "dataset_path", "submission_id", "drafter", "temperature"], inplace=True)
     df_summary.to_csv("results_summary.csv", index=True)
 
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
