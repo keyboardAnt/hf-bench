@@ -113,10 +113,10 @@ def main(dirpath: str):
     df_summary["tpot_ms"] = df_summary["tpot_ms"].round(1)
     df_summary["out_toks_per_sec"] = df_summary["out_toks_per_sec"].round(1)
     df_summary["speedup"] = df_summary["speedup"].round(2)
-    # Reorder the multi-index columns so that the `submission_id` column is the last one
-    df_summary.reset_index(level="submission_id", inplace=True)
-    df_summary.set_index("submission_id", append=True, inplace=True)
-    df_summary.sort_index(level=["target", "dataset_path", "drafter", "temperature", "submission_id"], inplace=True)
+    # # Reorder the multi-index columns so that the `submission_id` column is the last one
+    # df_summary.reset_index(level="submission_id", inplace=True)
+    # df_summary.set_index("submission_id", append=True, inplace=True)
+    # df_summary.sort_index(level=["target", "dataset_path", "drafter", "temperature", "submission_id"], inplace=True)
     df_summary.to_csv("results_summary.csv", index=True)
 
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
