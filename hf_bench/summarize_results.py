@@ -91,7 +91,7 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
                         on=merge_cols,
                         suffixes=('', '_ar'))
     # Perform the division
-    df_merged['speedup'] = df_merged['out_toks_per_sec_ar'] / df_merged['out_toks_per_sec']
+    df_merged['speedup'] = df_merged['out_toks_per_sec'] / df_merged['out_toks_per_sec_ar']
     # Set back the multi-index structure
     df_speedups = df_merged.set_index(merge_cols + ['drafter'])[['speedup']]
     df_summary.reset_index(inplace=True)
