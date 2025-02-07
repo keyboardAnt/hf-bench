@@ -84,7 +84,7 @@ def main(dirpath: str):
     df_summary["tpot_ms"] = df_summary["tpot_ms"].round(1)
     df_summary["out_toks_per_sec"] = df_summary["out_toks_per_sec"].round(1)
     df_summary.to_csv("results_summary.csv", index=True)
-    
+
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
     print("Done!")
 
