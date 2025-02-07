@@ -91,6 +91,25 @@ def main(dirpath: str):
     df_summary["ttft_ms"] = df_summary["ttft_ms"].round(1)
     df_summary["tpot_ms"] = df_summary["tpot_ms"].round(1)
     df_summary["out_toks_per_sec"] = df_summary["out_toks_per_sec"].round(1)
+    # Move the `submission_id` columns
+    df_summary = df_summary[
+        [
+            "target",
+            "dataset_path",
+            "drafter",
+            "temperature",
+            "submission_id",
+            "example_id_nunique",
+            "new_toks",
+            "ttft_ms",
+            "tpot_ms",
+            "out_toks_per_sec",
+        ]
+    ]
+    df_summary.sort_values(
+        by=["target", "dataset_path", "drafter", "temperature", "submission_id"],
+        inplace=True,
+    )
     df_summary.to_csv("results_summary.csv", index=True)
 
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
