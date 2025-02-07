@@ -50,7 +50,7 @@ experiment_configs = {
         assistants=["Qwen/Qwen2.5-0.5B-Instruct", "double7/vicuna-68m"],
         temperatures=[0, 1],
     ),
-    "llama70b-it": ExperimentConfig(
+    "llama-70b-it": ExperimentConfig(
         target="meta-llama/Llama-3.1-70B-Instruct",
         dataset_configs=list(dataset_configs.values()),
         assistants=[
@@ -62,14 +62,15 @@ experiment_configs = {
         ],
         temperatures=[0, 1],
     ),
-    "llama70b": ExperimentConfig(
+    "llama-70b": ExperimentConfig(
         target="meta-llama/Llama-3.1-70B",
         dataset_configs=list(dataset_configs.values()),
         assistants=[
             "meta-llama/Llama-3.1-8B",
             "meta-llama/Llama-3.2-3B",
             "meta-llama/Llama-3.2-1B",
-            "Qwen/Qwen2.5-0.5B-Instruct",
+            "Qwen/Qwen2.5-0.5B",
+            "double7/vicuna-68m"
         ],
         temperatures=[0, 1],
     ),
@@ -80,6 +81,17 @@ experiment_configs = {
             "meta-llama/Llama-3.2-3B-Instruct",
             "meta-llama/Llama-3.2-1B-Instruct",
             "Qwen/Qwen2.5-0.5B-Instruct",
+            "double7/vicuna-68m",
+        ],
+        temperatures=[0, 1],
+    ),
+    "llama-8b": ExperimentConfig(
+        target="meta-llama/Llama-3.1-8B",
+        dataset_configs=list(dataset_configs.values()),
+        assistants=[
+            "meta-llama/Llama-3.2-3B",
+            "meta-llama/Llama-3.2-1B",
+            "Qwen/Qwen2.5-0.5B",
             "double7/vicuna-68m",
         ],
         temperatures=[0, 1],
