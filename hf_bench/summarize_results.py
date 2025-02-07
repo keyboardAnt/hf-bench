@@ -103,7 +103,8 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
 def get_df_max_speedup(df_summary: pd.DataFrame) -> pd.DataFrame:
     df_summary.reset_index(inplace=True)
     df_max_speedup = df_summary.loc[df_summary.groupby(["target", "dataset_path", "submission_id", "temperature"])['speedup'].idxmax()]
-    df_max_speedup.set_index(["target", "dataset_path", "submission_id", "temperature", "drafter"], inplace=True)
+    df_max_speedup.rename(columns={"drafter": "drafter_of_max_speedup"}, inplace=True)
+    df_max_speedup.set_index(["target", "dataset_path", "submission_id", "temperature", "drafter_of_max_speedup"], inplace=True)
     return df_max_speedup
 
 
