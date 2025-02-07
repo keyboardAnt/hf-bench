@@ -3,7 +3,6 @@ codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,tes
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,1,512,51.46503448486328,39.74898547342379,25.157874800819787
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,2,512,41.567087173461914,35.9586185671812,27.80974464109927
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,3,512,51.68581008911133,39.80450014312207,25.122787534182685
-codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,4,512,51.529884338378906,39.58973026089006,25.259075861597395
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,5,512,41.3670539855957,37.5783280150531,26.61108284539484
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,6,512,41.69344902038574,37.420978751434504,26.722978216107343
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,0,7,512,51.68008804321289,36.9659552602152,27.05191825723641
@@ -32,7 +31,6 @@ codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,tes
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,1,8,51.44238471984863,27.364730834960938,36.54338886178295
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,2,34,41.275739669799805,25.666836536291875,38.960781107014895
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,3,251,51.17034912109375,29.601696968078613,33.78184707040152
-codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,4,227,51.24378204345703,29.04039990585462,34.434787511255905
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,5,6,41.554927825927734,26.218652725219727,38.14078513035492
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,6,205,41.069746017456055,27.728901189916275,36.06345571182078
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,,1,7,2,51.6514778137207,30.25960922241211,33.04735340928789
@@ -61,7 +59,6 @@ codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,tes
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,1,512,61.65814399719238,18.10432040294789,55.23543429098681
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,2,512,91.80092811584473,18.53897286954458,53.94042091958494
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,3,512,101.67407989501953,18.047874920988736,55.40818541672473
-codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,4,512,61.379432678222656,18.242324635007378,54.81757506282837
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,5,512,51.43237113952637,19.169074448587377,52.16735960215819
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,6,512,61.5086555480957,18.934300267766364,52.81420416166072
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,0,7,512,61.60593032836914,17.94812870585522,55.71611483228165
@@ -90,7 +87,6 @@ codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,tes
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,1,63,61.54441833496094,24.551829984111173,40.73016148479174
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,2,1,71.24757766723633,inf,0.0
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,3,223,101.53698921203613,19.615621180147738,50.97977733236733
-codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,4,222,61.16628646850586,20.941822776967044,47.751335241928146
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,5,54,51.38707160949707,35.37540615729566,28.268226675717322
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,6,24,61.23924255371094,26.74349494602369,37.3922706070503
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,codellama/CodeLlama-7b-Instruct-hf,1,7,122,61.125993728637695,23.83712500580086,41.9513678665798
@@ -147,7 +143,6 @@ codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,tes
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,1,137,62.78538703918457,18.00047474748948,55.554090324171575
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,2,4,57.62147903442383,28.356075286865234,35.26581129029546
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,3,84,56.383371353149414,23.290002202413167,42.936878721994546
-codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,4,44,47.94597625732422,22.997506829195245,43.48297436879131
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,5,450,49.71480369567871,20.16268594227814,49.59656678990121
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,6,488,53.45916748046875,21.99077704114346,45.47360914664627
 codellama/CodeLlama-13b-Instruct-hf,openai/openai_humaneval,openai_humaneval,test,30,bigcode/tiny_starcoder_py,1,7,40,45.81928253173828,11.360792013315054,88.02203216360108
