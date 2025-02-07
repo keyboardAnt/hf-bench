@@ -47,8 +47,8 @@ def test_submitted_benchmark_results():
             print(f"CATASTROPHIC: File {f} has non-positive values.")
             catastrophic_non_positive_values.append(f)
     if benign_missing_example_ids_compared_to_others:
-        warnings.warn("BENIGN: Some example IDs do not appear the same number of times in the following files:\n" + "\n".join(benign_missing_example_ids_compared_to_others))
+        warnings.warn("BENIGN: Some example IDs do not appear the same number of times in the following files:\n" + " ".join(benign_missing_example_ids_compared_to_others))
     if benign_missing_example_ids_compared_to_declared:
         warnings.warn("BENIGN: Some example IDs appear only %d times in the dataframe although they should appear %d times according to the num_of_examples column.\nFilepath: %s" % (df_example_ids_nunique.min(), num_of_examples_max, f))
-    assert len(catastrophic_missing_example_ids_compared_to_others) == 0, f"CATASTROPHIC: Some example IDs compare only a proper subset of the methods in the following files:\n" + "\n".join(catastrophic_missing_example_ids_compared_to_others)
-    assert len(catastrophic_non_positive_values) == 0, f"CATASTROPHIC: Some values are non-positive in the following files:\n" + "\n".join(catastrophic_non_positive_values)
+    assert len(catastrophic_missing_example_ids_compared_to_others) == 0, f"CATASTROPHIC: Some example IDs compare only a proper subset of the methods in the following files:\n" + " ".join(catastrophic_missing_example_ids_compared_to_others)
+    assert len(catastrophic_non_positive_values) == 0, f"CATASTROPHIC: Some values are non-positive in the following files:\n" + " ".join(catastrophic_non_positive_values)
