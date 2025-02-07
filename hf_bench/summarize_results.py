@@ -75,9 +75,16 @@ def main(dirpath: str):
     print("Concatenating all the results CSVs into one dataframe...")
     df_concat: pd.DataFrame = get_df_concat(dirpath)
     df_concat.to_csv("results_all.csv", index=False)
+
     print("Counting the number of unique example IDs for each experiment...")
     df_summary: pd.DataFrame = get_df_summary_of_results(df_concat)
+    # Round the values to 1 decimal place
+    df_summary["new_toks"] = df_summary["new_toks"].round(1)
+    df_summary["ttft_ms"] = df_summary["ttft_ms"].round(1)
+    df_summary["tpot_ms"] = df_summary["tpot_ms"].round(1)
+    df_summary["out_toks_per_sec"] = df_summary["out_toks_per_sec"].round(1)
     df_summary.to_csv("results_summary.csv", index=True)
+    
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
     print("Done!")
 
