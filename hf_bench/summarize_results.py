@@ -121,13 +121,14 @@ def get_df_max_speedup(df_summary: pd.DataFrame) -> pd.DataFrame:
     df_max_speedup.set_index(
         [
             "target",
+            "temperature",
             "dataset_path",
             "submission_id",
-            "temperature",
             "drafter_of_max_speedup",
         ],
         inplace=True,
     )
+    df_max_speedup.sort_index(inplace=True)
     return df_max_speedup
 
 
