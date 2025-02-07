@@ -81,5 +81,6 @@ python -m  hf_bench.summarize_results --dirpath benchmark_results
 The results are stored in the `results` branch:
 * [`results_all.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_all.csv)
 * [`results_summary.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_summary.csv)
+* [`results_max_speedup.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_max_speedup.csv)
 
-To add new results, add the results CSV to the `benchmark_results` directory. GitHub Actions will automatically update the `results_all.csv` and `results_summary.csv` files.
+To add new results, add the results CSV to the `benchmark_results` directory. GitHub Actions will automatically update `results_all.csv`, `results_summary.csv`, and `results_max_speedup.csv` files.

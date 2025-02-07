@@ -100,6 +100,13 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
     return df_summary
 
 
+def get_df_max_speedup(df_summary: pd.DataFrame) -> pd.DataFrame:
+    df_summary.reset_index(inplace=True)
+    df_max_speedup = df_summary.loc[df_summary.groupby(["target", "dataset_path", "submission_id", "temperature"])['speedup'].idxmax()]
+    df_max_speedup.set_index(["target", "dataset_path", "submission_id", "temperature", "drafter"], inplace=True)
+    return df_max_speedup
+
+
 def main(dirpath: str):
     print("Concatenating all the results CSVs into one dataframe...")
     df_concat: pd.DataFrame = get_df_concat(dirpath)
@@ -119,6 +126,10 @@ def main(dirpath: str):
     df_summary.set_index(new_index, inplace=True)
     df_summary.sort_index(level=new_index, inplace=True)
     df_summary.to_csv("results_summary.csv", index=True)
+
+    print("Getting the maximum speedup for each experiment...")
+    df_max_speedup: pd.DataFrame = get_df_max_speedup(df_summary)
+    df_max_speedup.to_csv("results_max_speedup.csv", index=True)
 
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
     print("Done!")
