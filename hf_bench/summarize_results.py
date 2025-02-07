@@ -147,7 +147,7 @@ def main(dirpath: str):
     df_summary.to_csv("results_summary.csv", index=True)
 
     print("Getting the maximum speedup for each experiment...")
-    df_max_speedup: pd.DataFrame = get_df_max_speedup(df_summary)
+    df_max_speedup: pd.DataFrame = get_df_max_speedup(df_summary.copy())
     df_max_speedup.to_csv("results_max_speedup.csv", index=True)
 
     print(f"Stored both the concatenated dataframe and the summary in {dirpath}.")
