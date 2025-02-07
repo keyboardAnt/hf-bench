@@ -76,6 +76,27 @@ def get_df_summary_of_results(df_concat: pd.DataFrame) -> pd.DataFrame:
         ["tpot_ms", "out_toks_per_sec"]
     ].agg(hmean)
     df_summary = pd.concat([df_summary, df_mean_vals, df_hmean_vals], axis=1)
+    # Add the speedups
+    df_otps = df_summary[["out_toks_per_sec"]]
+    df_otps.reset_index(level="drafter", inplace=True)
+    mask_ar = df_otps["drafter"] == "No Drafter (Autoregressive)"
+    df_ar_otps = df_otps[mask_ar]
+    df_ar_otps.drop(columns=["drafter"], inplace=True)
+    # Reset the index of both dataframes to make the division operation simpler
+    df_otps_reset = df_otps.reset_index()
+    df_ar_otps_reset = df_ar_otps.reset_index()
+    # Merge the dataframes on the common index columns
+    merge_cols = ["target", "dataset_path", "temperature", "submission_id"]
+    df_merged = pd.merge(df_otps_reset, df_ar_otps_reset, 
+                        on=merge_cols,
+                        suffixes=('', '_ar'))
+    # Perform the division
+    df_merged['speedup'] = df_merged['out_toks_per_sec'] / df_merged['out_toks_per_sec_ar']
+    # Set back the multi-index structure
+    df_speedups = df_merged.set_index(merge_cols + ['drafter'])[['speedup']]
+    df_summary.reset_index(inplace=True)
+    df_summary.set_index(["target", "dataset_path", "drafter", "temperature", "submission_id"], inplace=True)
+    df_summary = df_summary.join(df_speedups)
     return df_summary
 
 
