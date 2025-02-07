@@ -1,0 +1,3 @@
+target,dataset_path,dataset_name,dataset_split,num_of_examples,drafter,temperature,example_id,new_toks,ttft_ms,tpot_ms,out_toks_per_sec
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,openai_humaneval,test,30,,0,0,512,223.02556037902832,78.49192945924524,12.740163312194055
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,openai_humaneval,test,30,,0,1,512,132.5089931488037,77.99267488916325,12.82171692945674
