@@ -1,3 +1,4 @@
+from functools import cache
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
@@ -7,6 +8,7 @@ class VocabError(Exception):
     """
 
 
+@cache
 def eq_tokenizers(
     m1: AutoModelForCausalLM,
     m2: AutoModelForCausalLM,
