@@ -77,18 +77,20 @@ def compare_vocabularies(target_model, assistant_model, num_samples, dataset_con
     count = 0
     total_len = 0
     for i in pbar:
-        match dataset_path:
-            case "tau/scrolls":
-                prompt = f"Summarize the following text:\n{next(ds_iterator)['input']}\nSummary:\n"
-            case "cnn_dailymail":
-                prompt = f"Summarize the following article:\n{next(ds_iterator)['article']}\nSummary:\n"
-            case "openai/openai_humaneval":
-                dsi = next(ds_iterator)
-                prompt = f"Implement the function so that it passes the tests.\nTests:\n{dsi['test']}\nFunction:\n{dsi['prompt']}\n\nYour code:\n"
-            case _:
-                raise ValueError(
-                    f"Unknown dataset path: {dataset_path}"
-                )
+        in_toks_min: Optional[int] = 128
+        in_toks_max: Optional[int] = None
+        dataset = Dataset(d_path, d_name, d_split, random_seed)
+        num_of_examples_succeeded = 0
+        while (not dataset.is_empty()) and (num_of_examples_succeeded < num_of_examples):
+            example_id: int
+            prompt: str
+            for example_id, prompt in dataset.next(in_toks_min, in_toks_max):
+                ...
+                # Benchmarking all methods
+                ...
+                all_methods_succeeded: bool = ...
+                if all_methods_succeeded:
+                    num_of_examples_succeeded += 1
         token_ids = assistant_tokenizer([prompt], add_special_tokens=False, return_tensors="pt")["input_ids"]
         target_token_ids = translator._assistant_to_target_input_ids[token_ids]
         count += torch.sum(target_token_ids != -1).item()
