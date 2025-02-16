@@ -122,20 +122,19 @@ def generate_latex_tables(target_model, assistant_model, num_samples, dataset_co
         vocab_overlap_table[id] = f'{T_inter_D} & {T_inter_D_by_T}'
 
     dataset_path = dataset_config.path
-    id = f'{target_model.split("/")[-1]} & {assistant_model.split("/")[-1]} & {dataset_path} & '
+    match dataset_path:
+        case "tau/scrolls":
+            task = "long-ctx summ"
+        case "cnn_dailymail":
+            task = "summ"
+        case "openai/openai_humaneval":
+            task = "coding"
+        case _:
+            raise ValueError(
+                f"Unknown dataset path: {dataset_path}"
+            )
+    id = f'{target_model.split("/")[-1]} & {assistant_model.split("/")[-1]} & {task}  & {dataset_path.split("/")[-1]} & '
     if id not in dataset_overlap_table:
-        match dataset_path:
-            case "tau/scrolls":
-                task = "long-ctx summ"
-            case "cnn_dailymail":
-                task = "summ"
-            case "openai/openai_humaneval":
-                task = "coding"
-            case _:
-                raise ValueError(
-                    f"Unknown dataset path: {dataset_path}"
-                )
-        id = f'{target_model} & {assistant_model} & {task} & {dataset_path} & '
         if assistant_tokenizer is None:
             assistant_tokenizer = AutoTokenizer.from_pretrained(assistant_model)
             target_tokenizer = AutoTokenizer.from_pretrained(target_model)
@@ -188,7 +187,7 @@ if __name__ == "__main__":
     if args.generate_latex:
         vocab_overlap_table = dict()
         dataset_overlap_table = dict()
-        args.config_names = [key for key in experiment_configs if "deepseek" in key.lower() and key != "deepseek-r1"]
+        args.config_names = [key for key in experiment_configs if key != "deepseek-r1"]
 
     for config_name in args.config_names:
         config = experiment_configs.get(config_name)
