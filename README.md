@@ -84,3 +84,15 @@ The results are stored in the `results` branch:
 * [`results_max_speedup.csv`](https://github.com/keyboardAnt/hf-bench/blob/results/results_max_speedup.csv)
 
 To add new results, add the results CSV to the `benchmark_results` directory. GitHub Actions will automatically update `results_all.csv`, `results_summary.csv`, and `results_max_speedup.csv` files.
+
+## Citation
+
+If you use our algorithms (or the code in this repo) for your research, please cite our paper (https://arxiv.org/abs/2502.05202):
+```bibtex
+@article{timor2025accelerating,
+  title={Accelerating LLM Inference with Lossless Speculative Decoding Algorithms for Heterogeneous Vocabularies},
+  author={Timor, Nadav and Mamou, Jonathan and Korat, Daniel and Berchansky, Moshe and Pereg, Oren and Jain, Gaurav and Schwartz, Roy and Wasserblat, Moshe and Harel, David},
+  journal={arXiv preprint arXiv:2502.05202},
+  year={2025}
+}
+```
