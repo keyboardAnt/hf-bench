@@ -87,7 +87,7 @@ To add new results, add the results CSV to the `benchmark_results` directory. Gi
 
 ## Citation
 
-If you use our algorithms (or the code in this repo) for your research, please cite our paper (https://arxiv.org/abs/2502.05202):
+If you use our algorithms (or the code in this repo), please cite our paper (https://arxiv.org/abs/2502.05202):
 ```bibtex
 @article{timor2025accelerating,
   title={Accelerating LLM Inference with Lossless Speculative Decoding Algorithms for Heterogeneous Vocabularies},
