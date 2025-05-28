@@ -1,0 +1,344 @@
+target,dataset_path,submission_id,temperature,drafter,example_id_nunique,new_toks,ttft_ms,tpot_ms,out_toks_per_sec,speedup
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-04_20-52-14_eb664c5,0,No Drafter (Autoregressive),30,494.7,232.3,77.4,12.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-04_20-52-14_eb664c5,0,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,492.7,461.3,79.3,12.4,0.96
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-04_20-52-14_eb664c5,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,496.6,296.1,72.6,13.6,1.05
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-04_20-52-14_eb664c5,1,No Drafter (Autoregressive),30,472.6,232.6,77.7,12.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-04_20-52-14_eb664c5,1,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,462.0,348.0,58.1,17.2,1.34
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-04_20-52-14_eb664c5,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,496.0,329.0,59.3,16.8,1.3
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,No Drafter (Autoregressive),29,494.1,231.2,77.8,12.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,29,492.0,452.5,78.6,12.5,0.98
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,496.0,296.8,72.3,13.6,1.06
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,double7/vicuna-68m,29,496.0,263.8,51.5,19.3,1.5
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,meta-llama/Llama-3.1-8B,29,494.8,277.9,74.4,13.4,1.04
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,meta-llama/Llama-3.2-1B,29,493.1,242.3,51.4,19.4,1.51
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,0,meta-llama/Llama-3.2-3B,29,492.4,252.1,66.8,14.9,1.16
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,No Drafter (Autoregressive),29,484.2,231.9,78.1,12.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,29,456.2,348.0,58.5,16.9,1.33
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,504.9,303.5,60.2,16.5,1.29
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,double7/vicuna-68m,29,479.8,263.4,55.8,17.8,1.39
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,meta-llama/Llama-3.1-8B,29,465.3,262.3,59.6,16.7,1.31
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,meta-llama/Llama-3.2-1B,29,479.0,248.5,51.3,19.4,1.52
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,cnn_dailymail,2025-02-06_17-46-21_ab73cc7,1,meta-llama/Llama-3.2-3B,29,451.9,259.6,56.7,17.5,1.37
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,0,No Drafter (Autoregressive),30,512.0,297.1,122.6,8.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,0,bigcode/tiny_starcoder_py,30,512.0,265.9,84.6,11.8,1.44
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,0,codellama/CodeLlama-7b-Instruct-hf,30,512.0,428.7,101.5,9.6,1.18
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,0,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,512.0,353.5,54.3,18.3,2.25
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,1,No Drafter (Autoregressive),30,512.0,244.0,123.5,8.1,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,1,bigcode/tiny_starcoder_py,30,512.0,258.7,85.5,11.7,1.44
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,1,codellama/CodeLlama-7b-Instruct-hf,30,511.9,317.3,87.2,11.4,1.41
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_01-05-29_4c55336,1,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,512.0,358.2,53.1,18.6,2.3
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_20-52-14_eb664c5,0,No Drafter (Autoregressive),30,512.0,128.4,75.8,13.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_20-52-14_eb664c5,0,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,512.0,222.6,52.8,18.8,1.43
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_20-52-14_eb664c5,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,512.0,296.0,60.7,16.3,1.23
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_20-52-14_eb664c5,1,No Drafter (Autoregressive),30,512.0,128.2,76.3,13.1,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_20-52-14_eb664c5,1,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,512.0,182.2,44.4,22.4,1.71
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-04_20-52-14_eb664c5,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,512.0,218.6,46.2,21.5,1.64
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,0,No Drafter (Autoregressive),30,512.0,131.8,76.4,13.1,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,0,bigcode/tiny_starcoder_py,30,512.0,143.3,63.2,15.6,1.19
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,512.0,277.3,93.3,10.4,0.79
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,512.0,224.3,52.8,18.9,1.44
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,512.0,298.5,60.6,16.3,1.25
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,1,No Drafter (Autoregressive),30,512.0,131.5,77.2,13.0,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,1,bigcode/tiny_starcoder_py,30,512.0,147.9,55.3,18.0,1.39
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,1,codellama/CodeLlama-7b-Instruct-hf,30,512.0,214.5,68.8,14.5,1.12
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,512.0,177.2,44.7,22.3,1.72
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,openai/openai_humaneval,2025-02-06_16-28-26_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,512.0,222.3,44.7,22.3,1.72
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,tau/scrolls,2025-02-04_20-52-14_eb664c5,0,No Drafter (Autoregressive),30,469.1,1836.9,127.1,7.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,tau/scrolls,2025-02-04_20-52-14_eb664c5,0,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,465.2,2121.4,88.0,10.9,1.42
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,tau/scrolls,2025-02-04_20-52-14_eb664c5,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,464.4,1890.9,85.8,11.3,1.47
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,tau/scrolls,2025-02-04_20-52-14_eb664c5,1,No Drafter (Autoregressive),30,467.0,1837.1,126.6,7.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,tau/scrolls,2025-02-04_20-52-14_eb664c5,1,deepseek-ai/DeepSeek-R1-Distill-Llama-8B,30,474.3,2059.4,65.1,15.2,1.98
+deepseek-ai/DeepSeek-R1-Distill-Llama-70B,tau/scrolls,2025-02-04_20-52-14_eb664c5,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,500.0,1898.5,70.9,13.9,1.82
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,0,No Drafter (Autoregressive),30,497.8,115.5,40.9,24.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,486.3,219.7,65.1,15.1,0.62
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,0,double7/vicuna-68m,30,492.9,175.8,31.3,31.5,1.29
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,0,meta-llama/Llama-3.2-1B,30,486.3,143.6,38.2,26.0,1.06
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,0,meta-llama/Llama-3.2-3B,30,492.2,168.5,54.3,18.2,0.75
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,1,No Drafter (Autoregressive),30,491.5,115.6,41.3,24.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,496.5,190.6,56.0,17.8,0.74
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,1,double7/vicuna-68m,30,477.0,150.2,33.8,29.5,1.22
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,1,meta-llama/Llama-3.2-1B,30,476.9,150.8,34.6,28.8,1.19
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-05_03-18-59_d7c02fb,1,meta-llama/Llama-3.2-3B,30,480.4,171.6,42.6,23.4,0.97
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,0,No Drafter (Autoregressive),30,493.4,38.9,21.8,45.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,492.9,88.2,43.2,22.7,0.5
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,0,double7/vicuna-68m,30,486.3,66.9,19.7,50.0,1.09
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,0,meta-llama/Llama-3.2-1B,30,486.2,48.2,25.6,38.6,0.84
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,0,meta-llama/Llama-3.2-3B,30,492.9,57.2,38.1,26.0,0.57
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,1,No Drafter (Autoregressive),30,463.2,39.6,22.3,44.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,468.4,93.4,31.9,31.1,0.69
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,1,double7/vicuna-68m,30,479.0,75.4,20.3,49.1,1.09
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,1,meta-llama/Llama-3.2-1B,30,483.7,51.8,22.6,44.2,0.98
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,cnn_dailymail,2025-02-06_17-06-51_ab73cc7,1,meta-llama/Llama-3.2-3B,30,469.1,60.2,29.2,34.2,0.76
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_02-07-38_ea3ed4b,0,No Drafter (Autoregressive),30,512.0,63.9,31.4,31.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_02-07-38_ea3ed4b,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,512.0,246.2,42.7,20.4,0.64
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_02-07-38_ea3ed4b,1,No Drafter (Autoregressive),30,506.8,63.2,29.5,33.5,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_02-07-38_ea3ed4b,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,512.0,145.8,35.7,26.0,0.78
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_16-26-53_ab73cc7,0,No Drafter (Autoregressive),30,512.0,31.9,21.8,45.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_16-26-53_ab73cc7,0,bigcode/tiny_starcoder_py,30,512.0,36.7,37.1,25.8,0.56
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_16-26-53_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,512.0,144.0,72.3,12.5,0.27
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_16-26-53_ab73cc7,1,No Drafter (Autoregressive),30,512.0,31.2,22.3,44.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_16-26-53_ab73cc7,1,bigcode/tiny_starcoder_py,30,512.0,43.5,23.6,42.1,0.94
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,openai/openai_humaneval,2025-02-06_16-26-53_ab73cc7,1,codellama/CodeLlama-7b-Instruct-hf,30,512.0,99.0,38.0,26.0,0.58
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,0,No Drafter (Autoregressive),30,483.2,853.9,70.2,13.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,476.0,1068.5,64.3,14.9,1.08
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,0,double7/vicuna-68m,30,479.0,901.3,49.4,19.8,1.43
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,0,meta-llama/Llama-3.2-1B,30,469.9,991.5,36.7,26.2,1.9
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,0,meta-llama/Llama-3.2-3B,30,480.1,1240.2,57.6,16.7,1.21
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,1,No Drafter (Autoregressive),30,479.3,855.3,70.0,13.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,499.1,1057.0,56.7,17.3,1.26
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,1,double7/vicuna-68m,30,475.6,867.1,51.9,19.0,1.38
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,1,meta-llama/Llama-3.2-1B,30,476.6,1007.3,38.7,25.4,1.84
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-05_03-18-59_d7c02fb,1,meta-llama/Llama-3.2-3B,30,452.0,1239.0,51.8,19.1,1.38
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,0,No Drafter (Autoregressive),29,479.9,245.3,34.3,27.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,479.9,315.7,45.2,20.2,0.73
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,0,double7/vicuna-68m,29,478.4,263.4,27.7,34.9,1.25
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,0,meta-llama/Llama-3.2-1B,29,479.9,283.1,24.6,39.2,1.41
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,0,meta-llama/Llama-3.2-3B,29,470.0,353.1,35.2,27.3,0.98
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,1,No Drafter (Autoregressive),29,457.0,246.7,38.6,24.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,502.7,324.4,33.5,29.6,1.19
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,1,double7/vicuna-68m,29,448.2,256.5,28.1,34.5,1.39
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,1,meta-llama/Llama-3.2-1B,29,474.3,295.2,24.9,39.7,1.6
+deepseek-ai/DeepSeek-R1-Distill-Llama-8B,tau/scrolls,2025-02-06_17-06-51_ab73cc7,1,meta-llama/Llama-3.2-3B,29,458.3,355.9,31.7,31.2,1.25
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,0,No Drafter (Autoregressive),16,415.6,176.8,51.7,19.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,16,415.6,287.5,69.9,14.1,0.73
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,0,double7/vicuna-68m,16,414.9,243.0,36.2,27.4,1.43
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,1,No Drafter (Autoregressive),16,364.2,176.1,54.4,18.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,16,365.9,240.5,44.7,21.4,1.16
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,1,double7/vicuna-68m,16,362.1,202.4,40.6,24.1,1.31
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,0,No Drafter (Autoregressive),18,379.2,66.9,33.7,29.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,18,386.3,114.1,51.0,19.4,0.65
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,0,double7/vicuna-68m,18,379.2,91.0,26.4,37.6,1.27
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,1,No Drafter (Autoregressive),18,385.2,67.0,34.1,29.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,18,428.6,118.8,36.7,27.1,0.92
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,1,double7/vicuna-68m,18,376.9,98.4,29.5,33.8,1.15
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,No Drafter (Autoregressive),30,451.6,91.2,48.7,20.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,bigcode/tiny_starcoder_py,30,454.2,113.5,43.9,22.4,1.1
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,codellama/CodeLlama-7b-Instruct-hf,30,455.6,257.3,77.9,12.3,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,452.8,292.5,70.4,13.7,0.67
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,1,No Drafter (Autoregressive),30,444.3,91.5,50.7,19.6,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,1,bigcode/tiny_starcoder_py,30,473.6,99.7,41.2,23.8,1.21
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,1,codellama/CodeLlama-7b-Instruct-hf,30,467.5,158.6,62.5,15.4,0.78
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,474.2,180.7,48.8,20.4,1.04
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,No Drafter (Autoregressive),30,451.6,91.4,51.9,19.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,bigcode/tiny_starcoder_py,30,454.2,113.2,43.8,22.5,1.17
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,codellama/CodeLlama-7b-Instruct-hf,30,455.6,255.9,77.0,12.4,0.65
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,452.8,292.5,71.4,13.4,0.7
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,1,No Drafter (Autoregressive),30,457.5,89.2,51.0,19.6,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,1,bigcode/tiny_starcoder_py,30,462.0,88.0,36.3,27.2,1.39
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,1,codellama/CodeLlama-7b-Instruct-hf,30,465.3,141.7,69.8,13.9,0.71
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,462.5,164.6,42.8,22.0,1.13
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,No Drafter (Autoregressive),30,450.1,43.7,32.4,30.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,bigcode/tiny_starcoder_py,30,453.6,49.6,30.8,32.0,1.04
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,453.9,153.0,59.7,16.1,0.52
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,450.1,165.5,51.7,18.9,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,1,No Drafter (Autoregressive),30,459.4,43.6,32.6,30.6,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,1,bigcode/tiny_starcoder_py,30,451.2,56.0,30.0,33.1,1.08
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,1,codellama/CodeLlama-7b-Instruct-hf,30,466.8,83.6,44.4,22.4,0.73
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,470.1,119.0,28.0,35.6,1.16
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,No Drafter (Autoregressive),30,450.1,43.9,32.0,31.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,bigcode/tiny_starcoder_py,30,453.6,52.2,30.6,32.3,1.04
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,453.9,153.3,59.5,16.2,0.52
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,450.1,166.9,51.3,19.0,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,1,No Drafter (Autoregressive),30,438.4,43.8,32.5,30.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,1,bigcode/tiny_starcoder_py,30,455.4,65.7,30.1,33.1,1.08
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,1,codellama/CodeLlama-7b-Instruct-hf,30,468.2,98.1,43.9,22.4,0.73
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,448.6,128.4,27.6,36.0,1.17
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,0,No Drafter (Autoregressive),25,261.9,1481.0,87.5,10.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,25,257.2,1665.4,59.1,16.0,1.48
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,0,double7/vicuna-68m,25,262.4,1566.8,56.0,17.3,1.59
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,1,No Drafter (Autoregressive),25,342.5,1479.5,88.3,10.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,25,328.2,1640.7,61.6,16.1,1.5
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,1,double7/vicuna-68m,25,316.2,1502.2,57.2,17.1,1.59
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,0,No Drafter (Autoregressive),24,262.9,464.2,52.1,18.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,24,260.9,533.0,48.7,19.8,1.08
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,0,double7/vicuna-68m,24,262.9,484.6,41.4,23.3,1.27
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,1,No Drafter (Autoregressive),24,347.8,465.9,53.1,18.1,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,24,332.2,536.0,38.6,25.6,1.41
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,1,double7/vicuna-68m,24,327.5,470.5,42.9,22.6,1.25
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-04_18-20-41_bccb1bd,0,No Drafter (Autoregressive),30,475.3,120.1,47.9,20.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-04_18-20-41_bccb1bd,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,475.0,166.0,49.6,19.9,0.95
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-04_18-20-41_bccb1bd,0,double7/vicuna-68m,30,475.0,149.7,32.2,30.8,1.48
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-04_18-20-41_bccb1bd,1,No Drafter (Autoregressive),30,417.6,120.3,48.4,20.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-04_18-20-41_bccb1bd,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,454.4,164.4,37.1,26.8,1.3
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-04_18-20-41_bccb1bd,1,double7/vicuna-68m,30,417.8,168.2,33.8,29.3,1.42
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-06_06-41-29_ea3ed4b,0,No Drafter (Autoregressive),29,478.3,121.2,48.0,20.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-06_06-41-29_ea3ed4b,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,478.0,167.1,51.3,18.9,0.91
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-06_06-41-29_ea3ed4b,0,double7/vicuna-68m,29,478.0,148.1,32.5,30.6,1.47
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-06_06-41-29_ea3ed4b,1,No Drafter (Autoregressive),29,453.3,121.5,49.0,20.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-06_06-41-29_ea3ed4b,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,442.1,167.5,37.9,26.1,1.28
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,cnn_dailymail,2025-02-06_06-41-29_ea3ed4b,1,double7/vicuna-68m,29,449.3,146.4,34.2,29.1,1.42
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,0,No Drafter (Autoregressive),30,429.2,72.0,48.3,20.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,0,bigcode/tiny_starcoder_py,30,430.1,80.1,34.2,28.5,1.38
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,0,codellama/CodeLlama-7b-Instruct-hf,30,430.2,182.7,64.4,14.9,0.72
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,431.2,196.4,50.3,19.5,0.94
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,1,No Drafter (Autoregressive),30,469.3,72.2,48.6,20.6,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,1,bigcode/tiny_starcoder_py,30,455.4,86.2,35.5,28.1,1.37
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,1,codellama/CodeLlama-7b-Instruct-hf,30,461.2,123.4,49.5,20.1,0.97
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,openai/openai_humaneval,2025-02-06_06-39-35_e14af1d,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,457.0,147.4,28.5,35.0,1.7
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-04_18-20-41_bccb1bd,0,No Drafter (Autoregressive),27,351.7,950.4,76.3,12.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-04_18-20-41_bccb1bd,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,27,354.4,1006.0,57.0,17.3,1.36
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-04_18-20-41_bccb1bd,0,double7/vicuna-68m,27,355.0,989.8,59.1,16.5,1.3
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-04_18-20-41_bccb1bd,1,No Drafter (Autoregressive),27,346.1,954.3,76.5,12.6,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-04_18-20-41_bccb1bd,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,27,299.8,1006.2,45.5,21.8,1.72
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-04_18-20-41_bccb1bd,1,double7/vicuna-68m,27,308.0,997.5,61.3,15.8,1.25
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-06_06-41-29_ea3ed4b,0,No Drafter (Autoregressive),29,344.6,933.1,77.7,12.5,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-06_06-41-29_ea3ed4b,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,347.1,988.1,57.6,17.1,1.37
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-06_06-41-29_ea3ed4b,0,double7/vicuna-68m,29,346.6,979.9,59.3,16.5,1.32
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-06_06-41-29_ea3ed4b,1,No Drafter (Autoregressive),29,324.3,946.4,77.3,12.5,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-06_06-41-29_ea3ed4b,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,315.1,997.8,43.0,22.7,1.82
+deepseek-ai/DeepSeek-R1-Distill-Qwen-32B,tau/scrolls,2025-02-06_06-41-29_ea3ed4b,1,double7/vicuna-68m,29,342.1,977.1,61.6,15.9,1.27
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-05_03-44-45_d7c02fb,0,No Drafter (Autoregressive),29,476.1,105.8,37.4,26.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-05_03-44-45_d7c02fb,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,477.1,211.7,59.6,16.3,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-05_03-44-45_d7c02fb,0,double7/vicuna-68m,29,475.7,168.3,28.2,34.6,1.3
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-05_03-44-45_d7c02fb,1,No Drafter (Autoregressive),29,473.3,106.1,37.9,26.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-05_03-44-45_d7c02fb,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,460.1,190.6,47.8,20.8,0.79
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-05_03-44-45_d7c02fb,1,double7/vicuna-68m,29,398.1,139.9,31.5,31.7,1.2
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-06_08-19-02_ab73cc7,0,No Drafter (Autoregressive),29,479.4,34.7,19.3,51.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-06_08-19-02_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,477.2,85.1,38.6,24.6,0.48
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-06_08-19-02_ab73cc7,0,double7/vicuna-68m,29,479.4,65.2,17.6,55.2,1.07
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-06_08-19-02_ab73cc7,1,No Drafter (Autoregressive),29,422.8,35.0,19.8,50.6,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-06_08-19-02_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,467.9,95.0,27.2,36.6,0.72
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,cnn_dailymail,2025-02-06_08-19-02_ab73cc7,1,double7/vicuna-68m,29,436.9,108.5,18.4,54.2,1.07
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,0,No Drafter (Autoregressive),30,465.6,69.0,38.0,26.3,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,0,bigcode/tiny_starcoder_py,30,463.8,91.0,36.1,26.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,0,codellama/CodeLlama-7b-Instruct-hf,30,465.8,288.0,93.9,10.1,0.38
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,466.8,324.7,63.6,15.1,0.57
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,1,No Drafter (Autoregressive),30,472.8,69.3,38.4,26.1,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,1,bigcode/tiny_starcoder_py,30,482.8,80.2,38.5,25.9,0.99
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,1,codellama/CodeLlama-7b-Instruct-hf,30,465.5,153.0,65.5,15.1,0.58
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-05_03-44-51_d7c02fb,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,463.1,162.6,40.6,24.5,0.94
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,0,No Drafter (Autoregressive),30,463.6,24.4,19.6,50.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,0,bigcode/tiny_starcoder_py,30,466.0,36.1,23.7,39.6,0.78
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,467.9,138.0,54.4,17.5,0.34
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,467.7,149.3,42.2,22.7,0.45
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,1,No Drafter (Autoregressive),30,484.4,23.4,20.0,49.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,1,bigcode/tiny_starcoder_py,30,476.7,40.0,22.3,44.7,0.9
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,1,codellama/CodeLlama-7b-Instruct-hf,30,468.3,59.6,39.2,25.3,0.51
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,openai/openai_humaneval,2025-02-06_10-44-45_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,485.1,88.3,24.3,40.9,0.82
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-05_03-44-45_d7c02fb,0,No Drafter (Autoregressive),26,373.0,836.2,50.8,19.3,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-05_03-44-45_d7c02fb,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,26,375.0,1073.3,66.3,14.7,0.76
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-05_03-44-45_d7c02fb,0,double7/vicuna-68m,26,373.8,888.7,45.5,21.7,1.13
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-05_03-44-45_d7c02fb,1,No Drafter (Autoregressive),26,414.5,835.8,51.2,19.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-05_03-44-45_d7c02fb,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,26,409.8,1061.8,50.9,19.3,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-05_03-44-45_d7c02fb,1,double7/vicuna-68m,26,436.6,850.8,48.0,20.7,1.08
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-06_08-19-02_ab73cc7,0,No Drafter (Autoregressive),29,374.2,221.2,22.4,44.0,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-06_08-19-02_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,367.9,296.2,41.1,23.5,0.54
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-06_08-19-02_ab73cc7,0,double7/vicuna-68m,29,368.1,245.4,24.6,39.9,0.91
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-06_08-19-02_ab73cc7,1,No Drafter (Autoregressive),29,404.4,220.5,22.8,43.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-06_08-19-02_ab73cc7,1,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,29,437.1,296.9,29.1,34.2,0.79
+deepseek-ai/DeepSeek-R1-Distill-Qwen-7B,tau/scrolls,2025-02-06_08-19-02_ab73cc7,1,double7/vicuna-68m,29,404.7,238.6,25.0,39.2,0.91
+google/gemma-2-9b-it,cnn_dailymail,2025-02-06_06-38-32_e14af1d,0,No Drafter (Autoregressive),8,150.6,73.7,37.3,26.7,1.0
+google/gemma-2-9b-it,cnn_dailymail,2025-02-06_06-38-32_e14af1d,0,double7/vicuna-68m,8,150.6,83.9,26.9,37.1,1.39
+google/gemma-2-9b-it,cnn_dailymail,2025-02-06_06-38-32_e14af1d,0,google/gemma-2-2b-it,8,154.1,125.4,39.7,24.6,0.92
+google/gemma-2-9b-it,cnn_dailymail,2025-02-06_06-38-32_e14af1d,1,No Drafter (Autoregressive),8,170.2,73.7,37.8,26.5,1.0
+google/gemma-2-9b-it,cnn_dailymail,2025-02-06_06-38-32_e14af1d,1,double7/vicuna-68m,8,165.5,100.1,30.0,33.2,1.26
+google/gemma-2-9b-it,cnn_dailymail,2025-02-06_06-38-32_e14af1d,1,google/gemma-2-2b-it,8,160.8,117.8,33.5,29.8,1.13
+google/gemma-2-9b-it,openai/openai_humaneval,2025-02-06_06-38-32_e14af1d,0,No Drafter (Autoregressive),21,422.6,42.6,37.0,27.0,1.0
+google/gemma-2-9b-it,openai/openai_humaneval,2025-02-06_06-38-32_e14af1d,0,double7/vicuna-68m,21,423.3,51.6,24.5,40.2,1.49
+google/gemma-2-9b-it,openai/openai_humaneval,2025-02-06_06-38-32_e14af1d,0,google/gemma-2-2b-it,21,423.1,446.5,29.1,33.2,1.23
+google/gemma-2-9b-it,openai/openai_humaneval,2025-02-06_06-38-32_e14af1d,1,No Drafter (Autoregressive),21,428.5,42.6,37.3,26.8,1.0
+google/gemma-2-9b-it,openai/openai_humaneval,2025-02-06_06-38-32_e14af1d,1,double7/vicuna-68m,21,373.0,92.8,25.1,39.2,1.46
+google/gemma-2-9b-it,openai/openai_humaneval,2025-02-06_06-38-32_e14af1d,1,google/gemma-2-2b-it,21,418.2,384.1,27.2,36.4,1.36
+google/gemma-2-9b-it,tau/scrolls,2025-02-06_06-38-32_e14af1d,0,No Drafter (Autoregressive),16,449.6,584.0,95.3,9.9,1.0
+google/gemma-2-9b-it,tau/scrolls,2025-02-06_06-38-32_e14af1d,0,double7/vicuna-68m,16,449.6,592.4,48.3,18.6,1.87
+google/gemma-2-9b-it,tau/scrolls,2025-02-06_06-38-32_e14af1d,0,google/gemma-2-2b-it,16,469.4,739.0,31.3,30.2,3.05
+google/gemma-2-9b-it,tau/scrolls,2025-02-06_06-38-32_e14af1d,1,No Drafter (Autoregressive),16,451.9,585.1,90.6,10.4,1.0
+google/gemma-2-9b-it,tau/scrolls,2025-02-06_06-38-32_e14af1d,1,double7/vicuna-68m,16,431.0,603.0,46.0,21.4,2.04
+google/gemma-2-9b-it,tau/scrolls,2025-02-06_06-38-32_e14af1d,1,google/gemma-2-2b-it,16,458.2,742.3,37.7,26.0,2.49
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,0,No Drafter (Autoregressive),13,235.2,319.3,78.4,12.7,1.0
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,0,Qwen/Qwen2.5-0.5B-Instruct,13,235.2,350.5,62.0,15.3,1.2
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,0,double7/vicuna-68m,13,235.2,334.7,43.2,23.0,1.81
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,0,meta-llama/Llama-3.1-8B-Instruct,13,234.9,633.1,53.1,18.7,1.47
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,0,meta-llama/Llama-3.2-1B-Instruct,13,234.9,448.0,39.4,25.3,1.98
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,0,meta-llama/Llama-3.2-3B-Instruct,13,235.2,614.7,53.4,18.4,1.44
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,1,No Drafter (Autoregressive),13,224.0,317.7,78.7,12.7,1.0
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,1,Qwen/Qwen2.5-0.5B-Instruct,13,204.1,359.3,51.8,19.3,1.52
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,1,double7/vicuna-68m,13,210.6,344.1,52.8,18.9,1.49
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,1,meta-llama/Llama-3.1-8B-Instruct,13,240.7,448.0,46.0,21.6,1.7
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,1,meta-llama/Llama-3.2-1B-Instruct,13,207.3,434.0,37.9,26.2,2.06
+meta-llama/Llama-3.1-70B-Instruct,cnn_dailymail,2025-02-06_06-38-19_e14af1d,1,meta-llama/Llama-3.2-3B-Instruct,13,230.1,497.8,43.4,22.6,1.78
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,0,No Drafter (Autoregressive),22,289.7,1804.6,125.3,7.8,1.0
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,0,Qwen/Qwen2.5-0.5B-Instruct,22,288.0,1839.5,69.5,13.7,1.77
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,0,double7/vicuna-68m,22,293.3,1814.3,91.5,10.7,1.37
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,0,meta-llama/Llama-3.1-8B-Instruct,22,293.7,2062.6,57.1,17.1,2.2
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,0,meta-llama/Llama-3.2-1B-Instruct,22,292.6,1829.5,43.3,22.6,2.92
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,0,meta-llama/Llama-3.2-3B-Instruct,22,293.3,1918.3,54.9,17.9,2.3
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,1,No Drafter (Autoregressive),22,251.8,1804.0,125.3,7.8,1.0
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,1,Qwen/Qwen2.5-0.5B-Instruct,22,274.5,1844.1,58.2,16.9,2.18
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,1,double7/vicuna-68m,22,259.5,1802.8,95.2,10.3,1.32
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,1,meta-llama/Llama-3.1-8B-Instruct,22,290.8,2034.5,48.2,20.5,2.64
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,1,meta-llama/Llama-3.2-1B-Instruct,22,250.7,1835.9,45.2,21.8,2.81
+meta-llama/Llama-3.1-70B-Instruct,tau/scrolls,2025-02-06_06-38-19_e14af1d,1,meta-llama/Llama-3.2-3B-Instruct,22,264.3,1920.6,49.7,19.9,2.57
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,0,No Drafter (Autoregressive),29,512.0,37.9,21.6,46.2,1.0
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,0,Qwen/Qwen2.5-0.5B-Instruct,29,512.0,76.4,37.6,19.4,0.42
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,0,double7/vicuna-68m,29,512.0,66.2,16.2,56.2,1.21
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,0,meta-llama/Llama-3.2-1B-Instruct,29,512.0,142.1,16.8,57.7,1.25
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,0,meta-llama/Llama-3.2-3B-Instruct,29,512.0,258.7,25.2,38.9,0.84
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,1,No Drafter (Autoregressive),29,512.0,38.9,22.0,45.4,1.0
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,1,Qwen/Qwen2.5-0.5B-Instruct,29,508.9,78.0,25.0,39.6,0.87
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,1,double7/vicuna-68m,29,486.7,66.9,17.5,56.7,1.25
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,1,meta-llama/Llama-3.2-1B-Instruct,29,499.4,93.7,17.6,56.1,1.24
+meta-llama/Llama-3.1-8B-Instruct,cnn_dailymail,2025-02-06_06-40-21_e14af1d,1,meta-llama/Llama-3.2-3B-Instruct,29,482.2,158.5,24.3,40.9,0.9
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,0,No Drafter (Autoregressive),30,512.0,30.9,21.6,46.4,1.0
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,0,Qwen/Qwen2.5-0.5B-Instruct,30,512.0,237.2,47.4,8.0,0.17
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,0,double7/vicuna-68m,30,512.0,36.4,23.6,35.5,0.77
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,0,meta-llama/Llama-3.2-1B-Instruct,30,512.0,155.4,12.6,77.0,1.66
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,0,meta-llama/Llama-3.2-3B-Instruct,30,512.0,317.3,19.7,49.2,1.06
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,1,No Drafter (Autoregressive),30,483.7,30.9,22.0,45.4,1.0
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,1,Qwen/Qwen2.5-0.5B-Instruct,30,512.0,161.9,21.1,45.9,1.01
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,1,double7/vicuna-68m,30,512.0,39.9,19.1,51.6,1.14
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,1,meta-llama/Llama-3.2-1B-Instruct,30,497.6,133.0,15.0,65.7,1.45
+meta-llama/Llama-3.1-8B-Instruct,openai/openai_humaneval,2025-02-06_06-40-21_e14af1d,1,meta-llama/Llama-3.2-3B-Instruct,30,496.9,252.1,21.8,45.5,1.0
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,0,No Drafter (Autoregressive),30,510.7,241.5,35.2,27.1,1.0
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,0,Qwen/Qwen2.5-0.5B-Instruct,30,511.0,279.6,40.7,21.1,0.78
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,0,double7/vicuna-68m,30,510.7,257.2,26.9,36.2,1.33
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,0,meta-llama/Llama-3.2-1B-Instruct,30,510.7,277.6,20.0,48.9,1.8
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,0,meta-llama/Llama-3.2-3B-Instruct,30,510.7,365.9,28.9,34.2,1.26
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,1,No Drafter (Autoregressive),30,499.0,241.2,35.4,27.0,1.0
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,1,Qwen/Qwen2.5-0.5B-Instruct,30,508.5,283.0,26.6,37.2,1.38
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,1,double7/vicuna-68m,30,502.4,248.5,27.7,35.1,1.3
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,1,meta-llama/Llama-3.2-1B-Instruct,30,475.2,278.6,19.3,51.1,1.89
+meta-llama/Llama-3.1-8B-Instruct,tau/scrolls,2025-02-06_06-40-21_e14af1d,1,meta-llama/Llama-3.2-3B-Instruct,30,488.5,359.2,25.3,39.2,1.45
+microsoft/phi-4,tau/scrolls,2025-02-06_06-40-46_ea3ed4b,0,No Drafter (Autoregressive),17,469.9,479.2,59.6,15.9,1.0
+microsoft/phi-4,tau/scrolls,2025-02-06_06-40-46_ea3ed4b,0,Qwen/Qwen2.5-0.5B-Instruct,17,469.9,481.3,32.7,29.1,1.83
+microsoft/phi-4,tau/scrolls,2025-02-06_06-40-46_ea3ed4b,0,microsoft/Phi-3.5-mini-instruct,17,468.0,1281.8,60.1,15.8,1.0
+microsoft/phi-4,tau/scrolls,2025-02-06_06-40-46_ea3ed4b,1,No Drafter (Autoregressive),17,494.4,477.4,53.6,18.0,1.0
+microsoft/phi-4,tau/scrolls,2025-02-06_06-40-46_ea3ed4b,1,Qwen/Qwen2.5-0.5B-Instruct,17,474.5,487.7,31.2,31.1,1.73
+microsoft/phi-4,tau/scrolls,2025-02-06_06-40-46_ea3ed4b,1,microsoft/Phi-3.5-mini-instruct,17,486.5,1282.4,57.8,17.1,0.95
+microsoft/phi-4,tau/scrolls,2025-02-06_17-07-07_ab73cc7,0,No Drafter (Autoregressive),16,447.4,461.1,48.7,19.6,1.0
+microsoft/phi-4,tau/scrolls,2025-02-06_17-07-07_ab73cc7,0,Qwen/Qwen2.5-0.5B-Instruct,16,447.4,441.4,32.8,22.4,1.14
+microsoft/phi-4,tau/scrolls,2025-02-06_17-07-07_ab73cc7,0,microsoft/Phi-3.5-mini-instruct,16,447.4,1145.6,59.7,15.8,0.81
+microsoft/phi-4,tau/scrolls,2025-02-06_17-07-07_ab73cc7,1,No Drafter (Autoregressive),16,496.8,457.9,48.6,19.4,1.0
+microsoft/phi-4,tau/scrolls,2025-02-06_17-07-07_ab73cc7,1,Qwen/Qwen2.5-0.5B-Instruct,16,484.2,448.8,31.3,31.5,1.62
+microsoft/phi-4,tau/scrolls,2025-02-06_17-07-07_ab73cc7,1,microsoft/Phi-3.5-mini-instruct,16,485.1,1136.7,57.7,17.0,0.88
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_06-42-07_ea3ed4b,0,No Drafter (Autoregressive),22,207.4,269.6,128.1,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_06-42-07_ea3ed4b,0,Qwen/Qwen2.5-0.5B-Instruct,22,209.6,315.9,68.7,13.4,1.71
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_06-42-07_ea3ed4b,0,double7/vicuna-68m,22,203.2,304.8,58.3,16.2,2.07
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_06-42-07_ea3ed4b,1,No Drafter (Autoregressive),22,201.8,269.6,128.2,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_06-42-07_ea3ed4b,1,Qwen/Qwen2.5-0.5B-Instruct,22,203.4,301.8,88.9,11.1,1.43
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_06-42-07_ea3ed4b,1,double7/vicuna-68m,22,205.8,295.6,80.1,12.3,1.57
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_21-32-25_ab73cc7,0,No Drafter (Autoregressive),20,208.7,266.8,127.9,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_21-32-25_ab73cc7,0,Qwen/Qwen2.5-0.5B-Instruct,20,210.0,321.2,68.3,13.3,1.71
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_21-32-25_ab73cc7,0,double7/vicuna-68m,20,203.0,302.4,57.3,16.4,2.1
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_21-32-25_ab73cc7,1,No Drafter (Autoregressive),20,213.2,266.8,128.1,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_21-32-25_ab73cc7,1,Qwen/Qwen2.5-0.5B-Instruct,20,213.2,294.5,88.9,11.2,1.43
+mistralai/Mixtral-8x22B-Instruct-v0.1,cnn_dailymail,2025-02-06_21-32-25_ab73cc7,1,double7/vicuna-68m,20,203.2,297.3,81.0,11.9,1.53
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_06-42-07_ea3ed4b,0,No Drafter (Autoregressive),21,330.0,214.8,127.4,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_21-32-25_ab73cc7,0,No Drafter (Autoregressive),10,333.1,217.5,127.9,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_21-32-25_ab73cc7,0,Qwen/Qwen2.5-0.5B-Instruct,10,334.8,484.4,70.2,12.0,1.53
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_21-32-25_ab73cc7,0,double7/vicuna-68m,10,345.5,231.5,73.3,12.6,1.61
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_21-32-25_ab73cc7,1,No Drafter (Autoregressive),10,309.3,217.5,128.1,7.8,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_21-32-25_ab73cc7,1,Qwen/Qwen2.5-0.5B-Instruct,10,409.2,266.9,90.6,10.9,1.4
+mistralai/Mixtral-8x22B-Instruct-v0.1,openai/openai_humaneval,2025-02-06_21-32-25_ab73cc7,1,double7/vicuna-68m,10,324.1,228.5,74.8,13.0,1.67
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_06-42-07_ea3ed4b,0,No Drafter (Autoregressive),27,186.6,1366.0,162.9,6.1,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_06-42-07_ea3ed4b,0,Qwen/Qwen2.5-0.5B-Instruct,27,182.7,1406.3,62.9,14.0,2.31
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_06-42-07_ea3ed4b,0,double7/vicuna-68m,27,186.6,1386.0,130.2,7.5,1.24
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_06-42-07_ea3ed4b,1,No Drafter (Autoregressive),27,224.4,1366.0,161.8,6.1,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_06-42-07_ea3ed4b,1,Qwen/Qwen2.5-0.5B-Instruct,27,257.3,1397.0,88.2,11.2,1.84
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_06-42-07_ea3ed4b,1,double7/vicuna-68m,27,259.6,1369.7,137.5,7.2,1.18
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_21-32-25_ab73cc7,0,No Drafter (Autoregressive),25,193.8,1331.9,163.0,6.0,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_21-32-25_ab73cc7,0,Qwen/Qwen2.5-0.5B-Instruct,25,189.8,1414.2,81.0,10.3,1.71
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_21-32-25_ab73cc7,0,double7/vicuna-68m,25,193.7,1344.5,132.5,7.4,1.24
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_21-32-25_ab73cc7,1,No Drafter (Autoregressive),25,227.9,1334.7,168.7,5.9,1.0
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_21-32-25_ab73cc7,1,Qwen/Qwen2.5-0.5B-Instruct,25,236.4,1372.6,97.8,9.9,1.69
+mistralai/Mixtral-8x22B-Instruct-v0.1,tau/scrolls,2025-02-06_21-32-25_ab73cc7,1,double7/vicuna-68m,25,232.6,1329.7,138.2,7.2,1.22

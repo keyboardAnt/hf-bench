@@ -1,0 +1,29 @@
+target,dataset_path,submission_id,temperature,drafter,example_id_nunique,new_toks,ttft_ms,tpot_ms,out_toks_per_sec,speedup
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,0,No Drafter (Autoregressive),16,415.6,176.8,51.7,19.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,16,415.6,287.5,69.9,14.1,0.73
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_02-10-28_d8c80fe,0,double7/vicuna-68m,16,414.9,243.0,36.2,27.4,1.43
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,0,No Drafter (Autoregressive),18,379.2,66.9,33.7,29.7,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,18,386.3,114.1,51.0,19.4,0.65
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,cnn_dailymail,2025-02-06_06-54-21_ab73cc7,0,double7/vicuna-68m,18,379.2,91.0,26.4,37.6,1.27
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,No Drafter (Autoregressive),30,451.6,91.2,48.7,20.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,bigcode/tiny_starcoder_py,30,454.2,113.5,43.9,22.4,1.1
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,codellama/CodeLlama-7b-Instruct-hf,30,455.6,257.3,77.9,12.3,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_02-10-28_d8c80fe,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,452.8,292.5,70.4,13.7,0.67
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,No Drafter (Autoregressive),30,451.6,91.4,51.9,19.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,bigcode/tiny_starcoder_py,30,454.2,113.2,43.8,22.5,1.17
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,codellama/CodeLlama-7b-Instruct-hf,30,455.6,255.9,77.0,12.4,0.65
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-29-56_17d3c65,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,452.8,292.5,71.4,13.4,0.7
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,No Drafter (Autoregressive),30,450.1,43.7,32.4,30.8,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,bigcode/tiny_starcoder_py,30,453.6,49.6,30.8,32.0,1.04
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,453.9,153.0,59.7,16.1,0.52
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_06-54-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,450.1,165.5,51.7,18.9,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,No Drafter (Autoregressive),30,450.1,43.9,32.0,31.2,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,bigcode/tiny_starcoder_py,30,453.6,52.2,30.6,32.3,1.04
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,codellama/CodeLlama-7b-Instruct-hf,30,453.9,153.3,59.5,16.2,0.52
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,openai/openai_humaneval,2025-02-06_11-43-18_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,30,450.1,166.9,51.3,19.0,0.61
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,0,No Drafter (Autoregressive),25,261.9,1481.0,87.5,10.9,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,25,257.2,1665.4,59.1,16.0,1.48
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_02-10-28_d8c80fe,0,double7/vicuna-68m,25,262.4,1566.8,56.0,17.3,1.59
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,0,No Drafter (Autoregressive),24,262.9,464.2,52.1,18.4,1.0
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,0,deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B,24,260.9,533.0,48.7,19.8,1.08
+deepseek-ai/DeepSeek-R1-Distill-Qwen-14B,tau/scrolls,2025-02-06_06-54-21_ab73cc7,0,double7/vicuna-68m,24,262.9,484.6,41.4,23.3,1.27
