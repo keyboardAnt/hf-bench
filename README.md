@@ -91,7 +91,7 @@ If you use our algorithms (or the code in this repo), please cite our ICML'25 sp
 ```bibtex
 @inproceedings{timor2025accelerating,
   title={Accelerating LLM Inference with Lossless Speculative Decoding Algorithms for Heterogeneous Vocabularies},
-  author={Timor, Nadav and Mamou, Jonathan and Korat, Daniel and Berchansky, Moshe and Pereg, Oren and Jain, Gaurav and Schwartz, Roy and Wasserblat, Moshe and Harel, David},
+  author={Timor, Nadav and Mamou, Jonathan and Korat, Daniel and Berchansky, Moshe and Jain, Gaurav and Pereg, Oren and Wasserblat, Moshe and Harel, David},
   booktitle={Forty-second International Conference on Machine Learning (ICML)},
   year={2025},
   url={https://openreview.net/forum?id=vQubr1uBUw}
